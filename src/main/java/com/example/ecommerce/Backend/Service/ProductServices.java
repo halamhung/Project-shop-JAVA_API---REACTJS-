@@ -1,4 +1,6 @@
 package com.example.ecommerce.Backend.Service;
 
-public class ProductServices {
+import com.example.ecommerce.Backend.IService.IProductServices;
+
+public class ProductServices implements IProductServices {
 }

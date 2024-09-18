@@ -13,6 +13,7 @@
     @NoArgsConstructor
     @AllArgsConstructor
     @Table(name = "Product")
+    @Builder
     public class Product {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

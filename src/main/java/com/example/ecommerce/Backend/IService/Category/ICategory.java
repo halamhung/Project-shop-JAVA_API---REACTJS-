@@ -8,11 +8,11 @@ import java.util.List;
 public interface ICategory {
 
     List<Category> getAllCategory();
-    void deleteCategory(long categoryId);
+    void deleteCategory(Long categoryId);
     Category saveCategory(CategoryDTO categorydto);
     Category addCategory(CategoryDTO categoryDTO);
-
-
+    Category updateCategory(Long id, CategoryDTO categoryDTO);
+    Category getCategorybyId(Long id);
 
 
 }

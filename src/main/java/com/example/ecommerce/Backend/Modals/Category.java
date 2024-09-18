@@ -17,7 +17,7 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long categoryId;
+    private Long categoryId;
 
     @NotBlank(message = "Tên danh mục không được để trống.")
     @Size(max = 255, message = "Tên danh mục không được vượt quá 255 ký tự.")

@@ -1,25 +1,19 @@
-package com.example.ecommerce.Backend.Modals;
+package com.example.ecommerce.Backend.Dtos;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-
-import java.util.List;
-
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Table(name = "orders")
-@Builder
-public class Orders {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
-
+@NoArgsConstructor
+public class OrderDtos {
     @NotBlank(message = "Tên người nhận không được để trống")
     private String consignee;
 
@@ -39,12 +33,6 @@ public class Orders {
 
     private int status;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
-
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Orderdetails> orderDetails;
-
+    @JsonProperty("userId")
+    private Long userId;
 }

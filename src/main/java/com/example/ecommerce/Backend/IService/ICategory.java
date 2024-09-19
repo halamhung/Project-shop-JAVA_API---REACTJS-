@@ -1,6 +1,6 @@
-package com.example.ecommerce.Backend.IService.Category;
+package com.example.ecommerce.Backend.IService;
 
-import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.CategoryDTO;
 import com.example.ecommerce.Backend.Modals.Category;
 
 import java.util.List;

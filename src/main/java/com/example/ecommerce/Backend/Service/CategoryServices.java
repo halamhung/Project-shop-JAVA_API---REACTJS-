@@ -1,9 +1,9 @@
-package com.example.ecommerce.Backend.Service.Category;
+package com.example.ecommerce.Backend.Service;
 
-import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
-import com.example.ecommerce.Backend.IService.Category.ICategory;
+import com.example.ecommerce.Backend.Dtos.CategoryDTO;
+import com.example.ecommerce.Backend.IService.ICategory;
 import com.example.ecommerce.Backend.Modals.Category;
-import com.example.ecommerce.Backend.Repositories.Category.CategoryRepository;
+import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

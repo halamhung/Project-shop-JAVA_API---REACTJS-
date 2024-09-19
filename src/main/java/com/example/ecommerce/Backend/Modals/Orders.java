@@ -38,6 +38,7 @@ public class Orders {
 
     private int status;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;

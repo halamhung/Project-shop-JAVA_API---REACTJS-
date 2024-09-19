@@ -11,11 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class categoryController {
 
-    private final CategoryServices categoryServices;
-
-
-    @GetMapping("/categories")
-    public ResponseEntity<ApiResponse> index(@RequestMapping(defaultValue = "0"), int )
-
+   
 
 }

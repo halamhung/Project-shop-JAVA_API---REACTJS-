@@ -34,6 +34,6 @@ public class ProductDtos {
     @Min(0) // Thêm ràng buộc cho quantity
     private int quantity; // Sửa tên thuộc tính
 
-    private int categoryId;
+    private Long categoryId;
 
 }

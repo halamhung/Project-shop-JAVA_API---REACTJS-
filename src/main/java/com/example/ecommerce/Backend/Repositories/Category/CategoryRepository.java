@@ -6,7 +6,8 @@ import com.example.ecommerce.Backend.Modals.Category;
 import org.springframework.data.domain.Pageable;
 
 public interface CategoryRepository extends JpaRepository <Category, Long>{
-    public Category findByName(String name);
+
+    Category findByName(String name);
 
     Page<Category> findAll(Pageable pageable);
 

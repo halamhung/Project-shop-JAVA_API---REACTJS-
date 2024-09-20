@@ -66,24 +66,16 @@ public class CategoryServices implements ICategory {
 
     @Override
     public Category addCategory(CategoryDTO categoryDTO) {
+
+        if (categoryRepo.findByName(categoryDTO.getName()) != null) {
+            throw new IllegalArgumentException("Category already exists");
+        }
         Category category = Category
                 .builder()
-                .name(fromTen(categoryDTO.getName()))
+                .name(categoryDTO.getName())
                 .build();
         return categoryRepo.save(category);
     }
 
-    @Override
-    public Category findByName(String name) {
-        return categoryRepo.findByName(name);
-    }
-
-    public String fromTen(String ten) {
-        return getAllCategory().stream()
-                .filter(category -> category.getName().equals(ten))
-                .map(Category::getName)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Đã có loại"));
-    }
 
 }

@@ -17,8 +17,6 @@ public interface ICategory {
     Category updateCategory(Long id, CategoryDTO categoryDTO);
     Category getCategorybyId(Long id);
 
-    Category findByName(String name);
-
     Page<CategoryResponse> getAllCategoryByPage(Pageable pageable);
 
 }

@@ -1,14 +1,19 @@
 package com.example.ecommerce.Backend.Controller;
 
+import com.example.ecommerce.Backend.Dtos.OrderDtos;
+import com.example.ecommerce.Backend.Exceptions.ResoureNotFoundException;
+import com.example.ecommerce.Backend.Modals.Orders;
 import com.example.ecommerce.Backend.Responses.ApiResponse;
 import com.example.ecommerce.Backend.Service.OrderServices;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -16,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class OrderController {
     private final OrderServices orderServices;
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<ApiResponse> getAllOrder(){
         ApiResponse apiResponse = ApiResponse.builder()
                 .data(orderServices.getAllOrder())
@@ -25,4 +30,50 @@ public class OrderController {
                 .build();
         return ResponseEntity.ok().body(apiResponse);
     }
+    @PostMapping("/")
+    public ResponseEntity<ApiResponse> createOrder(@Valid @RequestBody OrderDtos orderDtos, BindingResult result){
+        if(result.hasErrors()){
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(FieldError::getDefaultMessage).toList();
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(errors)
+                    .message("Validation failed")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.badRequest().body(apiResponse);
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(orderDtos)
+                .message("Add order success")
+                .status(HttpStatus.OK.value())
+                .build();
+        orderServices.postOrder(orderDtos);
+        return ResponseEntity.ok(apiResponse);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateOrder(@Valid @PathVariable Long id, @RequestBody OrderDtos orderDtos,BindingResult result){
+        if(result.hasErrors()){
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(FieldError::getDefaultMessage).toList();
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(errors)
+                    .message("Validation failed")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.badRequest().body(apiResponse);
+        }
+        Orders orders = orderServices.updateOrder(id,orderDtos);
+        if(orders == null){
+            throw new ResoureNotFoundException("Student khong tim thay vs id: "+id);
+        }
+        Orders o2 = orderServices.getOrder(id);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(o2)
+                .message("Update order success")
+                .status(HttpStatus.OK.value())
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
+    }
+
 }

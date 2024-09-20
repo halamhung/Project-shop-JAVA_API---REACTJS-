@@ -96,4 +96,10 @@ public class ProductController {
         return ResponseEntity.ok(apiResponse);
     }
 
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long id){
+//        Product product = productServices.getProductById(id);
+//        if(product ==  null)
+//    }
+
 }

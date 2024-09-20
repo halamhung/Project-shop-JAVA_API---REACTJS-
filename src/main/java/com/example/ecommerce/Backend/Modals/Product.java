@@ -38,10 +38,8 @@
         @Min(0) // Thêm ràng buộc cho quantity
         private int quantity; // Sửa tên thuộc tính
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "categoryId")
         private Category category;
 
-        @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<Rate> rates;
     }

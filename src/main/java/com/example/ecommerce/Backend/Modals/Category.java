@@ -23,7 +23,7 @@ public class Category {
     @Size(max = 255, message = "Tên danh mục không được vượt quá 255 ký tự.")
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Product> products;
 
 }

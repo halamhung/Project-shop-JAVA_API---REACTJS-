@@ -1,22 +1,17 @@
-package com.example.ecommerce.Backend.Responses;
+package com.example.ecommerce.Backend.Responses.productResponse;
 
-import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Product;
-import com.example.ecommerce.Backend.Modals.Rate;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import com.example.ecommerce.Backend.Responses.BaseResponse;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductResponse extends BaseResponse{
+public class ProductResponse extends BaseResponse {
 
     private Long productId;
     private String nameProduct;

@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name= "Category")
 @Builder
-public class Category {
+public class Category extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
@@ -22,8 +23,5 @@ public class Category {
     @NotBlank(message = "Tên danh mục không được để trống.")
     @Size(max = 255, message = "Tên danh mục không được vượt quá 255 ký tự.")
     private String name;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
 
 }

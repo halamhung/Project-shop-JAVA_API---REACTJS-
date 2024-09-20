@@ -1,11 +1,17 @@
-package com.example.ecommerce.Backend.Service;
+package com.example.ecommerce.Backend.Service.Category;
 
-import com.example.ecommerce.Backend.Dtos.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
 import com.example.ecommerce.Backend.IService.ICategory;
 import com.example.ecommerce.Backend.Modals.Category;
-import com.example.ecommerce.Backend.Repositories.CategoryRepository;
+import com.example.ecommerce.Backend.Repositories.Category.CategoryRepository;
+import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 
@@ -22,6 +28,15 @@ public class CategoryServices implements ICategory {
     public List<Category> getAllCategory() {
         return categoryRepo.findAll();
     }
+
+    @Override
+    public Page<CategoryResponse> getAllCategoryByPage(Pageable pageable) {
+        return categoryRepo.findAll(pageable).map(category -> {
+            return CategoryResponse.fromCategory(category);
+        });
+    }
+
+
 
     @Override
     public Category getCategorybyId(Long id) {
@@ -56,6 +71,11 @@ public class CategoryServices implements ICategory {
                 .name(fromTen(categoryDTO.getName()))
                 .build();
         return categoryRepo.save(category);
+    }
+
+    @Override
+    public Category findByName(String name) {
+        return categoryRepo.findByName(name);
     }
 
     public String fromTen(String ten) {

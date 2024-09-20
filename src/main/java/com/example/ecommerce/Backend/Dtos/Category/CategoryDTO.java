@@ -1,4 +1,4 @@
-package com.example.ecommerce.Backend.Dtos;
+package com.example.ecommerce.Backend.Dtos.Category;
 
 import com.example.ecommerce.Backend.Modals.Product;
 import jakarta.persistence.*;

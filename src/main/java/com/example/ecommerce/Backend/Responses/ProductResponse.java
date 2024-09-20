@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductResponse extends BaseResponse{
+public class eProductResponse extends BaseResponse{
 
     private Long productId;
     private String nameProduct;

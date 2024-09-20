@@ -1,7 +1,10 @@
 package com.example.ecommerce.Backend.IService;
 
-import com.example.ecommerce.Backend.Dtos.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
 import com.example.ecommerce.Backend.Modals.Category;
+import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,5 +17,8 @@ public interface ICategory {
     Category updateCategory(Long id, CategoryDTO categoryDTO);
     Category getCategorybyId(Long id);
 
+    Category findByName(String name);
+
+    Page<CategoryResponse> getAllCategoryByPage(Pageable pageable);
 
 }

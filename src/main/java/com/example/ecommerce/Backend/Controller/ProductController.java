@@ -96,10 +96,19 @@ public class ProductController {
         return ResponseEntity.ok(apiResponse);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long id){
-//        Product product = productServices.getProductById(id);
-//        if(product ==  null)
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long id){
+        Product product = productServices.getProductById(id);
+        if(product ==  null){
+            throw new ResoureNotFoundException("product not found by id"+id);
+        }
+        productServices.deleteProduct(id);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .message("delete successfully")
+                .data(id)
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 
 }

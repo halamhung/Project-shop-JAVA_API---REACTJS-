@@ -9,13 +9,14 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Img")
-public class Img {
+public class Img extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int imgId;
+    private Long imgId;
 
+    @Column(name = "image_url",length = 300)
     private String imgUrl;
-    private String imgName;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId")

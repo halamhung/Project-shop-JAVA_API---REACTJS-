@@ -77,7 +77,7 @@ public class ProductServices implements IProductServices {
 
     @Override
     public void deleteProduct(Long id) {
-
+        productRepo.deleteById(id);
     }
     @Override
     public Page<ProductResponse> getAllProduct(Pageable pageable) {

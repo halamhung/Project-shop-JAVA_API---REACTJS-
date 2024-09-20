@@ -7,7 +7,10 @@ import com.example.ecommerce.Backend.Modals.Orders;
 import com.example.ecommerce.Backend.Modals.User;
 import com.example.ecommerce.Backend.Repositories.OrderRepository;
 import com.example.ecommerce.Backend.Repositories.userRepository.UserRepository;
+import com.example.ecommerce.Backend.Responses.OrderResponse.OrderResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,6 +67,13 @@ public class OrderServices implements IOrderServices {
     public Orders updateStatusOrder(Long id, int status) {
 
         return null;
+    }
+
+    @Override
+    public Page<OrderResponse> getAllOrder(Pageable pageable) {
+        return orderRepository.findAll(pageable).map(orders -> {
+            return OrderResponse.fromOrders(orders);
+        });
     }
 
     @Override

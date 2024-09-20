@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "orders")
 @Builder
-public class Orders {
+public class Orders extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;

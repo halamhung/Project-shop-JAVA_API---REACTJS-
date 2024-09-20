@@ -1,12 +1,13 @@
 package com.example.ecommerce.Backend.Controller;
 
 import com.example.ecommerce.Backend.Dtos.ProductDtos;
+import com.example.ecommerce.Backend.Exceptions.ResoureNotFoundException;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Responses.ApiResponse;
-import com.example.ecommerce.Backend.Responses.ProductResponse;
+import com.example.ecommerce.Backend.Responses.productResponse.ProductListResponse;
+import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import com.example.ecommerce.Backend.Service.ProductServices;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,10 +40,14 @@ public class ProductController {
         Page<ProductResponse> productResponses = productServices.getAllProduct(pageable);
         int totalPages =  productResponses.getTotalPages();
         List<ProductResponse> responseList = productResponses.getContent();
+        ProductListResponse productListResponse = ProductListResponse.builder()
+                .productResponses(responseList)
+                .totalPages(totalPages)
+                .build();
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .message("Show products Successfully")
-                .data(responseList)
+                .data(productListResponse)
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
@@ -67,6 +72,28 @@ public class ProductController {
         productServices.createProduct(pro);
         return ResponseEntity.ok(apiResponse);
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateProduct(@Valid @PathVariable Long id ,@RequestBody ProductDtos productDtos, BindingResult result ){
+        if(result.hasErrors()){
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(FieldError::getDefaultMessage).toList();
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(errors)
+                    .message("Validation Error")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.ok(apiResponse);
+        }
+        Product product = productServices.updateProduct(id,productDtos);
+        if(product == null){
+            throw new ResoureNotFoundException("Product not found by id"+id);
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(product)
+                .message("Update product Successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 
 }

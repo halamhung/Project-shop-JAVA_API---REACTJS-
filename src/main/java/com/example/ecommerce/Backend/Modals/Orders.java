@@ -39,8 +39,8 @@ public class Orders {
     private int status;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
 //    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)

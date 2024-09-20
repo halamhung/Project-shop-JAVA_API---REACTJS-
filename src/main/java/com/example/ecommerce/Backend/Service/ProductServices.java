@@ -6,7 +6,7 @@ import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Repositories.Category.CategoryRepository;
 import com.example.ecommerce.Backend.Repositories.ProductRepo;
-import com.example.ecommerce.Backend.Responses.ProductResponse;
+import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,8 +56,24 @@ public class ProductServices implements IProductServices {
 
     @Override
     public Product updateProduct(Long id, ProductDtos productDtos) {
-        return null;
+        Long categoryId = productDtos.getCategoryId();
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        if (categoryOptional.isPresent()) {
+        Product product = getProductById(id);
+        product.setNameProduct(productDtos.getNameProduct());
+        product.setPrice(productDtos.getPrice());
+        product.setDescription(productDtos.getDescription());
+        product.setSlug(productDtos.getSlug());
+        product.setStatus(productDtos.getStatus());
+        product.setQuantity(productDtos.getQuantity());
+        product.setCategory(categoryOptional.get());
+        return productRepo.save(product);
     }
+        else {
+            // Xử lý trường hợp không tìm thấy category, ví dụ:
+            throw new IllegalArgumentException("Không tìm thấy danh mục sản phẩm với ID: " + categoryId);
+        }
+        }
 
     @Override
     public void deleteProduct(Long id) {

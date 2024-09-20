@@ -24,7 +24,7 @@ public class Orders {
     private String consignee;
 
     @Size(min = 10, max = 10, message = "Số điện thoại bắt buộc 10 chữ số")
-    @Pattern(regexp = "^(0[35789]|84[35789])[0-9]{8}$", message = "Số điện thoại không hợp lệ.")
+//    @Pattern(regexp = "^(0[35789]|84[35789])[0-9]{8}$", message = "Số điện thoại không hợp lệ.")
     private String phoneConsignee;
 
     @NotBlank(message = "Địa chỉ không được để trống")
@@ -32,7 +32,6 @@ public class Orders {
 
     private String note;
 
-    @NotBlank(message = "Ngày đặt không được trống")
     private Date orderDate; // Thay đổi kiểu dữ liệu
 
     private int paymentMethod;
@@ -44,7 +43,7 @@ public class Orders {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Orderdetails> orderDetails;
+//    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Orderdetails> orderDetails;
 
 }

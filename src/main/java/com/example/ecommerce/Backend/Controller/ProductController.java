@@ -52,8 +52,20 @@ public class ProductController {
         if(result.hasErrors()){
             List<String> error = result.getFieldErrors().stream()
                     .map(FieldError::getDefaultMessage).toList();
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(error)
+                    .message("Validation Error")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.badRequest().body(apiResponse);
         }
-        return null;
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(pro)
+                .message("Add product Successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        productServices.createProduct(pro);
+        return ResponseEntity.ok(apiResponse);
     }
 
 

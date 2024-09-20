@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -25,6 +26,8 @@ public class ProductResponse extends BaseResponse{
     private int status;
     private int quantity; // Sửa tên thuộc tính
     private Long category;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
     public static ProductResponse fromProduct(Product product) {
         ProductResponse productResponse = ProductResponse.builder()
                 .productId(product.getProductId())
@@ -35,6 +38,8 @@ public class ProductResponse extends BaseResponse{
                 .status(product.getStatus())
                 .quantity(product.getQuantity())
                 .category(product.getCategory().getCategoryId())
+                .createdAt(product.getCreateAt()) // Lấy giá trị từ product
+                .updatedAt(product.getUpdateAt()) // Lấy giá trị từ product
                 .build();
         return productResponse;
     }

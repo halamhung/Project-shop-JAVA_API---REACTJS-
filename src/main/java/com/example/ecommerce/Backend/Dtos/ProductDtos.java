@@ -5,6 +5,7 @@ import com.example.ecommerce.Backend.Modals.Rate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,12 +29,12 @@ public class ProductDtos {
     @NotBlank(message = "Slug không được để trống.")
     private String slug;
 
-    @NotBlank(message = "Trạng thái không được để trống.")
+    @NotNull(message = "Trạng thái không được để trống.")
     private int status;
 
     @Min(0) // Thêm ràng buộc cho quantity
     private int quantity; // Sửa tên thuộc tính
 
-    private int categoryId;
+    private Long categoryId;
 
 }

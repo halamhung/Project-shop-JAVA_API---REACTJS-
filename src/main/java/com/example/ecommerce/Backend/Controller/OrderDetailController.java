@@ -23,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class OrderDetailController {
+
     private final OrderDetailServices orderDetailServices;
     @PostMapping("/")
     public ResponseEntity<ApiResponse> createOrder(@Valid @RequestBody OrderDetailDTO orderDetailDTO, BindingResult result){

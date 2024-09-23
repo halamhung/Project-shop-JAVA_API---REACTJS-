@@ -15,11 +15,11 @@ public class Orderdetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oderDetailId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productId")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
     private Orders orders;
 

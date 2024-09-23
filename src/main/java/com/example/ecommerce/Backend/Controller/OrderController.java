@@ -26,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class OrderController {
+    
     private final OrderServices orderServices;
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getAllOrder(

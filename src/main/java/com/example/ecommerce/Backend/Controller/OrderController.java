@@ -94,5 +94,19 @@ public class OrderController {
 
         return ResponseEntity.ok(apiResponse);
     }
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse> search(
+            @RequestParam(value = "consignee",required = false) String consignee,
+            @RequestParam(value = "addressConsignee",required = false) String addressConsignee,
+            @RequestParam(value = "orderDate",required = false) int orderDate,
+            @RequestParam(value = "phoneConsignee",required = false) String phoneConsignee
+    ){
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(orderServices.search(consignee,addressConsignee,orderDate,phoneConsignee))
+                .message("Search Successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 
 }

@@ -77,6 +77,11 @@ public class OrderServices implements IOrderServices {
     }
 
     @Override
+    public List<Orders> search(String consignee, String addressConsignee, int orderDate, String phoneConsignee) {
+        return orderRepository.search(consignee,addressConsignee,orderDate,phoneConsignee);
+    }
+
+    @Override
     public List<Orders> findByUserId(Long userId) {
         return null;
     }

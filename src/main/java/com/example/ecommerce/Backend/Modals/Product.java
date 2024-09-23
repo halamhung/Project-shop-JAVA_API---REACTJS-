@@ -3,6 +3,7 @@
     import jakarta.persistence.*;
     import jakarta.validation.constraints.Min;
     import jakarta.validation.constraints.NotBlank;
+    import jakarta.validation.constraints.NotNull;
     import lombok.*;
 
     import java.util.List;
@@ -13,7 +14,8 @@
     @NoArgsConstructor
     @AllArgsConstructor
     @Table(name = "Product")
-    public class Product {
+    @Builder
+    public class Product extends BaseEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long productId;
@@ -30,16 +32,14 @@
         @NotBlank(message = "Slug không được để trống.")
         private String slug;
 
-        @NotBlank(message = "Trạng thái không được để trống.")
+        @NotNull(message = "Trạng thái không được để trống.")
         private int status;
 
         @Min(0) // Thêm ràng buộc cho quantity
         private int quantity; // Sửa tên thuộc tính
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "categoryId")
         private Category category;
 
-        @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<Rate> rates;
     }

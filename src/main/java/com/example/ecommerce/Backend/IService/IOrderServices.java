@@ -18,6 +18,7 @@ public interface IOrderServices {
     Orders updateOrder(Long id,OrderDtos orderDtos);
     Orders updateStatusOrder(Long id,int status);
     Page<OrderResponse> getAllOrder(Pageable pageable);
+    List<Orders> search(String consignee,String addressConsignee, int orderDate,String phoneConsignee);
 //    void deleteOrder(Long id);
 
 }

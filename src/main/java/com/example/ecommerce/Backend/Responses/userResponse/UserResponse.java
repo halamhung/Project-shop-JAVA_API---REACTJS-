@@ -23,16 +23,16 @@ public class UserResponse extends BaseResponse{
 
     public static UserResponse fromUser(User user){
         UserResponse userResponse = UserResponse.builder()
-                            .userId(user.getUserId())
-                            .name(user.getName())
-                            .userName(user.getName())
-                            .email(user.getEmail())
-                            .phone(user.getPhone())
-                            .address(user.getAddress())
-                            .status(user.getStatus())
-                            .build();
+                .userId(user.getUserId())
+                .name(user.getName())
+                .userName(user.getUsername())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .address(user.getAddress())
+                .status(user.getStatus())
+                .build();
         return userResponse;
 
     }
-    
+
 }

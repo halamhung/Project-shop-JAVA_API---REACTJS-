@@ -1,12 +1,14 @@
 package com.example.ecommerce.Backend.Repositories.userRepository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.example.ecommerce.Backend.Modals.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
-    List<User> findByUserName(String userName);
-    
+    User findByUserName(String userName);
+    boolean existsByName(String name);
+    Page<User> findAll(Pageable pageable);
 }

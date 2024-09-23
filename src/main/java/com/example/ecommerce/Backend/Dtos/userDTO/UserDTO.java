@@ -37,5 +37,6 @@ public class UserDTO {
     @Size(min=6,max=20, message = "Tên phải có từ 6 đến 20 kí tự")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Tên người dùng chỉ được chứa chữ cái, số và dấu gạch dưới.")
     private String userName;
-    
+
+
 }

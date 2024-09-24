@@ -1,6 +1,6 @@
 package com.example.ecommerce.Backend.IService;
 
-import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.CategoryDTO;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
 import org.springframework.data.domain.Page;

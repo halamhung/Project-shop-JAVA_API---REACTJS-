@@ -1,227 +1,185 @@
-# [Material Dashboard 2 React](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/material-dashboard-react&text=Check%20Material%20Dashboard%202%20react%20made%20by%20@CreativeTim%20#webdesign%20#dashboard%20#materialdesign%20#react%20https://www.creative-tim.com/product/material-dashboard-react)
+# CoreUI Free React Admin Template [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?text=CoreUI%20-%20Free%React%204%20Admin%20Template%20&url=https://coreui.io&hashtags=bootstrap,admin,template,dashboard,panel,free,angular,react,vue)
 
-![version](https://img.shields.io/badge/version-2.2.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard-react.svg)](https://github.com/creativetimofficial/material-dashboard-react/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard-react.svg)](https://github.com/creativetimofficial/material-dashboard-react/issues?q=is%3Aissue+is%3Aclosed)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![@coreui coreui](https://img.shields.io/badge/@coreui%20-coreui-lightgrey.svg?style=flat-square)](https://github.com/coreui/coreui)
+[![npm package][npm-coreui-badge]][npm-coreui]
+[![NPM downloads][npm-coreui-download]][npm-coreui]
+[![@coreui react](https://img.shields.io/badge/@coreui%20-react-lightgrey.svg?style=flat-square)](https://github.com/coreui/react)
+[![npm package][npm-coreui-react-badge]][npm-coreui-react]
+[![NPM downloads][npm-coreui-react-download]][npm-coreui-react]  
 
-![Image](https://s3.amazonaws.com/creativetim_bucket/products/71/original/material-dashboard-react.jpg?1638950990)
+[npm-coreui]: https://www.npmjs.com/package/@coreui/coreui
+[npm-coreui-badge]: https://img.shields.io/npm/v/@coreui/coreui.png?style=flat-square
+[npm-coreui-download]: https://img.shields.io/npm/dm/@coreui/coreui.svg?style=flat-square
+[npm-coreui-react]: https://www.npmjs.com/package/@coreui/react
+[npm-coreui-react-badge]: https://img.shields.io/npm/v/@coreui/react.png?style=flat-square
+[npm-coreui-react-download]: https://img.shields.io/npm/dm/@coreui/react.svg?style=flat-square
+[npm]: https://www.npmjs.com/package/@coreui/react
 
-Material Dashboard 2 React is our newest free MUI Admin Template based on React. If you’re a developer looking to create an admin dashboard that is developer-friendly, rich with features, and highly customisable, here is your match. Our innovative MUI & React dashboard comes with a beautiful design inspired by Google's Material Design and it will help you create stunning websites & web apps to delight your clients.
+[![Bootstrap Admin Template](https://assets.coreui.io/products/coreui-free-bootstrap-admin-template-light-dark.webp)](https://coreui.io/product/free-react-admin-template/)
 
-**Fully Coded Elements**
-Material Dashboard 2 React is built with over 70 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. All components can take variations in color, which you can easily modify using MUI styled() API and sx prop. You will save a lot of time going from prototyping to full-functional code because all elements are implemented.
-
-This free MUI & React Dashboard is coming with prebuilt design blocks, so the development process is seamless,
-switching from our pages to the real website is very easy to be done.
-
-Special thanks go to:
-
-- [Nepcha Analytics](https://nepcha.com?ref=readme) for the analytics tool. Nepcha is already integrated with Material Dashboard React. You can use it to gain insights into your sources of traffic.
-
-**Documentation built by Developers**
-
-Each element is well presented in very complex documentation.
-
-You can read more about the [documentation here](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/).
-
-**Example Pages**
-
-If you want to get inspiration or just show something directly to your clients, you can jump-start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project.
-
-View [example pages here](https://demos.creative-tim.com/material-dashboard-react/#/dashboard).
-
-**HELPFUL LINKS**
-
-- View [Github Repository](https://github.com/creativetimofficial/material-dashboard-react)
-- Check [FAQ Page](https://www.creative-tim.com/faq)
-
-#### Special thanks
-
-During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
-
-- [MUI](https://mui.com/) - The React UI library for faster and easier web development.
-- [React ChartJS 2](http://reactchartjs.github.io/react-chartjs-2/#/) - Simple yet flexible React charting for designers & developers.
-- [ChromaJS](https://gka.github.io/chroma.js/) - A small-ish zero-dependency JavaScript library for all kinds of color conversions and color scales.
-
-Let us know your thoughts below. And good luck with development!
+CoreUI is meant to be the UX game changer. Pure & transparent code is devoid of redundant components, so the app is light enough to offer ultimate user experience. This means mobile devices also, where the navigation is just as easy and intuitive as on a desktop or laptop. The CoreUI Layout API lets you customize your project for almost any device – be it Mobile, Web or WebApp – CoreUI covers them all!
 
 ## Table of Contents
 
-- [Versions](#versions)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Deploy](#deploy)
-- [Documentation](#documentation)
-- [File Structure](#file-structure)
-- [Browser Support](#browser-support)
-- [Resources](#resources)
-- [Reporting Issues](#reporting-issues)
-- [Technical Support or Questions](#technical-support-or-questions)
-- [Licensing](#licensing)
-- [Useful Links](#useful-links)
+* [Versions](#versions)
+* [CoreUI PRO](#coreui-pro)
+* [CoreUI PRO React Admin Templates](#coreui-pro-react-admin-templates)
+* [Quick Start](#quick-start)
+* [Installation](#installation)
+* [Basic usage](#basic-usage)
+* [What's included](#whats-included)
+* [Documentation](#documentation)
+* [Versioning](#versioning)
+* [Creators](#creators)
+* [Community](#community)
+* [Support CoreUI Development](#support-coreui-development)
+* [Copyright and License](#copyright-and-license)
 
 ## Versions
 
-[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react-logo.png?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr)
+* [CoreUI Free Bootstrap Admin Template](https://github.com/coreui/coreui-free-bootstrap-admin-template)
+* [CoreUI Free Angular Admin Template](https://github.com/coreui/coreui-free-angular-admin-template)
+* [CoreUI Free React.js Admin Template (Vite)](https://github.com/coreui/coreui-free-react-admin-template)
+* [CoreUI Free React.js Admin Template (Create React App)](https://github.com/coreui/coreui-free-react-admin-template-cra)
+* [CoreUI Free Vue.js Admin Template](https://github.com/coreui/coreui-free-vue-admin-template)
 
-| React |
-| ----- |
+## CoreUI PRO
 
-| [![Material Dashboard React](https://s3.amazonaws.com/creativetim_bucket/products/71/thumb/material-dashboard-react.jpg?1638950990)](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr)
+* 💪  [CoreUI PRO Angular Admin Template](https://coreui.io/product/angular-dashboard-template/)
+* 💪  [CoreUI PRO Bootstrap Admin Template](https://coreui.io/product/bootstrap-dashboard-template/)
+* 💪  [CoreUI PRO Next.js Admin Template](https://coreui.io/product/next-js-dashboard-template/)
+* 💪  [CoreUI PRO React Admin Template](https://coreui.io/product/react-dashboard-template/)
+* 💪  [CoreUI PRO Vue Admin Template](https://coreui.io/product/vue-dashboard-template/)
 
-## Demo
+## CoreUI PRO React Admin Templates
 
-- [Dashboard](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-sudr)
-- [Profile](https://demos.creative-tim.com/material-dashboard-react/#/profile?ref=readme-sudr)
-- [RTL](https://demos.creative-tim.com/material-dashboard-react/#/rtl?ref=readme-sudr)
-- [Sign In](https://demos.creative-tim.com/material-dashboard-react/#/authentication/sign-in?ref=readme-sudr)
-- [Sign Up](https://demos.creative-tim.com/material-dashboard-react/#/authentication/sign-up?ref=readme-sudr)
+| Default Theme | Light Theme |
+| --- | --- |
+| [![CoreUI PRO React Admin Template](https://coreui.io/images/templates/coreui_pro_default_light_dark.webp)](https://coreui.io/product/react-dashboard-template/?theme=default) | [![CoreUI PRO React Admin Template](https://coreui.io/images/templates/coreui_pro_light_light_dark.webp)](https://coreui.io/product/react-dashboard-template/?theme=light)|
 
-[View More](https://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr).
+| Modern Theme | Bright Theme |
+| --- | --- |
+| [![CoreUI PRO React Admin Template](https://coreui.io/images/templates/coreui_pro_default_v3_light_dark.webp)](https://coreui.io/product/react-dashboard-template/?theme=modern) | [![CoreUI PRO React Admin Template](https://coreui.io/images/templates/coreui_pro_light_v3_light_dark.webp)](https://coreui.io/product/react-dashboard-template/?theme=bright)|
 
-## Quick start
+## Quick Start
 
-Quick start options:
+- [Download the latest release](https://github.com/coreui/coreui-free-react-admin-template/archive/refs/heads/main.zip)
+- Clone the repo: `git clone https://github.com/coreui/coreui-free-react-admin-template.git`
 
-- Download from [Creative Tim](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr).
+### Installation
 
-## Terminal Commands
+``` bash
+$ npm install
+```
 
-1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
-2. Navigate to the root ./ directory of the product and run `yarn install` or `npm install` to install our local dependencies.
+or
 
-## Deploy
+``` bash
+$ yarn install
+```
 
-:rocket: You can deploy your own version of the template to Genezio with one click:
+### Basic usage
 
-[![Deploy to Genezio](https://raw.githubusercontent.com/Genez-io/graphics/main/svg/deploy-button.svg)](https://app.genez.io/start/deploy?repository=https://github.com/creativetimofficial/material-dashboard-react&utm_source=github&utm_medium=referral&utm_campaign=github-creativetim&utm_term=deploy-project&utm_content=button-head)
+``` bash
+# dev server with hot reload at http://localhost:3000
+$ npm start 
+```
+
+or 
+
+``` bash
+# dev server with hot reload at http://localhost:3000
+$ yarn start
+```
+
+Navigate to [http://localhost:3000](http://localhost:3000). The app will automatically reload if you change any of the source files.
+
+#### Build
+
+Run `build` to build the project. The build artifacts will be stored in the `build/` directory.
+
+```bash
+# build for production with minification
+$ npm run build
+```
+
+or
+
+```bash
+# build for production with minification
+$ yarn build
+```
+
+## What's included
+
+Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
+
+```
+coreui-free-react-admin-template
+├── public/          # static files
+│   ├── favicon.ico
+│   └── manifest.json
+│
+├── src/             # project root
+│   ├── assets/      # images, icons, etc.
+│   ├── components/  # common components - header, footer, sidebar, etc.
+│   ├── layouts/     # layout containers
+│   ├── scss/        # scss styles
+│   ├── views/       # application views
+│   ├── _nav.js      # sidebar navigation config
+│   ├── App.js
+│   ├── index.js
+│   ├── routes.js    # routes config
+│   └── store.js     # template state example 
+│
+├── index.html       # html template
+├── ...
+├── package.json
+├── ...
+└── vite.config.mjs  # vite config
+```
 
 ## Documentation
 
-The documentation for the Material Dashboard is hosted at our [website](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/?ref=readme-mdr).
+The documentation for the CoreUI Admin Template is hosted at our website [CoreUI for React](https://coreui.io/react/docs/templates/installation/)
 
-### What's included
+## Versioning
 
-Within the download you'll find the following directories and files:
+For transparency into our release cycle and in striving to maintain backward compatibility, CoreUI Free Admin Template is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-```
-material-dashboard-react
-    ├── public
-    │   ├── apple-icon.png
-    │   ├── favicon.png
-    │   ├── index.html
-    │   ├── manifest.json
-    │   └── robots.txt
-    ├── src
-    │   ├── assets
-    │   │   ├── images
-    │   │   └── theme
-    │   │       ├── base
-    │   │       ├── components
-    │   │       ├── functions
-    │   │       ├── index.js
-    │   │       └── theme-rtl.js
-    │   │   └── theme-dark
-    │   │       ├── base
-    │   │       ├── components
-    │   │       ├── functions
-    │   │       ├── index.js
-    │   │       └── theme-rtl.js
-    │   ├── components
-    │   │   ├── MDAlert
-    │   │   ├── MDAvatar
-    │   │   ├── MDBadge
-    │   │   ├── MDBox
-    │   │   ├── MDButton
-    │   │   ├── MDInput
-    │   │   ├── MDPagination
-    │   │   ├── MDProgress
-    │   │   ├── MDSnackbar
-    │   │   └── MDTypography
-    │   ├── context
-    │   ├── examples
-    │   │   ├── Breadcrumbs
-    │   │   ├── Cards
-    │   │   ├── Charts
-    │   │   ├── Configurator
-    │   │   ├── Footer
-    │   │   ├── Items
-    │   │   ├── LayoutContainers
-    │   │   ├── Lists
-    │   │   ├── Navbars
-    │   │   ├── Sidenav
-    │   │   ├── Tables
-    │   │   └── Timeline
-    │   ├── layouts
-    │   │   ├── authentication
-    │   │   ├── billing
-    │   │   ├── dashboard
-    │   │   ├── notifications
-    │   │   ├── profile
-    │   │   ├── rtl
-    │   │   └── tables
-    │   ├── App.js
-    │   ├── index.js
-    │   └── routes.js
-    ├── .eslintrc.json
-    ├── .prettierrc.json
-    ├── CHANGELOG.md
-    ├── ISSUE_TEMPLATE.md
-    ├── jsconfig.json
-    ├── LICENSE.md
-    ├── package.json
-    └── README.md
-```
+See [the Releases section of our project](https://github.com/coreui/coreui-free-react-admin-template/releases) for changelogs for each release version.
 
-## Browser Support
+## Creators
 
-At present, we officially aim to support the last two versions of the following browsers:
+**Łukasz Holeczek**
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+* <https://twitter.com/lukaszholeczek>
+* <https://github.com/mrholek>
 
-## Resources
+**Andrzej Kopański**
 
-- [Live Preview](https://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr)
-- [Download Page](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr)
-- Documentation is [here](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/?ref=readme-mdr)
-- [License Agreement](https://www.creative-tim.com/license?ref=readme-mdr)
-- [Support](https://www.creative-tim.com/contact-us?ref=readme-mdr)
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/material-dashboard-react/issues)
-- [Nepcha Analytics](https://nepcha.com?ref=readme) - Analytics tool for your website
+* <https://github.com/xidedix>
 
-## Reporting Issues
+**CoreUI Team**
 
-We use GitHub Issues as the official bug tracker for the Material Dashboard React. Here are some advices for our users that want to report an issue:
+* <https://twitter.com/core_ui>
+* <https://github.com/coreui>
+* <https://github.com/orgs/coreui/people>
 
-1. Make sure that you are using the latest version of the Material Dashboard React. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+## Community
 
-## Technical Support or Questions
+Get updates on CoreUI's development and chat with the project maintainers and community members.
 
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-mdr) instead of opening an issue.
+- Follow [@core_ui on Twitter](https://twitter.com/core_ui).
+- Read and subscribe to [CoreUI Blog](https://coreui.ui/blog/).
 
-## Licensing
+## Support CoreUI Development
 
-- Copyright 2023 [Creative Tim](https://www.creative-tim.com?ref=readme-mdr)
-- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-mdr)
+CoreUI is an MIT-licensed open source project and is completely free to use. However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support development by buying the [CoreUI PRO](https://coreui.io/pricing/?framework=react&src=github-coreui-free-react-admin-template) or by becoming a sponsor via [Open Collective](https://opencollective.com/coreui/).
 
-## Useful Links
+## Copyright and License
 
-- [More products](https://www.creative-tim.com/templates?ref=readme-mdr) from Creative Tim
+copyright 2024 creativeLabs Łukasz Holeczek.   
 
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-mdr) from Creative Tim
-
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-mdr) (earn money)
-
-##### Social Media
-
-Twitter: <https://twitter.com/CreativeTim>
-
-Facebook: <https://www.facebook.com/CreativeTim>
-
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
+Code released under [the MIT license](https://github.com/coreui/coreui-free-react-admin-template/blob/main/LICENSE).

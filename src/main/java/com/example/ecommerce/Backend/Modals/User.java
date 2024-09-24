@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "User")
 public class User implements UserDetails{
     @Id

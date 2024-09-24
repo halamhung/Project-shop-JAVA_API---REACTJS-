@@ -1,94 +1,102 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
+import React from 'react'
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
+const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
-Coded by www.creative-tim.com
+// Base
+const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
+const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
+const Cards = React.lazy(() => import('./views/base/cards/Cards'))
+const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
+const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
+const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
+const Navs = React.lazy(() => import('./views/base/navs/Navs'))
+const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
+const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
+const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
+const Progress = React.lazy(() => import('./views/base/progress/Progress'))
+const Spinners = React.lazy(() => import('./views/base/spinners/Spinners'))
+const Tabs = React.lazy(() => import('./views/base/tabs/Tabs'))
+const Tables = React.lazy(() => import('./views/base/tables/Tables'))
+const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 
- =========================================================
+// Buttons
+const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
+const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'))
+const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+//Forms
+const ChecksRadios = React.lazy(() => import('./views/forms/checks-radios/ChecksRadios'))
+const FloatingLabels = React.lazy(() => import('./views/forms/floating-labels/FloatingLabels'))
+const FormControl = React.lazy(() => import('./views/forms/form-control/FormControl'))
+const InputGroup = React.lazy(() => import('./views/forms/input-group/InputGroup'))
+const Layout = React.lazy(() => import('./views/forms/layout/Layout'))
+const Range = React.lazy(() => import('./views/forms/range/Range'))
+const Select = React.lazy(() => import('./views/forms/select/Select'))
+const Validation = React.lazy(() => import('./views/forms/validation/Validation'))
 
-/** 
-  All of the routes for the Material Dashboard 2 React are added here,
-  You can add a new route, customize the routes and delete the routes here.
+const Charts = React.lazy(() => import('./views/charts/Charts'))
 
-  Once you add a new route on this file it will be visible automatically on
-  the Sidenav.
+// Icons
+const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
+const Flags = React.lazy(() => import('./views/icons/flags/Flags'))
+const Brands = React.lazy(() => import('./views/icons/brands/Brands'))
 
-  For adding a new route you can follow the existing routes in the routes array.
-  1. The `type` key with the `collapse` value is used for a route.
-  2. The `type` key with the `title` value is used for a title inside the Sidenav. 
-  3. The `type` key with the `divider` value is used for a divider between Sidenav items.
-  4. The `name` key is used for the name of the route on the Sidenav.
-  5. The `key` key is used for the key of the route (It will help you with the key prop inside a loop).
-  6. The `icon` key is used for the icon of the route on the Sidenav, you have to add a node.
-  7. The `collapse` key is used for making a collapsible item on the Sidenav that has other routes
-  inside (nested routes), you need to pass the nested routes inside an array as a value for the `collapse` key.
-  8. The `route` key is used to store the route location which is used for the react router.
-  9. The `href` key is used to store the external links location.
-  10. The `title` key is only for the item with the type of `title` and its used for the title text on the Sidenav.
-  10. The `component` key is used to store the component of its route.
-*/
+// Notifications
+const Alerts = React.lazy(() => import('./views/notifications/alerts/Alerts'))
+const Badges = React.lazy(() => import('./views/notifications/badges/Badges'))
+const Modals = React.lazy(() => import('./views/notifications/modals/Modals'))
+const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
-// Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
-
-// @mui icons
-import Icon from "@mui/material/Icon";
+const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
-  {
-    type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-  },
+  { path: '/', exact: true, name: 'Home' },
+  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/theme', name: 'Theme', element: Colors, exact: true },
+  { path: '/theme/colors', name: 'Colors', element: Colors },
+  { path: '/theme/typography', name: 'Typography', element: Typography },
+  { path: '/base', name: 'Base', element: Cards, exact: true },
+  { path: '/base/accordion', name: 'Accordion', element: Accordion },
+  { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
+  { path: '/base/cards', name: 'Cards', element: Cards },
+  { path: '/base/carousels', name: 'Carousel', element: Carousels },
+  { path: '/base/collapses', name: 'Collapse', element: Collapses },
+  { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
+  { path: '/base/navs', name: 'Navs', element: Navs },
+  { path: '/base/paginations', name: 'Paginations', element: Paginations },
+  { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
+  { path: '/base/popovers', name: 'Popovers', element: Popovers },
+  { path: '/base/progress', name: 'Progress', element: Progress },
+  { path: '/base/spinners', name: 'Spinners', element: Spinners },
+  { path: '/base/tabs', name: 'Tabs', element: Tabs },
+  { path: '/base/tables', name: 'Tables', element: Tables },
+  { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
+  { path: '/buttons', name: 'Buttons', element: Buttons, exact: true },
+  { path: '/buttons/buttons', name: 'Buttons', element: Buttons },
+  { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
+  { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
+  { path: '/charts', name: 'Charts', element: Charts },
+  { path: '/forms', name: 'Forms', element: FormControl, exact: true },
+  { path: '/forms/form-control', name: 'Form Control', element: FormControl },
+  { path: '/forms/select', name: 'Select', element: Select },
+  { path: '/forms/checks-radios', name: 'Checks & Radios', element: ChecksRadios },
+  { path: '/forms/range', name: 'Range', element: Range },
+  { path: '/forms/input-group', name: 'Input Group', element: InputGroup },
+  { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
+  { path: '/forms/layout', name: 'Layout', element: Layout },
+  { path: '/forms/validation', name: 'Validation', element: Validation },
+  { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
+  { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
+  { path: '/icons/flags', name: 'Flags', element: Flags },
+  { path: '/icons/brands', name: 'Brands', element: Brands },
+  { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
+  { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
+  { path: '/notifications/badges', name: 'Badges', element: Badges },
+  { path: '/notifications/modals', name: 'Modals', element: Modals },
+  { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
+  { path: '/widgets', name: 'Widgets', element: Widgets },
+]
 
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
-];
-
-export default routes;
+export default routes

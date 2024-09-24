@@ -92,7 +92,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/login")
+    @PostMapping("/users/login")
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO){
         try {
             User loggedInuser = userService.login(userDTO);

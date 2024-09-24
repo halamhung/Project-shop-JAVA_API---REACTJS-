@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux'
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
 
+//Log in va register moi
+import Login from "./components/loginAndSignUp/Login";
+
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
@@ -42,6 +45,11 @@ const App = () => {
         }
       >
         <Routes>
+          {/* login va register moi */}
+          <Route exact path="/login&register" name="loginRegister" element={<Login/>}/>
+          {/* login va register moi */}
+
+          
           <Route exact path="/login" name="Login Page" element={<Login />} />
           <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/404" name="Page 404" element={<Page404 />} />

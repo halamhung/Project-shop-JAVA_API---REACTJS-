@@ -1,10 +1,17 @@
-import LoginAndSignUp from "./components/loginAndSignUp/LoginAndSignUp";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/loginAndSignUp/Login";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUp from "./components/loginAndSignUp/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <LoginAndSignUp/>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Login/>}></Route>
+          <Route path="/signUp" element={<SignUp/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -64,9 +64,10 @@ public class OrderServices implements IOrderServices {
     }
 
     @Override
-    public Orders updateStatusOrder(Long id, int status) {
-
-        return null;
+    public Orders updateStatusOrder(Long id, OrderDtos orderDtos) {
+        Orders orders = getOrder(id);
+        orders.setStatus(orderDtos.getStatus());
+        return orderRepository.save(orders);
     }
 
     @Override

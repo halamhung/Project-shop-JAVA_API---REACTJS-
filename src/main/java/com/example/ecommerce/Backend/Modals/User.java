@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
-@Builder
+
 @Entity
 @Getter
 @Setter

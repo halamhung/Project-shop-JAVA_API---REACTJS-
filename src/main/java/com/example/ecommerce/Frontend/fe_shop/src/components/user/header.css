@@ -1,0 +1,121 @@
+.fixed-top {
+    transition: 0.5s;
+    background: #fff;
+    border: 0;
+}
+
+/* .fixed-top.active {
+    background-color: #eef0eb;
+    color: #fff;
+} */
+
+.topbar {
+    padding: 20px;
+    border-radius: 230px 100px;
+    background-color: #81c408;
+}
+
+.topbar a {
+    text-decoration: none;
+}
+
+.topbar .top-info {
+    font-size: 15px;
+    line-height: 0;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.topbar .top-link {
+    font-size: 15px;
+    line-height: 0;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.topbar .top-link a {
+    letter-spacing: 1px;
+
+}
+
+/* .topbar .top-link a small:hover {
+    color: var(--bs-secondary) !important;
+    transition: 0.5s;
+}
+
+.topbar .top-link a small:hover i {
+    color: var(--bs-primary) !important;
+} */
+
+.iconR {
+    color: #81c408;
+}
+
+.NavbarBrand a {
+    color: #81c408 !important;
+}
+
+.shopping-cart {
+    position: relative;
+}
+
+.shopping-cart .iconR {
+    position: absolute;
+    top: 7px;
+}
+
+/* .shopping-cart .cart-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
+
+/* .aaaaa {
+    width: 100%;
+    overflow: hidden;
+} */
+
+.qty {
+    position: absolute;
+    top: 4px;
+    left: 18px;
+    height: 20px;
+    min-width: 20px;
+    background: #ffb524;
+    /* // style="top: -5px; left: 15px; height: 20px; min-width: 20px;" */
+
+}
+
+.drop-down-link {
+    color: #81c408 !important;
+    text-decoration: none;
+    margin: 20px 20px;
+    background-color: none !important;
+}
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: none !important
+}
+
+.nav {
+    --bs-nav-link-color: #81c408 !important;
+    --bs-nav-link-hover-color: #ffb524 !important;
+}
+
+/* .nav-link {
+    color: #81c408 !important;
+} */
+
+/* .nav-link li a {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: #000 !important;
+    text-decoration: none;
+    background: 0 0;
+    border: 0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+} */

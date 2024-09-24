@@ -16,7 +16,7 @@ public interface IOrderServices {
     Orders getOrder(Long id)  ;
     List<Orders> findByUserId(Long userId);
     Orders updateOrder(Long id,OrderDtos orderDtos);
-    Orders updateStatusOrder(Long id,int status);
+    Orders updateStatusOrder(Long id,OrderDtos orderDtos);
     Page<OrderResponse> getAllOrder(Pageable pageable);
     List<Orders> search(String consignee,String addressConsignee, int orderDate,String phoneConsignee);
 //    void deleteOrder(Long id);

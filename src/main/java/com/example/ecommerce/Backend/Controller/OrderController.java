@@ -95,6 +95,31 @@ public class OrderController {
 
         return ResponseEntity.ok(apiResponse);
     }
+    @PutMapping("/updateStatus/{id}")
+    public ResponseEntity<ApiResponse> updateStatusOrder(@Valid @PathVariable Long id, @RequestBody OrderDtos orderDtos,BindingResult result){
+        if(result.hasErrors()){
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(FieldError::getDefaultMessage).toList();
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(errors)
+                    .message("Validation failed")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.badRequest().body(apiResponse);
+        }
+        Orders orders = orderServices.updateStatusOrder(id,orderDtos);
+        if(orders == null){
+            throw new ResoureNotFoundException("Student khong tim thay vs id: "+id);
+        }
+        Orders o2 = orderServices.getOrder(id);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(o2)
+                .message("Update order success")
+                .status(HttpStatus.OK.value())
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
+    }
     @GetMapping("/search")
     public ResponseEntity<ApiResponse> search(
             @RequestParam(value = "consignee",required = false) String consignee,
@@ -109,5 +134,6 @@ public class OrderController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+
 
 }

@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Builder
+
 @Entity
 @Getter
 @Setter

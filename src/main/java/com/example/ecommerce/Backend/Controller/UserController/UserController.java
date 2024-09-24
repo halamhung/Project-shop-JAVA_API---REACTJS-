@@ -1,21 +1,24 @@
 package com.example.ecommerce.Backend.Controller.UserController;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import com.example.ecommerce.Backend.Dtos.ImgDtos;
+import com.example.ecommerce.Backend.Modals.Img;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.ecommerce.Backend.Dtos.userDTO.UserDTO;
 import com.example.ecommerce.Backend.IService.iUserService.IUserService;
@@ -24,6 +27,7 @@ import com.example.ecommerce.Backend.Responses.ApiResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
@@ -155,6 +159,27 @@ public class UserController {
         }
     }
 
+    //img
+    @GetMapping("/users/img/{imgName}")
+    public ResponseEntity<?> viewImgUser(@PathVariable String imgName){
+        try {
+            java.nio.file.Path imgPath = Paths.get("uploadImg"+ imgName);
+            UrlResource resource = new UrlResource(imgPath.toUri());
+            if(resource.exists()){
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(resource);
+            }
+            else {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(new UrlResource(Paths.get("uploads/notFound.jpeg").toUri()));
+            }
+        }catch(Exception ex){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/users/logout")
     public ResponseEntity<ApiResponse> logout() {
         ApiResponse response = ApiResponse.builder()
@@ -163,5 +188,29 @@ public class UserController {
                 .build();
         return ResponseEntity.ok(response);
     }
-
+    @PostMapping(value = "/users/uploadImg/{id}")
+    public ResponseEntity<ApiResponse> upLoadUserImg(@PathVariable Long id, @RequestParam("files") MultipartFile files) throws IOException
+    {
+        String fileName = storeFile(files);
+        ImgDtos imgDtos = ImgDtos.builder()
+                .imgUrl(fileName)
+                .build();
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(userService.saveImgUser(id,imgDtos))
+                .message("Upload Img User Successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
+    private String storeFile(MultipartFile file) throws IOException{
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String uniqueFileName = UUID.randomUUID().toString()+"_"+fileName;
+        java.nio.file.Path uploadDir = Paths.get("uploadImg");
+        if(!Files.exists(uploadDir)){
+            Files.createDirectory(uploadDir);
+        }
+        java.nio.file.Path destination = Paths.get(uploadDir.toString(),uniqueFileName);
+        Files.copy(file.getInputStream(),destination, StandardCopyOption.REPLACE_EXISTING);
+        return uniqueFileName;
+    }
 }

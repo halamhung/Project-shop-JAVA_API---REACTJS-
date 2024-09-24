@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.ecommerce.Backend.Modals.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
-    User findByUserName(String userName);
+    User findByUsername(String userName);
     boolean existsByName(String name);
     Page<User> findAll(Pageable pageable);
 }

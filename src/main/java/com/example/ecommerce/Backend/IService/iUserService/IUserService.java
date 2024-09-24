@@ -2,6 +2,8 @@ package com.example.ecommerce.Backend.IService.iUserService;
 
 import java.util.List;
 
+import com.example.ecommerce.Backend.Dtos.ImgDtos;
+import com.example.ecommerce.Backend.Modals.Img;
 import org.springframework.data.domain.Page;
 
 import com.example.ecommerce.Backend.Dtos.userDTO.UserDTO;
@@ -18,5 +20,5 @@ public interface IUserService {
     void deleteUser(Long userId);
     Page<User> getUsersWithPagination(int page, int size);
     void setUserRole(Long userId, String roleName) throws Exception;
-
+    Img saveImgUser (Long userId, ImgDtos imgDtos);
 }

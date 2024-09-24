@@ -35,7 +35,7 @@ public class User implements UserDetails{
     @NotBlank(message = "Tên người dùng không được để trống.")
     @Size(min = 6, max = 20, message = "Tên người dùng phải có từ 6 đến 20 ký tự.")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Tên người dùng chỉ được chứa chữ cái, số và dấu gạch dưới.")
-    private String userName;
+    private String username;
 
     @NotBlank(message = "Địa chỉ không được để trống.")
     private String address;
@@ -79,7 +79,7 @@ public class User implements UserDetails{
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

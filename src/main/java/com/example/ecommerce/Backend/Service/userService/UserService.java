@@ -3,6 +3,9 @@ package com.example.ecommerce.Backend.Service.userService;
 import java.util.HashSet;
 import java.util.List;
 
+import com.example.ecommerce.Backend.Dtos.ImgDtos;
+import com.example.ecommerce.Backend.Modals.Img;
+import com.example.ecommerce.Backend.Repositories.ImgRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +32,7 @@ public class UserService implements IUserService{
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder; // Inject password encoder
+    private final ImgRepository imgRepository;
 
     @Override
     public Page<User> getUsersWithPagination(int page, int size) {
@@ -56,7 +60,7 @@ public class UserService implements IUserService{
                 .email(userDTO.getEmail())
                 .phone(userDTO.getPhone())
                 .password(encodedPassword) // Set mã hóa mật khẩu
-                .userName(userDTO.getUserName())
+                .username(userDTO.getUsername())
                 .address(userDTO.getAddress())
                 .roles(new HashSet<>())  // Khởi tạo roles
                 .build();
@@ -88,6 +92,7 @@ public class UserService implements IUserService{
         userRepository.save(user);
     }
 
+
     @Override
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElseThrow(()-> new RuntimeException("Không tìm thấy user"));
@@ -105,7 +110,7 @@ public class UserService implements IUserService{
     public User saveUser(UserDTO UserDTO) {
         User user = User.builder()
                 .name(UserDTO.getName())
-                .userName(UserDTO.getUserName())
+                .username(UserDTO.getUsername())
                 .email(UserDTO.getEmail())
                 .password(UserDTO.getPassword())
                 .phone(UserDTO.getPhone())
@@ -120,8 +125,8 @@ public class UserService implements IUserService{
                 .orElseThrow(() -> new DataNotFoundException("User not found"));
 
         // Kiểm tra và cập nhật các trường
-        if (UserDTO.getUserName() != null && !UserDTO.getUserName().isEmpty()) {
-            existingUser.setUserName(UserDTO.getUserName());
+        if (UserDTO.getUsername() != null && !UserDTO.getUsername().isEmpty()) {
+            existingUser.setUsername(UserDTO.getUsername());
         }
         if (UserDTO.getPhone() != null && !UserDTO.getPhone().isEmpty()) {
             existingUser.setPhone(UserDTO.getPhone());
@@ -160,7 +165,7 @@ public class UserService implements IUserService{
 
     @Override
     public User login(UserDTO userDTO) {
-        User existingUser = userRepository.findByUserName(userDTO.getUserName());
+        User existingUser = userRepository.findByUsername(userDTO.getUsername() );
 
         if (existingUser == null) {
             throw new IllegalArgumentException("User not found");
@@ -183,6 +188,16 @@ public class UserService implements IUserService{
         return ResponseEntity.ok(response);
     }
 
+    @Override
+    public Img saveImgUser(Long userId, ImgDtos imgDtos) {
+        User user = getUserById(userId);
+        Img img = Img.builder()
+                .imgUrl(imgDtos.getImgUrl())
+                .product(null)
+                .user(user)
+                .build();
+        return imgRepository.save(img);
+    }
 
 
 

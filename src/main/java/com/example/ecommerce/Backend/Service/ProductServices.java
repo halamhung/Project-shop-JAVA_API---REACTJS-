@@ -6,7 +6,7 @@ import com.example.ecommerce.Backend.IService.IProductServices;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Img;
 import com.example.ecommerce.Backend.Modals.Product;
-import com.example.ecommerce.Backend.Repositories.Category.CategoryRepository;
+import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import com.example.ecommerce.Backend.Repositories.ImgRepository;
 import com.example.ecommerce.Backend.Repositories.ProductRepo;
 import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;

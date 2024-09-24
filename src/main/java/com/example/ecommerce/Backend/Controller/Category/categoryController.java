@@ -1,13 +1,13 @@
 package com.example.ecommerce.Backend.Controller.Category;
 
 
-import com.example.ecommerce.Backend.Dtos.Category.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.CategoryDTO;
 import com.example.ecommerce.Backend.Exceptions.ResoureNotFoundException;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Responses.ApiResponse;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryListResponse;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
-import com.example.ecommerce.Backend.Service.Category.CategoryServices;
+import com.example.ecommerce.Backend.Service.CategoryServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.example.ecommerce.Backend.Modals;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 
 @Entity
@@ -8,6 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "Img")
 public class Img extends BaseEntity{
     @Id
@@ -18,11 +20,11 @@ public class Img extends BaseEntity{
     private String imgUrl;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "productId", nullable = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId", nullable = true)
     private User user;
 }

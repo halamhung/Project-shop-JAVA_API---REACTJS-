@@ -22,11 +22,11 @@ public class Rate {
 
     private Date commentDate; // Thay đổi kiểu dữ liệu
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productId")
     private Product product; // Thêm thuộc tính product
 }

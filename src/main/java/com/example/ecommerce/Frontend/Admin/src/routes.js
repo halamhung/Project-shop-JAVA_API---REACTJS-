@@ -50,6 +50,7 @@ const Modals = React.lazy(() => import('./views/notifications/modals/Modals'))
 const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
+const Orderss = React.lazy(() => import('./views/order/Order'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -97,6 +98,7 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/order', name: 'Order', element: Orderss },
 ]
 
 export default routes

@@ -269,6 +269,16 @@ const _nav = [
     },
   },
   {
+    component: CNavItem,
+    name: 'Order',
+    to: '/order',
+    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+      text: 'NEW',
+    },
+  },
+  {
     component: CNavTitle,
     name: 'Extras',
   },

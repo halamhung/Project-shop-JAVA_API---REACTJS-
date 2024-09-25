@@ -34,6 +34,9 @@ export default function HeaderAd() {
                             <i class="fa fa-table me-2"></i>Order
                         </Link>
 
+                        <Link to={"/admin/product"} className='nav-link'>
+                            <i class="fa fa-table me-2"></i>Product
+                        </Link>
                     </div>
                 </nav>
             </div >

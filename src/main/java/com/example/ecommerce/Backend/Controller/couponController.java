@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coupoun")
+    @RequestMapping("/coupoun")
 @RequiredArgsConstructor
 @CrossOrigin
 public class couponController {
@@ -50,7 +50,7 @@ public class couponController {
 
         Pageable pageable = PageRequest.of(
                 page, size,
-                Sort.by("created_at")
+                Sort.by("createdAt").descending()
         );
 
         Page<CouponResponse> couponResponses = couponServices.getAllCouponsByPage(pageable);
@@ -96,7 +96,6 @@ public class couponController {
                     .data(coupon)
                     .build();
             return ResponseEntity.ok(apiResponse);
-
     }
 
     @DeleteMapping("/delete/{id}")

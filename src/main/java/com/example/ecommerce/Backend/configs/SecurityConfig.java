@@ -49,9 +49,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/api/users/**").permitAll()
-                .requestMatchers("/api/employee/**").hasAnyAuthority("ROLE_EMPLOYEE", "ROLE_ADMIN") // Cho phép cả 2 role
-                .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers("/api/users/..").permitAll()
+//                .requestMatchers("/api/employee/**").hasAnyAuthority("ROLE_EMPLOYEE", "ROLE_ADMIN") // Cho phép cả 2 role
+//                .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

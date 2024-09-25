@@ -12,12 +12,14 @@ const initialState = {
     orders: [],
     status: "start",
     error: null,
+    currentPage: 1,
+    totalPage: 30,
 };
 
 
-export const getAllOrder = createAsyncThunk('users/fecthUsers', async () => {
+export const getAllOrder = createAsyncThunk('orders/getAllOrder', async (page) => {
     // const res = await axios.get(`${url}?page=${page}&&limit=5`)
-    const res = await axios.get(`${url}`)
+    const res = await axios.get(`${url}?page=${page}&&limit=6`)
     return res.data
 })
 
@@ -29,25 +31,21 @@ const orderSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fecthUsers.pending, (state) => {
+            .addCase(getAllOrder.pending, (state) => {
                 state.status = 'loading'
             })
-            .addCase(fecthUsers.fulfilled, (state, action) => {
+            .addCase(getAllOrder.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.users = action.payload
+                state.orders = action.payload
             })
-            .addCase(fecthUsers.rejected, (state, action) => {
+            .addCase(getAllOrder.rejected, (state, action) => {
                 state.status = 'failed'
-                state.users = action.error.payload
+                state.orders = action.error.payload
             })
-            .addCase(createUsers.fulfilled, (state, action) => {
-                state.users = [...state.users, action.payload];
-            });
-        // .addCase(reCheck.fulfilled, (state, action) => {
-        //     state.cats = state.cats.map(item => item.id === action.payload.id ? { ...item, status: !item.status } : item)
-        // })
+
+
     },
 });
 
-export const { signIn } = usersSlice.actions;
-export default usersSlice.reducer;
+// export const { signIn } = usersSlice.actions;
+export default orderSlice.reducer;

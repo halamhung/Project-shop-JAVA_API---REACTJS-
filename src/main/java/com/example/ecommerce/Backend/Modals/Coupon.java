@@ -3,11 +3,9 @@ package com.example.ecommerce.Backend.Modals;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -25,7 +23,7 @@ public class Coupon extends BaseEntity {
     private long id;
 
     @NotBlank
-    @Size(min = 3, max = 15, message = "Tên mã giãm giá từ 3 kí tự đến 15 kí tự")
+    @Size(min = 3, max = 50, message = "Tên mã giãm giá từ 3 kí tự đến 15 kí tự")
     @JsonProperty("tên của mã")
     private String name;
 
@@ -35,10 +33,11 @@ public class Coupon extends BaseEntity {
     private String description;
 
     @DecimalMin(value = "0.0", inclusive = false)
-    @DecimalMin(value = "100.0", inclusive = true)
+    @DecimalMax(value = "100.0", inclusive = true)
     private Double discountPercentage;
 
     @Future(message = "Expiration date must be in the future")
+    @DateTimeFormat(pattern = "YYYY-MM-dd" )
     private LocalDate expirationDate;
 
 }

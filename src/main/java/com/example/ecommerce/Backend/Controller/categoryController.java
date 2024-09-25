@@ -36,7 +36,7 @@ public class categoryController {
 
         Pageable pageable = PageRequest.of(
                 page, size,
-                Sort.by("created_at")
+                Sort.by("createAt").ascending()
         );
 
         Page<CategoryResponse> categoryResponses = categoryServices.getAllCategoryByPage(pageable);

@@ -79,12 +79,12 @@ export default function Product() {
                                     <Col lg={12}>
                                         <div className="mb-3">
                                             <h4>Khuyến mãi</h4>
-                                            <div class="d-flex align-items-center justify-content-start">
-                                                <div class="rounded me-4" style={{ width: 100, height: 100 }}>
+                                            <div className="d-flex align-items-center justify-content-start">
+                                                <div className="rounded me-4" style={{ width: 100, height: 100 }}>
                                                     {/* <img src={Images.featur} class="img-fluid rounded" alt="" /> */}
                                                 </div>
                                                 <div>
-                                                    <h6 class="mb-2">Name</h6>
+                                                    <h6 className="mb-2">Name</h6>
                                                     {/* <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -92,9 +92,9 @@ export default function Product() {
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div> */}
-                                                    <div class="d-flex mb-2">
-                                                        <h5 class="fw-bold me-2">2.99 $</h5>
-                                                        <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                                    <div className="d-flex mb-2">
+                                                        <h5 className="fw-bold me-2">2.99 $</h5>
+                                                        <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                                     </div>
                                                 </div>
                                             </div>

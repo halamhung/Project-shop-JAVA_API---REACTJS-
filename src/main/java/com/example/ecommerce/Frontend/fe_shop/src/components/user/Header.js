@@ -127,7 +127,7 @@ export default function Header() {
 
                                 <UncontrolledDropdown nav inNavbar >
                                     <DropdownToggle nav caret className='drop-down' >
-                                        <Link className="ms-5 my-auto"><i class="fa-solid fa-user"></i></Link>
+                                        <Link className="ms-5 my-auto"><i className="fa-solid fa-user"></i></Link>
                                     </DropdownToggle>
                                     {/* <DropdownMenu right>
                                         {
@@ -148,7 +148,7 @@ export default function Header() {
 
                                 <NavItem>
                                     <div className='shopping-cart me-5 '>
-                                        <Link to={"/cart"} className=""><i class="fa-solid fa-cart-shopping"></i></Link>
+                                        <Link to={"/cart"} className=""><i className="fa-solid fa-cart-shopping"></i></Link>
                                         <span className="qty rounded-circle d-flex align-items-center justify-content-center text-dark ">
                                             {/* {carts.length} */}
                                         </span>

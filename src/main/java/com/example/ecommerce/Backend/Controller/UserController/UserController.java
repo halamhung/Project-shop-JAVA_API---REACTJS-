@@ -6,10 +6,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import com.example.ecommerce.Backend.Dtos.ImgDtos;
-import com.example.ecommerce.Backend.Modals.Img;
+import com.example.ecommerce.Backend.Modals.Role;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -101,6 +102,23 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/users/roleUser/{id}")
+    public ResponseEntity<?> getRoleUser(@PathVariable Long id) {
+        try {
+            // Tìm người dùng dựa trên ID
+            User user = userService.getUserById(id);
+
+            // Lấy danh sách các vai trò của người dùng
+            Set<Role> roles = user.getRoles();
+
+            // Trả về danh sách các vai trò
+            return ResponseEntity.ok(roles);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("An error occurred: " + e.getMessage());
+        }
+    }
+
 
     @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id) {

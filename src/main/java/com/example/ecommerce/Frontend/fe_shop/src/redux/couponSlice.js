@@ -3,31 +3,31 @@ import axios from "axios";
 
 
 const axiosBase = axios.create({
-    baseURL:"http://localhost:8080/category",
+    baseURL:"http://localhost:8080/coupoun",
 })
 
 
-export const getAllCategory = createAsyncThunk('cate/getAllCate', async({currentPage, limit}, thunkAPI) => {
+export const getAllCoupon = createAsyncThunk('coupon/getAllCoupon', async({currentPage, limit}, thunkAPI) => {
     try {
-        const response = await axiosBase.get(`/list/page=${currentPage}&limit=${limit}`)
+        const response = await axiosBase.get(`/list-page/page=${currentPage}&limit=${limit}`)
         return response.data;
     } catch(error) {
         return thunkAPI.rejectWithValue(error.response.data);
     }
 }
 )
-export const updateCategory = createAsyncThunk("cate/updateCate", async({id, categorydto}, thunkAPI) => {
+export const updateCoupon = createAsyncThunk("coupon/updateCoupon", async({id, couponDTO}, thunkAPI) => {
     try {
-        const response = await axiosBase.put(`/update-category/${id}`, categorydto);
+        const response = await axiosBase.put(`/update/${id}`, couponDTO);
         return response.data;
     } catch(error) {
         return thunkAPI.rejectWithValue(error.response.data);
     }
 })
 
-export const addCategory = createAsyncThunk("cate/addCate", async({categorydto}, thunkAPI) => {
+export const addCoupoun = createAsyncThunk("coupon/addCoupoun", async({couponDTO}, thunkAPI) => {
     try {
-        const response = await axiosBase.post(`/add-category`, categorydto);
+        const response = await axiosBase.post(`/add-coupon`, couponDTO);
         return response.data;
     } catch (error) {
         return  thunkAPI.rejectWithValue(error.response.data);
@@ -35,9 +35,9 @@ export const addCategory = createAsyncThunk("cate/addCate", async({categorydto},
 })
 
 
-export const deleteCategory = createAsyncThunk("cate/delete", async({id}, thunkAPI) => {
+export const deleteCoupon = createAsyncThunk("coupon/delete", async({id}, thunkAPI) => {
     try {
-        const response = await axiosBase.delete(`/delete-category/${id}`);
+        const response = await axiosBase.delete(`/delete/${id}`);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
@@ -51,7 +51,7 @@ const initialState = {
     status: null,
     error: null,
     message: "",
-    category: [],
+    coupouns: [],
     currentPage: 0,
     totalPage: 0,
 }
@@ -59,8 +59,8 @@ const initialState = {
 
 
 
-const categorySlice = createSlice ({
-    name: "category",
+const couponSlice = createSlice ({
+    name: "coupons",
     initialState,
     reducers: {
         resetStatusAndMessage: (state) => {
@@ -71,45 +71,45 @@ const categorySlice = createSlice ({
     },
     extraReducers:(builder) => {
         builder
-        .addCase(getAllCategory.fulfilled, (state, action) => {
+        .addCase(getAllCoupon.fulfilled, (state, action) => {
             state.message = action.payload.message
             state.status = action.payload.status
-            state.category = action.payload.data.categoryResponseList
+            state.coupouns = action.payload.data.couponListResponse
             state.totalPage = action.payload.data.totalPages
         })
-        .addCase(getAllCategory.rejected, (state,action) => {
+        .addCase(getAllCoupon.rejected, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status
             state.error = action.payload.data
         })
-        .addCase(updateCategory.fulfilled, (state, action) => {
+        .addCase(updateCoupon.fulfilled, (state, action) => {
             state.message = action.payload.message
             state.status = action.payload.status
-            state.category = state.category.map(cate => 
-                cate.id === action.payload.data.id ? action.payload.data : cate 
+            state.coupouns = state.coupouns.map(coupon => 
+                coupon.id === action.payload.data.id ? action.payload.data : coupon 
             )
         })
-        .addCase(updateCategory.rejected, (state,action) => {
+        .addCase(updateCoupon.rejected, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status
             state.error = action.payload.data
         })
-        .addCase(addCategory.rejected, (state,action) => {
+        .addCase(addCoupoun.rejected, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status
             state.error = action.payload.data
         })
-        .addCase(addCategory.fulfilled, (state,action) => {
+        .addCase(addCoupoun.fulfilled, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status
-            state.category = [...state.category, action.payload.data]
+            state.coupouns = [...state.coupouns, action.payload.data]
         })
-        .addCase(deleteCategory.fulfilled, (state,action) => {
+        .addCase(deleteCoupon.fulfilled, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status    
-            state.category = state.category.filter(item => item.id !== action.payload.data)
+            state.coupouns = state.coupouns.filter(item => item.id !== action.payload.data)
         })
-        .addCase(deleteCategory.rejected, (state,action) => {
+        .addCase(deleteCoupon.rejected, (state,action) => {
             state.message = action.payload.message
             state.status = action.payload.status
             state.error = action.payload.data
@@ -117,5 +117,5 @@ const categorySlice = createSlice ({
     }
 })
 
-export const {resetStatusAndMessage} = categorySlice.actions
-export default categorySlice.reducer
+export const {resetStatusAndMessage} = couponSlice.actions
+export default couponSlice.reducer

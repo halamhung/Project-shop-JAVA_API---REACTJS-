@@ -88,7 +88,7 @@ public class categoryController {
 
         Category category = categoryServices.getCategorybyId(id);
         if (category == null) {
-            throw new ResoureNotFoundException("Student not found" + id);
+            throw new ResoureNotFoundException("Category  not found" + id);
         }
 
         categoryServices.deleteCategory(id);

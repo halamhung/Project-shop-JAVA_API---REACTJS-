@@ -1,7 +1,7 @@
 import HomeAdmin from "./pages/admin/HomeAdmin";
 import Home from "./pages/user/Home";
 import { HashRouter, Route, Routes, Link } from "react-router-dom";
-import Product from "./pages/user/Product";
+import Product from "./pages/user/Pages/Product.js/Product";
 import ProductManager from "./pages/admin/ProductManager";
 import Order from "./pages/admin/Order";
 

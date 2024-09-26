@@ -1,8 +1,8 @@
 import React from 'react'
 // import "./main.css"
 // import "./products.css"
-import Footer from '../../components/user/Footer'
-import Header from '../../components/user/Header'
+import Footer from '../../../../components/user/Footer'
+import Header from '../../../../components/user/Header'
 import { Col, Container, Input, Pagination, Row } from 'reactstrap'
 
 export default function Product() {

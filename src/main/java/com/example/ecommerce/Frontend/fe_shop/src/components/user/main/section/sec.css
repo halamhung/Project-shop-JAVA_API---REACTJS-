@@ -1,0 +1,13 @@
+.featurs-icon {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: #ffb524;
+    color: #fff;
+}
+
+.icon-section {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}

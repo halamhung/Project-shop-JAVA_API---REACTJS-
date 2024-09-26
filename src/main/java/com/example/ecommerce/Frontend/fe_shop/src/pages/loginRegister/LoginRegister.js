@@ -1,6 +1,6 @@
 import React from 'react'
-import Login from '../../components/loginAndSignUp/Login'
-import Footer from '../../components/footer/Footer'
+import Login from '../../components/user/loginAndSignUp/Login'
+import Footer from '../../components/user/loginAndSignUp/footer/Footer'
 
 export default function LoginRegister() {
   return (

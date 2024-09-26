@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap'
-import logo from '../../imgs/logo2-removebg-preview.png'
+import logo from '../../../../imgs/logo2-removebg-preview.png'
 
 export default function Footer() {
   return (

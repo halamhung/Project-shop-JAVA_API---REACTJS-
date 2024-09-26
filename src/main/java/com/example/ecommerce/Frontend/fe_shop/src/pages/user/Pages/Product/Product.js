@@ -1,11 +1,28 @@
-import React from 'react'
-// import "./main.css"
-// import "./products.css"
+import React, { useEffect, useState } from 'react'
 import Footer from '../../../../components/user/Footer'
 import Header from '../../../../components/user/Header'
-import { Col, Container, Input, Pagination, Row } from 'reactstrap'
+import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Input, Pagination, Row } from 'reactstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getListProduct } from '../../../../redux/ListProductSlice'
+import ReactPaginate from 'react-paginate'
+
 
 export default function Product() {
+    const [currentPage, setCurrentPage] = useState(0);
+    const {products} = useSelector(state=>state.GetListProduct);
+    const dispatch = useDispatch();
+
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected);
+    };
+
+    const limit =20;
+
+    useEffect(() => {
+        dispatch(getListProduct({ currentPage, limit }));
+    }, [currentPage, dispatch]);
+
+
     return (
         <>
             <Header />
@@ -102,7 +119,55 @@ export default function Product() {
                                     </Col>
                                 </Col>
                                 <Col lg={9}>
-
+                                    {
+                                        products&&products.map((item,index)=>(
+                                            <Card
+                                            style={{
+                                              width: '18rem'
+                                            }}
+                                          >
+                                            <img
+                                              alt="Sample"
+                                              src="https://picsum.photos/300/200"
+                                            />
+                                            <CardBody>
+                                              <CardTitle tag="h5">
+                                                {item.nameProduct}
+                                              </CardTitle>
+                                              <CardSubtitle
+                                                className="mb-2 text-muted"
+                                                tag="h6"
+                                              >
+                                                Price: {item.price}
+                                              </CardSubtitle>
+                                              <CardText>
+                                                {item.description}
+                                              </CardText>
+                                              <Button>
+                                                Button
+                                              </Button>
+                                            </CardBody>
+                                          </Card>      
+                                        ))
+                                    }
+                                    <ReactPaginate
+                                previousLabel={'Previous'}
+                                nextLabel={'Next'}
+                                breakLabel={'...'}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                onPageChange={handlePageClick}
+                                containerClassName={'pagination'}
+                                pageClassName={'page-item'}
+                                pageLinkClassName={'page-link'}
+                                previousClassName={'page-item'}
+                                nextClassName={'page-item'}
+                                previousLinkClassName={'page-link'}
+                                nextLinkClassName={'page-link'}
+                                breakClassName={'page-item'}
+                                breakLinkClassName={'page-link'}
+                                activeClassName={'active'}
+                            />
                                 </Col>
                             </Row>
                         </Col>

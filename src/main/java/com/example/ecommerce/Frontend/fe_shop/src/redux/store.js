@@ -2,8 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import LogInSignUpSlice from './LogInSignUpSlice'
 import ListUserSlice from './ListUserSlice';
-import ListProductSlice, { getListProduct } from './ListProductSlice';
-
+import ListProductSlice from './ListProductSlice';
 import orderSlice from './orderSlice';
 import categorySlice from './categorySlice';
 import couponSlice from './couponSlice';

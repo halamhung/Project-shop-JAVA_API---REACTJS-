@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Login.css';
 import SignUp from './SignUp';
 import { Col, Container, Row } from 'reactstrap';
-import logo from '../../imgs/imageLogin.png';
+import logo from '../../../imgs/imageLogin.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from '../../redux/LogInSignUpSlice';
+import { logIn } from '../../../redux/LogInSignUpSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const [logInData,setLogInData] = useState({username:'',password:''})
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {role} = useSelector((state)=> state.AccountUser);
+  const {role,errorLogin} = useSelector((state)=> state.AccountUser);
 
   useEffect(() => {
     if (role && role.length > 0) {
@@ -54,6 +54,7 @@ const Login = () => {
                 <form onSubmit={handleLogIn} className="form">
                   <input required="" className="input" type="text" name="username" onChange={handleChange} placeholder="User name"/>
                   <input required="" className="input" type="password" name="password" onChange={handleChange} placeholder="Password" autoComplete='off'/>
+                  {errorLogin && <span className='error' style={{color:'red'}}>{errorLogin}</span>}
                   <span className="forgot-password" style={{display: "flex", justifyContent: "space-between"}}>
                     <a href="#">Forgot Password?</a>
                     <a href='#' onClick={toggleForm}>Or create account</a>

@@ -168,7 +168,7 @@ public class UserService implements IUserService{
         User existingUser = userRepository.findByUsername(userDTO.getUsername() );
 
         if (existingUser == null) {
-            throw new IllegalArgumentException("User not found");
+            throw new IllegalArgumentException("Sai tên tài khoản hoặc mật khẩu");
         }
 
         // Kiểm tra mật khẩu (mã hóa)

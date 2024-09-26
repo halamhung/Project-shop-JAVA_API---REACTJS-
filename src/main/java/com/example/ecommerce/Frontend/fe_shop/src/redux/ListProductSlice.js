@@ -18,8 +18,10 @@ const ListProductSlice = createSlice({
     initialState:{
         products:[],
         status: 'start',
+        status:'idle',
+        message:"",
         error: null,
-        currentPage: 1,
+        currentPage: 0,
         totalPage: 30,
         productDetail: [],
     },
@@ -27,8 +29,12 @@ const ListProductSlice = createSlice({
         builder
         .addCase(getListProduct.fulfilled, (state,action)=>{
             state.status = action.payload.status;
-            state.products = action.payload.productResponse;
-
+            state.products = action.payload.data.productResponses; 
+        })
+        .addCase(getListProduct.rejected, (state,action)=>{
+            state.status = action.payload.status;
+            state.message = action.payload.message;
+            state.error = action.payload.error;
         })
     }
 })

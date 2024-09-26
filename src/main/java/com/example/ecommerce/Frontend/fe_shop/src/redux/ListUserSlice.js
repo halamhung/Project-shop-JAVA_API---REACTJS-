@@ -16,19 +16,22 @@ export const getListUser = createAsyncThunk("employee/getListUser", async({curre
 const ListUserSlice = createSlice({
     name:"GetListUser",
     initialState:{
-        listUser:[]
+        listUser:[],
+        status:'idle',
+        message:"",
+        error:null
     },
     reducers:{},
     extraReducers:(build)=>{
         build
-        .addCase(getListUser.fulfilled,(state,action)=>{
-            state.status = action.payload.status;
-            state.message = action.payload.message;
+        .addCase(getListUser.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.listUser = action.payload.data; // Access the data array inside the payload
         })
         .addCase(getListUser.rejected,(state,action)=>{
             state.status = action.payload.status;
             state.message = action.payload.message;
-            state.error = action .payload.error;          
+            state.error = action.payload.error;          
         })
     }
 })

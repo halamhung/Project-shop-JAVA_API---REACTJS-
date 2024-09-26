@@ -44,13 +44,13 @@ export default function ListUser() {
             {
               listUser&&listUser.map((item,index)=>{
                   <tr key={index}>
-                    <td>{index}</td>
-                    <td>{item.id}</td>
+                    <td>{index+1}</td>
+                    <td>{item.userId}</td>
                     <td>{item.name}</td>
                     <td>{item.address}</td>
                     <td>{item.email}</td>
                     <td>{item.phone}</td>
-                    <td>{item.role}</td>
+                    <td>{item.roles.map(role=>role.name).join(', ')}</td>
                     <td></td>
                   </tr>
               })
@@ -63,6 +63,7 @@ export default function ListUser() {
                     previousLabel={'Previous'}
                     nextLabel={'Next'}
                     breakLabel={'...'}
+                    pageCount={Math.ceil(10)}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageClick}

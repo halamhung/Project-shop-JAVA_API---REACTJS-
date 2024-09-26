@@ -18,18 +18,17 @@ export const logIn = createAsyncThunk("user/login", async(userData, thunkAPI) =>
     const url = `${BASE_URL}/users/login`;
     try {
         const response = await axios.post(url, userData);
-        console.log("Login response:", response.data); // Kiểm tra phản hồi từ API
+        const userId = response.data.userId; // Đảm bảo userId được trả về từ response
 
-        const userId = response.data.userId; // Giả sử response trả về userId
         if (!userId) {
-            throw new Error("User ID is undefined"); // Ném lỗi nếu userId là undefined
+            throw new Error("User ID is undefined");
         }
 
-        // Sau khi đăng nhập thành công, gọi API lấy role của người dùng
+        // Gọi API để lấy vai trò của người dùng sau khi đăng nhập
         const roleResponse = await axios.get(`${BASE_URL}/users/roleUser/${userId}`);
         return { ...response.data, role: roleResponse.data };
     } catch (error) {
-        console.error("Error in login process:", error); // Log lỗi
+        console.error("Error in login process:", error);
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
@@ -46,8 +45,8 @@ const LogInSignUpSlice = createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(logIn.fulfilled,(state,action)=>{
-            console.log(action.payload); 
-            state.users = action.payload.users;
+            console.log(action.payload);
+            state.users = action.payload;
             state.role = action.payload.role;
         })
         .addCase(register.fulfilled,(state,action)=>{
@@ -58,4 +57,4 @@ const LogInSignUpSlice = createSlice({
     
 })
 
-export default LogInSignUpSlice.reducer
+export default LogInSignUpSlice.reducer;

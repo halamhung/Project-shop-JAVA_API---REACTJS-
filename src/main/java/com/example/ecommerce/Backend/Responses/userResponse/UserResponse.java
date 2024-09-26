@@ -21,9 +21,9 @@ public class UserResponse extends BaseResponse{
     private String address;
     private  int status;
 
-    public static UserResponse fromUser(User user){
-        UserResponse userResponse = UserResponse.builder()
-                .userId(user.getUserId())
+    public static UserResponse fromUser(User user) {
+        return UserResponse.builder()
+                .userId(user.getUserId())  // Đảm bảo bạn trả về userId
                 .name(user.getName())
                 .userName(user.getUsername())
                 .email(user.getEmail())
@@ -31,8 +31,7 @@ public class UserResponse extends BaseResponse{
                 .address(user.getAddress())
                 .status(user.getStatus())
                 .build();
-        return userResponse;
-
     }
+
 
 }

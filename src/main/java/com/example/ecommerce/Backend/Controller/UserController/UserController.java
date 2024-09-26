@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import com.example.ecommerce.Backend.Dtos.ImgDtos;
 import com.example.ecommerce.Backend.Modals.Role;
+import com.example.ecommerce.Backend.Responses.userResponse.UserResponse;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class UserController {
     @GetMapping("/employee/all")
     public ResponseEntity<ApiResponse> getUsersWithPagination(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "30") int size) {
+            @RequestParam(defaultValue = "20") int size) {
 
         try {
             Page<User> userPage = userService.getUsersWithPagination(page, size);
@@ -97,7 +98,9 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO){
         try {
             User loggedInuser = userService.login(userDTO);
-            return ResponseEntity.ok("Login success, welcome "+loggedInuser.getName());
+            // Chuyển đổi User thành UserResponse
+            UserResponse userResponse = UserResponse.fromUser(loggedInuser);
+            return ResponseEntity.ok(userResponse);  // Trả về toàn bộ thông tin của user
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

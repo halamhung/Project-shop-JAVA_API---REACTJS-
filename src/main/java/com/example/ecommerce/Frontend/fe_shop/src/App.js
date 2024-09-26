@@ -1,14 +1,11 @@
 import HomeAdmin from "./pages/admin/HomeAdmin";
-import Home from "./pages/user/Home";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Product from "./pages/user/Product";
+import Home from "./pages/user/Pages/Home/Home";
 import LoginRegister from "./pages/loginRegister/LoginRegister";
 import ListUser from "./pages/admin/ListUser";
-import { HashRouter, Route, Routes, Link } from "react-router-dom";
-import Product from "./pages/user/Pages/Product.js/Product";
+import { BrowserRouter, Route, Routes  } from "react-router-dom";
 import ProductManager from "./pages/admin/ProductManager";
 import Order from "./pages/admin/Order";
-
+import Product from './pages/user/Pages/Product/Product';
 
 
 function App() {

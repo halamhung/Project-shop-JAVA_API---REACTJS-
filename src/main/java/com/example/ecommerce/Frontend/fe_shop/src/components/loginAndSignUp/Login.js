@@ -14,12 +14,16 @@ const Login = () => {
   const navigate = useNavigate();
   const {role} = useSelector((state)=> state.AccountUser);
 
-  useEffect(()=>{
-    console.log(role);
-    if(role === 'ROLE_EMPLOYEE' || role === 'ROLE_ADMIN'){
-      navigate('/admin');     
+  useEffect(() => {
+    if (role && role.length > 0) {
+      console.log("Role:", role[0].name); // Kiểm tra name của role
+
+      if (role[0].name === 'ROLE_EMPLOYEE' || role[0].name === 'ROLE_ADMIN') {
+        console.log("Navigating to admin page..."); // Log khi điều kiện đúng
+        navigate('/admin');
+      }
     }
-  },[role,navigate]);
+  }, [role, navigate]);
 
   const handleChange=(e)=>{
       setLogInData({...logInData,[e.target.name]: e.target.value});

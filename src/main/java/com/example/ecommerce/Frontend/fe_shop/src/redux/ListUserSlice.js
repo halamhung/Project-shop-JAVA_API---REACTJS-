@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { buildQueries } from "@testing-library/react";
 import axios from "axios";
 
 const BASE_URL = 'http://localhost:8080/api';
 
-const getListUser = createAsyncThunk("employee/getListUser", async(thunkAPI)=>{
-        const url = `${BASE_URL}/employee/all`;
+export const getListUser = createAsyncThunk("employee/getListUser", async({currentPage,limit},thunkAPI)=>{
+        const url = `${BASE_URL}/employee/all?page=${currentPage}&size=${limit}`;
     try {       
         const response = await axios.get(url);
         return response.data;
@@ -19,7 +18,7 @@ const ListUserSlice = createSlice({
     initialState:{
         listUser:[]
     },
-    reducers,
+    reducers:{},
     extraReducers:(build)=>{
         build
         .addCase(getListUser.fulfilled,(state,action)=>{
@@ -33,3 +32,5 @@ const ListUserSlice = createSlice({
         })
     }
 })
+
+export default ListUserSlice.reducer;

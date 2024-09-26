@@ -28,7 +28,7 @@ import java.util.List;
 public class OrderController {
     
     private final OrderServices orderServices;
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<ApiResponse> getAllOrder(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size

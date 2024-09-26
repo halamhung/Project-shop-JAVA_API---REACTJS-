@@ -6,6 +6,7 @@ import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+
 public class CategoryServices implements ICategory {
 
 

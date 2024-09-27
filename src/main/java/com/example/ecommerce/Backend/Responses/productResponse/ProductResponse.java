@@ -1,30 +1,33 @@
 package com.example.ecommerce.Backend.Responses.productResponse;
 
+import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Responses.BaseResponse;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class ProductResponse extends BaseResponse {
-
     private Long productId;
     private String nameProduct;
     private double price;
-    private String description; // Đổi tên từ 'describe' thành 'description'
+    private String description;
     private String slug;
     private int status;
-    private int quantity; // Sửa tên thuộc tính
-    private Long category;
+    private int quantity;
+    private String category; // Assuming you want the category ID
     private LocalDate createdAt;
     private LocalDate updatedAt;
+
     public static ProductResponse fromProduct(Product product) {
-        ProductResponse productResponse = ProductResponse.builder()
+        return ProductResponse.builder()
                 .productId(product.getProductId())
                 .nameProduct(product.getNameProduct())
                 .price(product.getPrice())
@@ -32,10 +35,9 @@ public class ProductResponse extends BaseResponse {
                 .slug(product.getSlug())
                 .status(product.getStatus())
                 .quantity(product.getQuantity())
-                .category(product.getCategory().getCategoryId())
-                .createdAt(product.getCreateAt()) // Lấy giá trị từ product
-                .updatedAt(product.getUpdateAt()) // Lấy giá trị từ product
+                .category(product.getCategory().getName()) // Assuming 'category' is an object
+                .createdAt(product.getCreateAt())
+                .updatedAt(product.getUpdateAt())
                 .build();
-        return productResponse;
     }
 }

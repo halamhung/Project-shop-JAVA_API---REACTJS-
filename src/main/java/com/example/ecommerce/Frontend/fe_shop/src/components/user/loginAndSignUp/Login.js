@@ -21,6 +21,8 @@ const Login = () => {
       if (role[0].name === 'ROLE_EMPLOYEE' || role[0].name === 'ROLE_ADMIN') {
         console.log("Navigating to admin page..."); // Log khi điều kiện đúng
         navigate('/admin');
+      }else{
+        navigate('/');
       }
     }
   }, [role, navigate]);

@@ -24,18 +24,22 @@ export default function HeaderAd() {
                             <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1" />
                         </div>
                         <div className="ms-3">
-                            <h6 className="mb-0">Jhon Doe</h6>
+                            <h6 className="mb-0">John Doe</h6>
                             <span>Admin</span>
                         </div>
                     </div>
                     <div className="navbar-nav w-100">
 
                         <Link to={"/admin-order"} className='nav-link'>
-                            <i class="fa fa-table me-2"></i>Order
+                            <i className="fa fa-table me-2"></i>Order
                         </Link>
 
                         <Link to={"/admin/product"} className='nav-link'>
-                            <i class="fa fa-table me-2"></i>Product
+                            <i className="fa fa-table me-2"></i>Product
+                        </Link>
+
+                        <Link to={"/listUser"} className='nav-link'>
+                            <i className="fa fa-table me-2"></i>List User
                         </Link>
                     </div>
                 </nav>

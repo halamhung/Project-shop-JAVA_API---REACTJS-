@@ -9,9 +9,8 @@ export const register = createAsyncThunk("user/register", async (userData, thunk
         const response = await axios.post(url, userData);
         return response.data;
     } catch (error) {
-        // Capture the validation error messages
         if (error.response && error.response.status === 400) {
-            return thunkAPI.rejectWithValue(error.response.data); // Assuming the errors are in error.response.data
+            return thunkAPI.rejectWithValue(error.response.data);
         }
         return thunkAPI.rejectWithValue(error.response?.data || 'Registration failed');
     }
@@ -21,7 +20,7 @@ export const logIn = createAsyncThunk("user/login", async(userData, thunkAPI) =>
     const url = `${BASE_URL}/users/login`;
     try {
         const response = await axios.post(url, userData);
-        const userId = response.data.userId; // Đảm bảo userId được trả về từ response
+        const userId = response.data.userId;
 
         if (!userId) {
             throw new Error("User ID is undefined");
@@ -29,7 +28,17 @@ export const logIn = createAsyncThunk("user/login", async(userData, thunkAPI) =>
 
         // Gọi API để lấy vai trò của người dùng sau khi đăng nhập
         const roleResponse = await axios.get(`${BASE_URL}/users/roleUser/${userId}`);
-        return { ...response.data, role: roleResponse.data };
+        const roles = roleResponse.data;  // Lấy danh sách roles từ API
+
+        const { username, password } = userData;  // Lấy username và password từ dữ liệu đầu vào
+        const roleNames = roles.map(role => role.name);  // Lưu lại tên các vai trò
+
+        // Lưu thông tin vào localStorage
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+        localStorage.setItem('roles', JSON.stringify(roleNames));  // Lưu role vào localStorage
+
+        return { ...response.data, role: roles };
     } catch (error) {
         // Check if the error response contains the "User not found" message
         if (error.response && error.response.status === 404) {
@@ -46,9 +55,13 @@ const LogInSignUpSlice = createSlice({
         users:[],
         role: null,
         errorMessages: {},
-        errorLogin: null
+        errorLogin: null,
+        registerSuccess: false, 
     },
     reducers:{
+        clearRegisterSuccess: (state) => {
+            state.registerSuccess = false;
+        },
     },
     extraReducers:(builder)=>{
         builder
@@ -63,6 +76,7 @@ const LogInSignUpSlice = createSlice({
         .addCase(register.fulfilled,(state,action)=>{
             state.users = action.payload.status
             state.message = action.payload.message
+            state.registerSuccess = true; 
         })
         .addCase(register.rejected, (state, action) => {
             if (action.payload instanceof Array) {
@@ -89,5 +103,5 @@ const LogInSignUpSlice = createSlice({
     }
     
 })
-
+export const { clearRegisterSuccess } = LogInSignUpSlice.actions;
 export default LogInSignUpSlice.reducer;

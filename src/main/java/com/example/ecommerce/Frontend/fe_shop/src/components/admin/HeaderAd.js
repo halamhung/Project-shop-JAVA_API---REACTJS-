@@ -31,15 +31,15 @@ export default function HeaderAd() {
                     <div className="navbar-nav w-100">
 
                         <Link to={"/admin-order"} className='nav-link'>
-                            <i class="fa fa-table me-2"></i>Order
+                            <i className="fa fa-table me-2"></i>Order
                         </Link>
 
                         <Link to={"/admin/product"} className='nav-link'>
-                            <i class="fa fa-table me-2"></i>Product
+                            <i className="fa fa-table me-2"></i>Product
                         </Link>
 
                         <Link to={"/listUser"} className='nav-link'>
-                            <i class="fa fa-table me-2"></i>List User
+                            <i className="fa fa-table me-2"></i>List User
                         </Link>
                     </div>
                 </nav>

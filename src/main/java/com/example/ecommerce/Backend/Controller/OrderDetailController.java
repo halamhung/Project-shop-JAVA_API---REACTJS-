@@ -25,6 +25,15 @@ import java.util.List;
 public class OrderDetailController {
 
     private final OrderDetailServices orderDetailServices;
+//    @GetMapping("/{id}")
+//    public ResponseEntity<ApiResponse> getAllStudent( PathVariable Long id){
+//        ApiResponse apiResponse = ApiResponse.builder()
+//                .data(orderDetailServices.getOrderDetails())
+//                .status(HttpStatus.OK.value())
+//                .message("okela")
+//                .build();
+//        return ResponseEntity.ok().body(apiResponse);
+//    }
     @PostMapping("/")
     public ResponseEntity<ApiResponse> createOrder(@Valid @RequestBody OrderDetailDTO orderDetailDTO, BindingResult result){
         if(result.hasErrors()){
@@ -68,6 +77,20 @@ public class OrderDetailController {
                 .status(HttpStatus.OK.value())
                 .build();
 
+        return ResponseEntity.ok(apiResponse);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteOrderDetail(@PathVariable Long id){
+        Orderdetails orderdetails = orderDetailServices.getOrderDetail(id);
+        if (orderdetails == null){
+            throw new ResoureNotFoundException(" khong tim thay "+id);
+        }
+        orderDetailServices.deleteById(id);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(id)
+                .message("delete successfully")
+                .status(HttpStatus.OK.value())
+                .build();
         return ResponseEntity.ok(apiResponse);
     }
 }

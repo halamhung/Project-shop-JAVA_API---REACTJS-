@@ -33,6 +33,7 @@ public class UserService implements IUserService{
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder; // Inject password encoder
     private final ImgRepository imgRepository;
+    private final EmailService emailService;
 
     @Override
     public Page<User> getUsersWithPagination(int page, int size) {
@@ -67,7 +68,27 @@ public class UserService implements IUserService{
 
         // Gán vai trò CUSTOMER cho user
         newUser.getRoles().add(defaultRole);
+        User savedUser = userRepository.save(newUser);
+
+        // Gửi email xác nhận
+        sendConfirmationEmail(savedUser);
+
         return userRepository.save(newUser);
+    }
+
+    private void sendConfirmationEmail(User user) {
+        String subject = "Welcome to Tay So Ba Vuong E-commerce system!";
+        String content = "<p>Hi " + user.getName() + ",</p>"
+                + "<p>Thank you for registered with us. Your account has been successfully created.</p>"
+                + "<p>You can now log in using your username and password: http://localhost:3000</p>"
+                + "<p>Best regards, Tay So Ba Vuong";
+
+        try {
+            emailService.sendEmail(user.getEmail(), subject, content);
+        } catch (Exception e) {
+            // Log the error
+            System.err.println("Error sending email: " + e.getMessage());
+        }
     }
 
     @Override

@@ -1,6 +1,6 @@
 .fixed-top {
     transition: 0.5s;
-    background: #fff;
+    background: linear-gradient(45deg, rgb(92, 169, 216) 0%, rgb(213, 110, 226) 100%);
     border: 0;
 }
 
@@ -12,7 +12,7 @@
 .topbar {
     padding: 20px;
     border-radius: 230px 100px;
-    background-color: #81c408;
+    background: linear-gradient(45deg, rgb(10, 146, 231) 0%, rgb(50, 171, 196) 100%);
 }
 
 .topbar a {

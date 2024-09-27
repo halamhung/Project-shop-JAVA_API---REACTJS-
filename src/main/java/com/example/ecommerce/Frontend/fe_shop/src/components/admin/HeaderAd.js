@@ -9,8 +9,7 @@ export default function HeaderAd() {
                 <nav className="navbar bg-light navbar-light">
                     <a href="index.html" className="navbar-brand mx-4 mb-3">
                         <h3 className="text-primary">
-                            <i className="fa fa-hashtag me-2" />
-                            DASHMIN
+                            HUBX-Flatform
                         </h3>
                     </a>
                     <div className="d-flex align-items-center ms-4 mb-4">

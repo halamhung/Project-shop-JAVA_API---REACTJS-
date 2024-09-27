@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Collapse, Container, DropdownItem, DropdownMenu, DropdownToggle, Input, Nav, Navbar, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap'
 import "./header.css"
 import { useDispatch } from 'react-redux'
+import logo from '../../imgs/logo2-removebg-preview.png'
 
 export default function Header() {
     // const { carts } = useSelector(state => state.carts)
@@ -69,8 +70,8 @@ export default function Header() {
                 <Container className="topbar  d-none d-lg-block">
                     <div className="d-flex justify-content-between">
                         <div className="top-info ps-2">
-                            <small className="me-3"> <a href="#" className="text-white">123 Hai Bà Trưng, TP. HCM</a></small>
-                            <small className="me-3"><a href="#" className="text-white"> Email@Example.com</a></small>
+                            <small className="me-3"> <a className="text-white">123 Hai Bà Trưng, TP. HCM</a></small>
+                            <small className="me-3"><a className="text-white"> Email@Example.com</a></small>
                         </div>
                         <div className="top-link pe-2">
                             <a href="#" className="text-white"><small className="text-white mx-2">Privacy Policy</small>/</a>
@@ -82,7 +83,7 @@ export default function Header() {
 
                 <Container className=' px-0'>
                     <Navbar className='navbar navbar-expand-xl' >
-                        <NavLink to={"/"} className={"nav-link"}><h1 style={{ color: '#81c408' }}>Hao</h1> </NavLink>
+                        <NavLink to={"/"} className={"nav-link"} style={{width:"140px",height:"90px"}} ><img src={logo} alt="logo"/></NavLink>
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
                             <Nav className="m-auto" navbar >

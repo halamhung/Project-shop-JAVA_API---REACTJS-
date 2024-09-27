@@ -2,23 +2,19 @@
     background-color: #45595b;
 }
 
-.footer h1 {
-    color: #81c408;
-}
-
 .footer .btn {
-    border: 1px solid #ffb524;
-    color: #ffb524;
+    border: 1px solid rgb(10, 146, 231);
+    color: rgb(10, 146, 231);
 }
 
 .footer .footer-item a {
-    color: #81c408;
+    color: rgb(182, 0, 167);
 }
 
 .footer .btn:hover {
-    border: 1px solid #ffb524;
+    border: 1px solid rgb(10, 146, 231);
     color: #fff;
-    background-color: #ffb524;
+    background-color: rgb(10, 146, 231);
 }
 
 .footer .footer-item .btn-link {
@@ -28,7 +24,7 @@
 }
 
 .footer .footer-item .btn-link:hover {
-    color: #ffb524;
+    color: rgb(10, 146, 231);
 }
 
 .footer .footer-item p.mb-4 {
@@ -41,20 +37,20 @@
 }
 
 .footer .btn-sub-now {
-    background-color: #81c408;
+    background-color: rgb(10, 146, 231);
 }
 
 .footer .btn-sub-now:hover {
-    background-color: #ffb524;
+    background-color: rgb(80, 148, 190);
 }
 
 .btn-outline-secondary {
-    color: #ffb524;
-    border-color: #ffb524;
+    color: rgb(10, 146, 231);
+    border-color: rgb(10, 146, 231);
 }
 
 .back-to-top {
-    background: #81c408 !important;
+    background: rgb(4, 149, 240) !important;
     border: none !important;
     position: fixed;
     right: 30px;

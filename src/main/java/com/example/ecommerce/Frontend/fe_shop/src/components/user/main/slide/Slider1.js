@@ -13,8 +13,10 @@ import 'swiper/css/effect-cube';
 
 import './slider.css'
 // import img from '../../../../public'
-import imgS1 from '../img/hero-img-1.png'
-import imgS2 from '../img/hero-img-2.jpg'
+import imgS1 from '../../../../imgs/Session1LapTop1.jpg';
+import imgS2 from '../../../../imgs/Session1Computer1.jpg';
+import imgS3 from '../../../../imgs/Session1Network1.jpg';
+import imgS4 from '../../../../imgs/Session1Phone1.jpg';
 
 export default function Slider1() {
     const swiper = useSwiper()
@@ -30,7 +32,7 @@ export default function Slider1() {
                 // onAutoplayTimeLeft
                 spaceBetween={50}
                 slidesPerView={1}
-                navigation
+                
                 pagination={{ clickable: true }}
                 // scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
@@ -67,6 +69,8 @@ export default function Slider1() {
             >
                 <SwiperSlide><img src={imgS1} /></SwiperSlide>
                 <SwiperSlide><img src={imgS2} /></SwiperSlide>
+                <SwiperSlide><img src={imgS3} /></SwiperSlide>
+                <SwiperSlide><img src={imgS4} /></SwiperSlide>
 
             </Swiper>
         </>

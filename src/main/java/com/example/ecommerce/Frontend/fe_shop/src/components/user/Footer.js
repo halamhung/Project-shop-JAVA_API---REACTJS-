@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Input, Row } from 'reactstrap'
 import "./footer.css"
+import logo from '../../imgs/logo2-removebg-preview.png'
 
 export default function Footer() {
     const [isVisible, setIsVisible] = useState(false);
@@ -147,12 +148,9 @@ export default function Footer() {
             <Container fluid className=" text-white-50 footer pt-5 mt-5">
                 <Container className="py-5">
                     <div className="pb-4 mb-4" >
-                        <Row className='g-5'>
+                        <Row className='g-5' style={{display:"flex", alignItems:"center"}}>
                             <Col lg="3">
-                                <a href="#">
-                                    <h1 className=" mb-0">Fruitables</h1>
-                                    <p className=" mb-0" style={{ color: '#ffb524' }} >Fresh products</p>
-                                </a>
+                                <img src={logo} alt="logo" style={{width:"180px", height:"100px"}}/>
                             </Col>
                             <Col lg="6">
                                 <div className=" mx-auto" style={{ position: 'relative' }}>
@@ -222,7 +220,7 @@ export default function Footer() {
                     <Button className="btn btn-primary border-3 rounded-circle back-to-top"
                         onClick={() => scrollToTop()}
                     >
-                        {/* <FaArrowUp /> */}
+                        <i className="fa-regular fa-circle-up fa-lg"></i>
                     </Button>
                 )
             }

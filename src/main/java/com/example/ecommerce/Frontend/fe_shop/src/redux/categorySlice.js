@@ -9,7 +9,7 @@ const axiosBase = axios.create({
 
 export const getAllCategory = createAsyncThunk('cate/getAllCate', async({currentPage, limit}, thunkAPI) => {
     try {
-        const response = await axiosBase.get(`/list/page=${currentPage}&limit=${limit}`)
+        const response = await axiosBase.get(`/list?page=${currentPage}&limit=${limit}`)
         return response.data;
     } catch(error) {
         return thunkAPI.rejectWithValue(error.response.data);
@@ -34,7 +34,6 @@ export const addCategory = createAsyncThunk("cate/addCate", async({categorydto},
     }
 })
 
-
 export const deleteCategory = createAsyncThunk("cate/delete", async({id}, thunkAPI) => {
     try {
         const response = await axiosBase.delete(`/delete-category/${id}`);
@@ -48,12 +47,12 @@ export const deleteCategory = createAsyncThunk("cate/delete", async({id}, thunkA
 
 
 const initialState = {
-    status: null,
+    status: 'idle',
     error: null,
-    message: "",
+    message: '',
     category: [],
     currentPage: 0,
-    totalPage: 0,
+    totalPage: 0,   
 }
 
 
@@ -106,8 +105,7 @@ const categorySlice = createSlice ({
         })
         .addCase(deleteCategory.fulfilled, (state,action) => {
             state.message = action.payload.message
-            state.status = action.payload.status    
-            state.category = state.category.filter(item => item.id !== action.payload.data)
+            state.status = action.payload.status  
         })
         .addCase(deleteCategory.rejected, (state,action) => {
             state.message = action.payload.message

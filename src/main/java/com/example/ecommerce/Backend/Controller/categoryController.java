@@ -32,7 +32,7 @@ public class categoryController {
     private final CategoryServices categoryServices;
 
     @GetMapping("/list")
-    public ResponseEntity<ApiResponse> index(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size) {
+    public ResponseEntity<ApiResponse> index(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
 
         Pageable pageable = PageRequest.of(
                 page, size,
@@ -68,7 +68,7 @@ public class categoryController {
 
             ApiResponse apiResponse = ApiResponse.builder()
                     .data(errors)
-                    .message("Validation Failed")
+                        .message("Validation Failed")
                     .status(HttpStatus.BAD_REQUEST.value())
                     .build();
             return ResponseEntity.badRequest().body(apiResponse);

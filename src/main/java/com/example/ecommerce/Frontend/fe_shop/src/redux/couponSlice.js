@@ -9,7 +9,7 @@ const axiosBase = axios.create({
 
 export const getAllCoupon = createAsyncThunk('coupon/getAllCoupon', async({currentPage, limit}, thunkAPI) => {
     try {
-        const response = await axiosBase.get(`/list-page/page=${currentPage}&limit=${limit}`)
+        const response = await axiosBase.get(`/list?page=${currentPage}&limit=${limit}`)
         return response.data;
     } catch(error) {
         return thunkAPI.rejectWithValue(error.response.data);
@@ -74,7 +74,7 @@ const couponSlice = createSlice ({
         .addCase(getAllCoupon.fulfilled, (state, action) => {
             state.message = action.payload.message
             state.status = action.payload.status
-            state.coupouns = action.payload.data.couponListResponse
+            state.coupouns = action.payload.data
             state.totalPage = action.payload.data.totalPages
         })
         .addCase(getAllCoupon.rejected, (state,action) => {

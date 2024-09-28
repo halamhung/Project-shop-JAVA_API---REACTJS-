@@ -11,9 +11,6 @@ import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import com.example.ecommerce.Backend.Service.ProductServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +19,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @RestController
@@ -41,25 +38,28 @@ public class ProductController {
 
     private final ProductServices productServices;
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<ApiResponse> getAllProduct(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "8") int size
-    ){
+            @RequestParam(defaultValue = "10") int size
+    ) {
         Pageable pageable = PageRequest.of(
-                page, size, Sort.by("productId").descending()
+                page, size, Sort.by("createAt").descending()
         );
         Page<ProductResponse> productResponses = productServices.getAllProduct(pageable);
-        int totalPages =  productResponses.getTotalPages();
+        int totalPages = productResponses.getTotalPages();
         List<ProductResponse> responseList = productResponses.getContent();
-        ProductListResponse productListResponse = ProductListResponse.builder()
-                .productResponses(responseList)
-                .totalPages(totalPages)
-                .build();
+
+        // Tạo một đối tượng để chứa dữ liệu phân trang
+        Map<String, Object> pageData = new HashMap<>();
+        pageData.put("productResponses", responseList);
+        pageData.put("currentPage", page); //  lấy số trang hiện tại
+        pageData.put("totalPages", totalPages);
+
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .message("Show products Successfully")
-                .data(productListResponse)
+                .data(pageData) // Trả về dữ liệu phân trang
                 .build();
         return ResponseEntity.ok(apiResponse);
     }

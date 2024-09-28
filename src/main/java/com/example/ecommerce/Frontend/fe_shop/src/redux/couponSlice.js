@@ -57,8 +57,6 @@ const initialState = {
 }
 
 
-
-
 const couponSlice = createSlice ({
     name: "coupons",
     initialState,

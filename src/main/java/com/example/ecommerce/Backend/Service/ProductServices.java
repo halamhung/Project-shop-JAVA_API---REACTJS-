@@ -5,12 +5,15 @@ import com.example.ecommerce.Backend.Dtos.ProductDtos;
 import com.example.ecommerce.Backend.IService.IProductServices;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Img;
+import com.example.ecommerce.Backend.Modals.Orders;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import com.example.ecommerce.Backend.Repositories.ImgRepository;
 import com.example.ecommerce.Backend.Repositories.ProductRepo;
+import com.example.ecommerce.Backend.Responses.OrderResponse.OrderResponse;
 import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,9 +31,12 @@ public class ProductServices implements IProductServices {
     private final ImgRepository imgRepository;
 
     @Override
-    public List<Product> getAllProduct() {
-        return productRepo.findAll();
+    public Page<ProductResponse> getAllProduct(Pageable pageable) {
+        return productRepo.findAll(pageable).map(product -> {
+            return ProductResponse.fromProduct(product);
+        });
     }
+
 
     @Override
     public Product getProductById(Long id) {
@@ -45,7 +51,7 @@ public class ProductServices implements IProductServices {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
         if (categoryOptional.isPresent()) {
         Product product = Product.builder()
-                .nameProduct(productDtos.getNameProduct())
+                .nameProduct(productDtos.getNameproduct())
                 .price(productDtos.getPrice())
                 .description(productDtos.getDescription())
                 .slug(productDtos.getSlug())
@@ -66,7 +72,7 @@ public class ProductServices implements IProductServices {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
         if (categoryOptional.isPresent()) {
         Product product = getProductById(id);
-        product.setNameProduct(productDtos.getNameProduct());
+        product.setNameProduct(productDtos.getNameproduct());
         product.setPrice(productDtos.getPrice());
         product.setDescription(productDtos.getDescription());
         product.setSlug(productDtos.getSlug());
@@ -85,12 +91,8 @@ public class ProductServices implements IProductServices {
     public void deleteProduct(Long id) {
         productRepo.deleteById(id);
     }
-    @Override
-    public Page<ProductResponse> getAllProduct(Pageable pageable) {
-        return productRepo.findAll(pageable).map(product -> {
-            return ProductResponse.fromProduct(product);
-        });
-    }
+
+
 
 
     public Img saveProductImg(Long productId, ImgDtos imgDtos){

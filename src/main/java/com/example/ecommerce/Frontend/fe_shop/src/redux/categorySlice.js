@@ -62,13 +62,9 @@ const categorySlice = createSlice ({
     name: "category",
     initialState,
     reducers: {
-        resetStatusAndMessage: (state) => {
-            state.error = null;
-            state.message = ""
-            state.status = null
-        }
+
     },
-    extraReducers:(builder) => {
+    extraReducers: (builder) => {
         builder
         .addCase(getAllCategory.fulfilled, (state, action) => {
             state.message = action.payload.message

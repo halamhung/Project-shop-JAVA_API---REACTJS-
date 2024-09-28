@@ -18,7 +18,6 @@ const ListProductSlice = createSlice({
     initialState:{
         products:[],
         status: 'start',
-        status:'idle',
         message:"",
         error: null,
         currentPage: 0,

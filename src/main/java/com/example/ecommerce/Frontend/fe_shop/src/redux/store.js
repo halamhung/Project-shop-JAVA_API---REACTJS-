@@ -6,6 +6,7 @@ import LogInSignUpSlice from './LogInSignUpSlice'
 import ListUserSlice from './ListUserSlice'
 import ListProductSlice from './ListProductSlice'
 import categorySlice from './categorySlice'
+import couponSlice from './couponSlice';
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         GetListUser: ListUserSlice,
         GetListProduct: ListProductSlice,
         category: categorySlice,
+        coupon : couponSlice
     },
 })
 

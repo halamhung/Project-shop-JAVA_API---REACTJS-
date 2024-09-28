@@ -10,7 +10,7 @@ import { Alert, Button, Col, Form, FormGroup, Input, Label, Table } from 'reacts
 
 export default function Coupon() {
     const { coupon, totalPages, message, status } = useSelector(state => state.coupon)
-    // const [statusEdit, setStatusEdit] = useState({ isEdit: false, id: "" })
+    const [statusEdit, setStatusEdit] = useState({ isEdit: false, id: "" })
     const [showMessage, setShowMessage] = useState(false)
 
     const dispatch = useDispatch()

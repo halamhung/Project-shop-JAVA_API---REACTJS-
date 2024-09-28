@@ -15,7 +15,7 @@ export default function Section1() {
         </h1>
       </Col>
       <Col md={12} lg={5} data-aos="fade-left">
-        <Slider1 />
+        <Slider1 />3
       </Col>
     </Row>
   </Container>

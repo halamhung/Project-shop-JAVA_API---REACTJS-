@@ -15,10 +15,58 @@ import {
 import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
 
 import { Link, useNavigate } from "react-router-dom";
-import "./cart.css"
+import "./carts.css"
 export default function Carts() {
-
   const { carts } = useSelector((state) => state.carts);
+  console.log("carts: ", carts);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const subTotal = () => {
+    let sum = 0;
+    carts.forEach((item) => {
+      console.log("item: ", item.qty);
+      console.log("item: ", item.qty);
+      sum += item.qty * item.price;
+    });
+    return sum;
+  };
+  const subTotal1 = subTotal();
+
+  const handle_clear = () => {
+    Swal.fire({
+      title: "Xóa Giỏ Hàng",
+      text: "Xóa Giỏ Hàng Thành Công",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+        dispatch(clearCart());
+      }
+    });
+  };
+
+
+  const paymentCheckout = () => {
+    Swal.fire({
+      title: "Thanh Toán Thành Công",
+      text: "Thanh Toán Thành Công",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    })
+  };
 
   return (
     <Container fluid className="py-5">

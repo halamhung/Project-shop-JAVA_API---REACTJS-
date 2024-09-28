@@ -122,7 +122,4 @@ public class ProductServices implements IProductServices {
         return imgRepository.findAllImagesByProductId(productId);
     }
 
-
-
-
 }

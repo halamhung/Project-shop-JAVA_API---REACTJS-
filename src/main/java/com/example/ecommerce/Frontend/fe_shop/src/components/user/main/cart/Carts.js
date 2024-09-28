@@ -13,9 +13,10 @@ import {
     Table,
   } from "reactstrap";
 import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
-
 import { Link, useNavigate } from "react-router-dom";
-import "./carts.css"
+
+import "./Carts.css"
+
 export default function Carts() {
   const { carts } = useSelector((state) => state.carts);
   console.log("carts: ", carts);
@@ -69,8 +70,7 @@ export default function Carts() {
   };
 
   return (
-    <Container fluid className="py-5">
-    <Container className="py-5">
+    <Container className="my-5 py-5 cart">
       <Row>
         <Col xl={8} lg={7} md={12} sm={12} xs={12}>
           {carts[0] == null ? (
@@ -158,7 +158,7 @@ export default function Carts() {
           <div className="bg-light rounded">
             <div className="p-4">
               <h1 className="display-6 mb-4">
-                Cart <span className="fw-normal">Total</span>
+                Cart <span className="fw-normal">Detail</span>
               </h1>
               <div className="d-flex justify-content-between mb-4">
                 <h5 className="mb-0 me-4">Subtotal:</h5>
@@ -197,7 +197,6 @@ export default function Carts() {
           </div>
         </Col>
       </Row>
-    </Container>
   </Container>
   )
 }

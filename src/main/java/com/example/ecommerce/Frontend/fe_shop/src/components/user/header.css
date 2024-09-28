@@ -104,11 +104,12 @@
     --bs-nav-link-hover-color: #ffb524 !important;
 }
 
-/* .nav-link {
-    color: #81c408 !important;
-} */
+.nav-link {
+    color: white !important;
+    font-size: 17px !important;
+} 
 
-/* .nav-link li a {
+.nav-link li a {
     display: block;
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
     font-size: var(--bs-nav-link-font-size);
@@ -118,4 +119,25 @@
     background: 0 0;
     border: 0;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
-} */
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.shopping-cart i , 
+.userIcon i {
+    font-size: 25px;
+    color: white;
+}
+
+.itemCurrent {
+    background-color: #a23f25!important;
+    color: white;
+    border-radius: 50%;
+    width:20px;
+    height: auto;
+    top: -70%;
+    right: -90%;
+  }
+  

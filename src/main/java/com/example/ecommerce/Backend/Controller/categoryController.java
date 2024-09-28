@@ -113,12 +113,13 @@ public class categoryController {
             return ResponseEntity.badRequest().body(apiResponse);
         }
 
-        Category category = categoryServices.getCategorybyId(id);
+        // Category category = categoryServices.getCategorybyId(id);
+        Category category = categoryServices.updateCategory(id,categoryDTO);
         if (category == null) {
             throw new ResoureNotFoundException("Category" + id);
         }
 
-        category.setName(categoryDTO.getName());
+        // category.setName(categoryDTO.getName());
         ApiResponse apiResponse  = ApiResponse.builder()
                 .data(category)
                 .status(HttpStatus.OK.value())

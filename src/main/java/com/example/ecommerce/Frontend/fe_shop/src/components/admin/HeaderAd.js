@@ -43,7 +43,9 @@ export default function HeaderAd() {
                         <Link to={"/listUser"} className='nav-link'>
                             <i className="fa fa-table me-2"></i>List User
                         </Link>
-
+                        <Link to={"/admin/coupon"} className='nav-link'>
+                            <i className="fa fa-table me-2"></i>Coupon
+                        </Link>
                     </div>
                 </nav>
             </div >

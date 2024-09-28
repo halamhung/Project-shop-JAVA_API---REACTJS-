@@ -7,6 +7,7 @@ import ProductManager from "./pages/admin/ProductManager";
 import Order from "./pages/admin/Order";
 import Product from './pages/user/Pages/Product/Product';
 import Category from "./pages/admin/category/Category";
+import Coupon from "./pages/admin/coupon/Coupon";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/admin/order" element={<Order />} />
           <Route path="/admin/product" element={<ProductManager />} />
           <Route path="/admin/category" element={<Category />} />
+          <Route path="/admin/coupon" element={<Coupon />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -18,7 +18,7 @@ import java.util.List;
 public class ProductDtos {
 
     @NotBlank(message = "Tên sản phẩm không được để trống.")
-    private String nameproduct;
+    private String nameProduct;
 
     @Min(0) // Thêm ràng buộc cho price
     private double price;

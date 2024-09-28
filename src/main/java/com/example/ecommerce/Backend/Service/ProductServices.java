@@ -2,15 +2,14 @@ package com.example.ecommerce.Backend.Service;
 
 import com.example.ecommerce.Backend.Dtos.ImgDtos;
 import com.example.ecommerce.Backend.Dtos.ProductDtos;
+import com.example.ecommerce.Backend.Exceptions.ResoureNotFoundException;
 import com.example.ecommerce.Backend.IService.IProductServices;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Img;
-import com.example.ecommerce.Backend.Modals.Orders;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import com.example.ecommerce.Backend.Repositories.ImgRepository;
 import com.example.ecommerce.Backend.Repositories.ProductRepo;
-import com.example.ecommerce.Backend.Responses.OrderResponse.OrderResponse;
 import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import lombok.RequiredArgsConstructor;
 
@@ -51,7 +50,7 @@ public class ProductServices implements IProductServices {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
         if (categoryOptional.isPresent()) {
         Product product = Product.builder()
-                .nameProduct(productDtos.getNameproduct())
+                .nameProduct(productDtos.getNameProduct())
                 .price(productDtos.getPrice())
                 .description(productDtos.getDescription())
                 .slug(productDtos.getSlug())
@@ -67,19 +66,23 @@ public class ProductServices implements IProductServices {
         }
 
     @Override
-    public Product updateProduct(Long id, ProductDtos productDtos) {
+    public ProductResponse updateProduct(Long id, ProductDtos productDtos) {
+        System.out.println("ID sản phẩm cần cập nhật: " + id); // In ra ID
+        System.out.println("Dữ liệu sản phẩm: " + productDtos);
         Long categoryId = productDtos.getCategoryId();
-        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        Optional<Category> categoryOptional = categoryRepository.findById(productDtos.getCategoryId());
+        Product existingProduct = productRepo.findById(id)
+                .orElseThrow(() -> new ResoureNotFoundException("Product not found with id: " + id));
         if (categoryOptional.isPresent()) {
-        Product product = getProductById(id);
-        product.setNameProduct(productDtos.getNameproduct());
-        product.setPrice(productDtos.getPrice());
-        product.setDescription(productDtos.getDescription());
-        product.setSlug(productDtos.getSlug());
-        product.setStatus(productDtos.getStatus());
-        product.setQuantity(productDtos.getQuantity());
-        product.setCategory(categoryOptional.get());
-        return productRepo.save(product);
+            existingProduct.setNameProduct(productDtos.getNameProduct());
+            existingProduct.setPrice(productDtos.getPrice());
+            existingProduct.setDescription(productDtos.getDescription());
+            existingProduct.setSlug(productDtos.getSlug());
+            existingProduct.setStatus(productDtos.getStatus());
+            existingProduct.setQuantity(productDtos.getQuantity());
+            existingProduct.setCategory(categoryOptional.get());
+            Product updatedProduct = productRepo.save(existingProduct);
+            return ProductResponse.fromProduct(updatedProduct);
     }
         else {
             // Xử lý trường hợp không tìm thấy category, ví dụ:
@@ -89,7 +92,9 @@ public class ProductServices implements IProductServices {
 
     @Override
     public void deleteProduct(Long id) {
-        productRepo.deleteById(id);
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new ResoureNotFoundException("Product not found with id: " + id));
+        productRepo.delete(product);
     }
 
 

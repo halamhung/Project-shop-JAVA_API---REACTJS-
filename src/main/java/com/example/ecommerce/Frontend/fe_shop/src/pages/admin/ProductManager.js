@@ -1,39 +1,77 @@
+// ProductManager.js
 import React, { useEffect, useState } from 'react';
 import HeaderAd from '../../components/admin/HeaderAd';
 import FooterAd from '../../components/admin/FooterAd';
-import { Button, Table, Input } from 'reactstrap';
+import { Button, Table, Input, FormGroup, Label } from 'reactstrap';
 import Navbar from '../../components/admin/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProduct } from '../../redux/productSlice';
+import { getAllProduct, updateProduct, deleteProduct } from '../../redux/productSlice';
 import ReactPaginate from 'react-paginate';
+import { fetchCategories } from '../../redux/productSlice';
 
 export default function ProductManager() {
     const { products, totalPages, status, error } = useSelector(state => state.products);
-    const [statusEdit, setStatusEdit] = useState({ isEdit: false, id: "" });
-    const [productStatus, setProductStatus] = useState(0);
-
+    const [editingProduct, setEditingProduct] = useState(null);
     const dispatch = useDispatch();
-
     const [currentPage, setCurrentPage] = useState(0);
-
+    const [categories, setCategories] = useState([]);
     const handlePageClick = (event) => {
-        setCurrentPage(event.selected + 1); // React Paginate starts from page 0
+        setCurrentPage(event.selected + 1);
     };
 
-    const handleStatusChange = (event) => {
-        setProductStatus(parseInt(event.target.value, 10));
+    useEffect(() => {
+        dispatch(getAllProduct(currentPage));
+
+        // Fetch categories when the component mounts
+        const fetchCategoriesData = async () => {
+            try {
+                const response = await dispatch(fetchCategories());
+                setCategories(response.payload);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+        fetchCategoriesData();
+    }, [currentPage, dispatch]);
+
+        const handleEditStart = (product) => {
+        setEditingProduct({ ...product });
+
     };
 
-    const handleEdit = (id, status) => {
-        setStatusEdit({ isEdit: true, id });
-        setProductStatus(status);
+    const handleEditCancel = () => {
+        setEditingProduct(null);
     };
 
-    const handleUpdateStatus = (id) => {
-        // Implement your API call to update product status here
-        // You'll likely need to dispatch another action to update the Redux store
-        console.log(`Updating product ${id} to status ${productStatus}`);
-        setStatusEdit({ isEdit: false, id: "" }); // Reset edit mode
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditingProduct(prevProduct => ({
+            ...prevProduct,
+            [name]: value
+        }));
+    };
+
+    const handleSaveEdit = () => {
+        dispatch(updateProduct({ id: editingProduct.productId, updatedProduct: editingProduct }))
+            .then(() => {
+                setEditingProduct(null);
+                dispatch(getAllProduct(currentPage));
+            })
+            .catch(error => {
+                console.error("Lỗi khi cập nhật sản phẩm:", error);
+            });
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+            dispatch(deleteProduct(id))
+                .then(() => {
+                    dispatch(getAllProduct(currentPage));
+                })
+                .catch(error => {
+                    console.error("Lỗi khi xóa sản phẩm:", error);
+                });
+        }
     };
 
     useEffect(() => {
@@ -69,34 +107,72 @@ export default function ProductManager() {
                             <tbody>
                             {products && products.map((product, index) => (
                                 <tr key={product.productId}>
-                                    <th>{product.productId}</th>
-                                    <td>{product.nameProduct}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.description}</td>
-                                    <td>{product.category}</td> {/* Assuming you have category name */}
-                                    <td>{product.quantity}</td>
+                                    <td>{product.productId}</td>
                                     <td>
-                                        {statusEdit.isEdit && product.productId === statusEdit.id ? (
-                                            <Input
-                                                type="select"
-                                                value={productStatus}
-                                                onChange={handleStatusChange}
-                                            >
-                                                <option value={1}>Còn hàng</option>
-                                                <option value={0}>Hết hàng</option>
-                                            </Input>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="text" name="nameProduct" value={editingProduct.nameProduct}
+                                                   onChange={handleInputChange} />
                                         ) : (
-                                            product.status === 1 ? 'Còn hàng' : 'Hết hàng'
+                                            product.nameProduct
                                         )}
                                     </td>
                                     <td>
-                                        <Button color='primary' onClick={() => handleEdit(product.productId, product.status)}>
-                                            {statusEdit.isEdit && product.productId === statusEdit.id ? 'Save' : 'Edit'}
-                                        </Button>
-                                        {statusEdit.isEdit && product.productId === statusEdit.id && (
-                                            <Button color='secondary' onClick={() => setStatusEdit({ isEdit: false, id: "" })}>
-                                                Cancel
-                                            </Button>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="number" name="price" value={editingProduct.price}
+                                                   onChange={handleInputChange} />
+                                        ) : (
+                                            product.price
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="text" name="description" value={editingProduct.description}
+                                                   onChange={handleInputChange} />
+                                        ) : (
+                                            product.description
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="text" name="category" value={editingProduct.category}
+                                                   onChange={handleInputChange} />
+                                        ) : (
+                                            product.category
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="number" name="quantity" value={editingProduct.quantity}
+                                                   onChange={handleInputChange} />
+                                        ) : (
+                                            product.quantity
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <Input type="select" name="status" value={editingProduct.status}
+                                                   onChange={handleInputChange}>
+                                                <option value={0}>Hết hàng</option>
+                                                <option value={1}>Còn hàng</option>
+                                                <option value={2}>Tạm ngưng bán</option>
+                                            </Input>
+                                        ) : (
+                                            product.status === 0 ? 'Hết hàng' : (product.status === 1 ? 'Còn hàng' : 'Tạm ngưng bán')
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingProduct && editingProduct.productId === product.productId ? (
+                                            <>
+                                                <Button color="success" onClick={handleSaveEdit}>Lưu</Button>
+                                                <Button color="secondary" onClick={handleEditCancel}>Hủy</Button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Button color="primary" onClick={() => handleEditStart(product)}>Chỉnh
+                                                    sửa</Button>
+                                                <Button color="danger" onClick={() => handleDelete(product.productId)}>Xóa
+                                                </Button>
+                                            </>
                                         )}
                                     </td>
                                 </tr>

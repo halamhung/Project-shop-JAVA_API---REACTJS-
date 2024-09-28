@@ -13,7 +13,7 @@ import java.util.List;
 public interface IProductServices {
     Product getProductById(Long id);
     Product createProduct(ProductDtos productDtos) ;
-    Product updateProduct(Long id, ProductDtos productDtos);
+    ProductResponse updateProduct(Long id, ProductDtos productDtos);
     void deleteProduct(Long id);
 
     Img saveProductImg(Long productId, ImgDtos imgDtos);

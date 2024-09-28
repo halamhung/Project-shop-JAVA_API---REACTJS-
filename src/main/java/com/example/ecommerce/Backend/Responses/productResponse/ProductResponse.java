@@ -22,7 +22,7 @@ public class ProductResponse extends BaseResponse {
     private String slug;
     private int status;
     private int quantity;
-    private String category; // Assuming you want the category ID
+    private Long categoryId; // Assuming you want the category ID
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
@@ -35,7 +35,7 @@ public class ProductResponse extends BaseResponse {
                 .slug(product.getSlug())
                 .status(product.getStatus())
                 .quantity(product.getQuantity())
-                .category(product.getCategory().getName()) // Assuming 'category' is an object
+                .categoryId(product.getCategory().getCategoryId()) // Assuming 'category' is an object
                 .createdAt(product.getCreateAt())
                 .updatedAt(product.getUpdateAt())
                 .build();

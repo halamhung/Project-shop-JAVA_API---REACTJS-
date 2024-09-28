@@ -96,7 +96,7 @@ public class ProductController {
                     .build();
             return ResponseEntity.ok(apiResponse);
         }
-        Product product = productServices.updateProduct(id,productDtos);
+        ProductResponse product = productServices.updateProduct(id,productDtos);
         if(product == null){
             throw new ResoureNotFoundException("Product not found by id"+id);
         }

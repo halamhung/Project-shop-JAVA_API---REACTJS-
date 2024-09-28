@@ -38,7 +38,7 @@ public class OrderResponse extends BaseResponse {
                 .note(orders.getNote())
                 .orderDate(orders.getOrderDate())
                 .paymentMethod(orders.getPaymentMethod())
-                .status(orders.getPaymentMethod())
+                .status(orders.getStatus())
                 .user(orders.getUser().getUserId())
                 .createdAt(orders.getCreateAt()) // Lấy giá trị từ product
                 .updatedAt(orders.getUpdateAt()) // Lấy giá trị từ product

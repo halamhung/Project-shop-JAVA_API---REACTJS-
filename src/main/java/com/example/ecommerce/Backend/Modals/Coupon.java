@@ -24,7 +24,7 @@ public class Coupon extends BaseEntity {
 
     @NotBlank
     @Size(min = 3, max = 50, message = "Tên mã giãm giá từ 3 kí tự đến 15 kí tự")
-    @JsonProperty("tên của mã")
+    // @JsonProperty("tên của mã")
     private String name;
 
     private Boolean status;

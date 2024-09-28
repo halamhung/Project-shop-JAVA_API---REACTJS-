@@ -109,7 +109,7 @@ public class ProductServices implements IProductServices {
                 .build();
         int size = imgRepository.findByImgId(productId).size();
         if(size >=4){
-            throw new InvalidParameterException("Mỗi sinh viên chỉ up tối đa 4 ảnh");
+            throw new InvalidParameterException("Mỗi sản phẩm chỉ up tối đa 4 ảnh");
         }
         return imgRepository.save(img);
     }
@@ -117,4 +117,12 @@ public class ProductServices implements IProductServices {
     public List<Img> getAllProductImg(Long productId) {
         return imgRepository.findByImgId(productId);
     }
+
+    public List<String> getAllImagesForProduct(Long productId) {
+        return imgRepository.findAllImagesByProductId(productId);
+    }
+
+
+
+
 }

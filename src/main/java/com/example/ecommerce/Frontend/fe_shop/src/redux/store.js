@@ -7,7 +7,7 @@ import ListUserSlice from './ListUserSlice'
 import ListProductSlice from './ListProductSlice'
 import categorySlice from './categorySlice'
 import couponSlice from './couponSlice';
-
+import cartSlice from './cartSlice';
 const store = configureStore({
     reducer: {
         products: productSlice,
@@ -16,7 +16,8 @@ const store = configureStore({
         GetListUser: ListUserSlice,
         GetListProduct: ListProductSlice,
         category: categorySlice,
-        coupon : couponSlice
+        coupon : couponSlice,
+        carts: cartSlice
     },
 })
 

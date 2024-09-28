@@ -11,8 +11,10 @@ import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import com.example.ecommerce.Backend.Service.ProductServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -132,10 +134,28 @@ public class ProductController {
         return ResponseEntity.ok(apiResponse);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse> getProduct(@PathVariable Long id){
+       Product product = productServices.getProductById(id);
+       if (product == null) {
+           throw new ResoureNotFoundException("product not found by id"+id);
+       }
+       ApiResponse apiResponse = ApiResponse.builder()
+               .data(product)
+               .message("Get Successfully")
+               .status(HttpStatus.OK.value())
+               .build();
+       return ResponseEntity.ok(apiResponse);
+    }
+
 
     @PostMapping(value = "/PostImgUser/{id}")
-    public ResponseEntity<ApiResponse> upLoadImgProduct(@PathVariable Long id, @ModelAttribute("files")List<MultipartFile> files) throws IOException
+    public ResponseEntity<ApiResponse> upLoadImgProduct(@PathVariable Long id, @RequestParam("files")List<MultipartFile> files) throws IOException
     {
+
+        if (files == null || files.isEmpty()) {
+            throw new IllegalArgumentException("Files are not present");
+        }
         List<Img> productImgs = new ArrayList<>();
         int count = 0 ;
         for(MultipartFile file : files){
@@ -163,6 +183,7 @@ public class ProductController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+
     private String storeFile(MultipartFile file) throws IOException
     {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -174,6 +195,37 @@ public class ProductController {
         java.nio.file.Path destination = Paths.get(uploadDir.toString(),uniqueFileName);
         Files.copy(file.getInputStream(),destination, StandardCopyOption.REPLACE_EXISTING);
         return uniqueFileName;
+    }
+    @GetMapping("/getAllImages/{id}")
+    public ResponseEntity<?> getALLImageStudents(@PathVariable Long id) {
+        List<String> imageNames =  productServices.getAllImagesForProduct(id);
+
+        if (imageNames.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse(HttpStatus.NOT_FOUND.value(), "No images found for this product", null));
+        }
+        String firstImageName = imageNames.get(0);
+
+        try {
+            java.nio.file.Path imagePath = Paths.get("upload/" + firstImageName);
+            UrlResource resource = new UrlResource(imagePath.toUri());
+
+            // Check if the image file exists
+            if (resource.exists()) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG) // Adjust if images are not JPEG
+                        .body(resource);
+            } else {
+                // If the image doesn't exist, return a "not found" image
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(new UrlResource(Paths.get("uploads/notfound.jpg").toUri()));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error retrieving image");
+        }
     }
 }
 

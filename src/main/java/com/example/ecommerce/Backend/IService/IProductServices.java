@@ -19,4 +19,7 @@ public interface IProductServices {
     Img saveProductImg(Long productId, ImgDtos imgDtos);
     List<Img> getAllProductImg(Long id);
     Page<ProductResponse> getAllProduct(Pageable pageable);
+
+
+
 }

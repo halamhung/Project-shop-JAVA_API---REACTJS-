@@ -12,6 +12,7 @@ import java.util.UUID;
 import com.example.ecommerce.Backend.Dtos.ImgDtos;
 import com.example.ecommerce.Backend.Modals.Role;
 import com.example.ecommerce.Backend.Responses.userResponse.UserResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class UserController {
     private final IUserService userService;
+    private final HttpSession httpSession;
 
 
     @GetMapping("/employee/all")
@@ -98,6 +100,9 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO){
         try {
             User loggedInuser = userService.login(userDTO);
+
+            // Lưu thông tin người dùng vào session
+            httpSession.setAttribute("user", loggedInuser);
             // Chuyển đổi User thành UserResponse
             UserResponse userResponse = UserResponse.fromUser(loggedInuser);
             return ResponseEntity.ok(userResponse);  // Trả về toàn bộ thông tin của user

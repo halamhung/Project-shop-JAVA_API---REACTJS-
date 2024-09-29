@@ -2,32 +2,68 @@
 import React, { useEffect, useState } from 'react';
 import HeaderAd from '../../components/admin/HeaderAd';
 import FooterAd from '../../components/admin/FooterAd';
-import { Button, Table, Input } from 'reactstrap';
+import {Button, Table, Input, FormGroup, Label} from 'reactstrap';
 import Navbar from '../../components/admin/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProduct, updateProduct, deleteProduct } from '../../redux/productSlice';
 import ReactPaginate from 'react-paginate';
 import { fetchCategories } from '../../redux/productSlice';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function ProductManager() {
     const { products, totalPages, status, error } = useSelector(state => state.products);
     const [editingProduct, setEditingProduct] = useState(null);
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(0);
-    const [Category, setCategories] = useState([]); // Initialize as an
+    const [currentPage, setCurrentPage] = useState(0); // Khởi tạo currentPage là 0
+    const [Category, setCategories] = useState([]);
+
     const handlePageClick = (event) => {
-        setCurrentPage(event.selected + 1);
+        setCurrentPage(event.selected); // Cập nhật currentPage dựa trên event.selected
     };
-    const { categories } = useSelector(state => state.products); //
+    const { categories } = useSelector(state => state.products);
+
+    //hàm lọc
+    const [filters, setFilters] = useState({
+        id: '',
+        priceSort: 'none' // 'asc' (thấp đến cao), 'desc' (cao xuống thấp)
+    });
+
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value
+        }));
+    };
+    const filterProducts = (products) => {
+        let filteredProducts = [...products];
+
+        // Lọc theo ID
+        if (filters.id) {
+            filteredProducts = filteredProducts.filter(product => product.productId.toString().includes(filters.id));
+        }
+
+        // Lọc theo giá
+        if (filters.priceSort === 'asc') {
+            filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (filters.priceSort === 'desc') {
+            filteredProducts.sort((a, b) => b.price - a.price);
+        }
+
+        return filteredProducts;
+    };
+
+
+
     useEffect(() => {
         dispatch(getAllProduct(currentPage));
 
-        // Fetch categories when the component mounts
         const fetchCategoriesData = async () => {
             try {
                 const response = await dispatch(fetchCategories());
-                setCategories(response.payload); // Update categories state
+                setCategories(response.payload);
+                console.log(categories); // Kiểm tra categories
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
@@ -35,16 +71,8 @@ export default function ProductManager() {
         fetchCategoriesData();
     }, [currentPage, dispatch]);
 
-
-
-    useEffect(() => {
-        dispatch(getAllProduct(currentPage));
-        dispatch(fetchCategories()); // Gọi action fetchCategories
-    }, [currentPage, dispatch]);
-
-        const handleEditStart = (product) => {
+    const handleEditStart = (product) => {
         setEditingProduct({ ...product });
-
     };
 
     const handleEditCancel = () => {
@@ -57,7 +85,7 @@ export default function ProductManager() {
 
         setEditingProduct(prevProduct => ({
             ...prevProduct,
-            [name]: parsedValue // Correctly update categoryId
+            [name]: parsedValue
         }));
     };
 
@@ -83,10 +111,43 @@ export default function ProductManager() {
                 });
         }
     };
+    const handleLogin = async (credentials) => {
+        try {
+            const response = await axios.post('/api/users/login', credentials); // Thay /api/users/login bằng endpoint login của bạn
+
+            // Lưu trữ token (nếu sử dụng token-based authentication)
+            const token = response.data.token; // Giả sử backend trả về token trong response.data.token
+            localStorage.setItem('token', token);
+
+            // Chuyển hướng đến trang ProductManager hoặc thực hiện các hành động khác sau khi đăng nhập thành công
+        } catch (error) {
+            // Xử lý lỗi đăng nhập
+        }
+    };
 
     useEffect(() => {
-        dispatch(getAllProduct(currentPage));
-    }, [currentPage, dispatch]);
+        const fetchProducts = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const headers = {};
+
+                if (token) {
+                    headers.Authorization = `Bearer ${token}`;
+                }
+
+                const response = await axios.get('/api/product', { headers }); // Thay /api/product bằng endpoint của bạn
+                // Xử lý dữ liệu sản phẩm
+            } catch (error) {
+                // Xử lý lỗi
+                if (error.response.status === 401) {
+                    // Xử lý lỗi 401 (Unauthorized) - có thể chuyển hướng đến trang đăng nhập
+                }
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
 
     if (status === "loading") {
         return <div>Loading...</div>;
@@ -101,6 +162,35 @@ export default function ProductManager() {
                 <Navbar />
                 <div className="container-fluid pt-4 px-4">
                     <div className="row g-4">
+                        <div className="col-md-4">
+                            <FormGroup>
+                                <Label for="idFilter">ID:</Label>
+                                <Input
+                                    type="text"
+                                    name="id"
+                                    id="idFilter"
+                                    value={filters.id}
+                                    onChange={handleFilterChange}
+                                />
+                            </FormGroup>
+                        </div>
+                        <div className="col-md-4">
+                            <FormGroup>
+                                <Label for="priceSort">Sắp xếp theo giá:</Label>
+                                <Input
+                                    type="select"
+                                    name="priceSort"
+                                    id="priceSort"
+                                    value={filters.priceSort}
+                                    onChange={handleFilterChange}
+                                >
+                                    <option value="none">Không sắp xếp</option>
+                                    <option value="asc">Thấp đến cao</option>
+                                    <option value="desc">Cao xuống thấp</option>
+                                </Input>
+                            </FormGroup>
+                        </div>
+
                         <Table striped>
                             <thead>
                             <tr>
@@ -115,7 +205,8 @@ export default function ProductManager() {
                             </tr>
                             </thead>
                             <tbody>
-                            {products && products.map((product, index) => (
+
+                            {filterProducts(products).map((product, index) => (
                                 <tr key={product.productId}>
                                     <td>{product.productId}</td>
                                     <td>
@@ -124,7 +215,7 @@ export default function ProductManager() {
                                                    onChange={handleInputChange}/>
                                         ) : (
                                             <Link
-                                                to={`/product/${product.productId}`}> {/* Sử dụng Link để tạo liên kết */}
+                                                to={`/product/${product.productId}`}>
                                                 {product.nameProduct}
                                             </Link>
                                         )}
@@ -134,7 +225,7 @@ export default function ProductManager() {
                                             <Input type="number" name="price" value={editingProduct.price}
                                                    onChange={handleInputChange}/>
                                         ) : (
-                                            product.price
+                                            `${product.price.toLocaleString('vi-VN')} ₫`
                                         )}
                                     </td>
                                     <td>
@@ -147,7 +238,8 @@ export default function ProductManager() {
                                     </td>
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
-                                            <select
+                                            <Input
+                                                type="select"
                                                 name="categoryId"
                                                 value={editingProduct.categoryId}
                                                 onChange={handleInputChange}
@@ -157,7 +249,7 @@ export default function ProductManager() {
                                                         {category.name}
                                                     </option>
                                                 ))}
-                                            </select>
+                                            </Input>
                                         ) : (
                                             product.category ? product.category.name : 'Chưa có danh mục'
                                         )}
@@ -176,7 +268,7 @@ export default function ProductManager() {
                                             <Input
                                                 type="select"
                                                 name="status"
-                                                value={editingProduct.status} // No need to convert to string
+                                                value={editingProduct.status}
                                                 onChange={handleInputChange}
                                             >
                                                 <option value={0}>Hết hàng</option>
@@ -195,9 +287,9 @@ export default function ProductManager() {
                                             </>
                                         ) : (
                                             <>
-                                                <Button color="primary" onClick={() => handleEditStart(product)}>Chỉnh
-                                                    sửa</Button>
-                                                <Button color="danger" onClick={() => handleDelete(product.productId)}>Xóa
+                                                <Button color="primary"
+                                                        onClick={() => handleEditStart(product)}>Update</Button>
+                                                <Button color="danger" onClick={() => handleDelete(product.productId)}>Delete
                                                 </Button>
                                             </>
                                         )}
@@ -211,7 +303,7 @@ export default function ProductManager() {
                         previousLabel={'Previous'}
                         nextLabel={'Next'}
                         breakLabel={'...'}
-                        pageCount={totalPages}
+                        pageCount={Math.ceil(totalPages)} // Sử dụng Math.ceil để làm tròn lên tổng số trang
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
                         onPageChange={handlePageClick}
@@ -225,7 +317,7 @@ export default function ProductManager() {
                         breakClassName={'page-item'}
                         breakLinkClassName={'page-link'}
                         activeClassName={'active'}
-                        forcePage={currentPage - 1}
+                        forcePage={currentPage} // Không cần trừ 1 ở đây
                     />
                 </div>
 

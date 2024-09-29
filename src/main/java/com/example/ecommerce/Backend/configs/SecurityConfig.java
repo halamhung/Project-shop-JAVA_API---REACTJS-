@@ -1,5 +1,6 @@
 package com.example.ecommerce.Backend.configs;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,6 +8,8 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +20,7 @@ import com.example.ecommerce.Backend.Repositories.userRepository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -52,21 +56,24 @@ public class SecurityConfig {
 //                 .requestMatchers("/**").permitAll()
               .requestMatchers("/api/users/**").permitAll()
              .requestMatchers("/api/employee/**").hasAnyAuthority("ROLE_EMPLOYEE", "ROLE_ADMIN") // Cho phép cả 2 role
-              .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated()
+              .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+
                 .and()
                 .httpBasic()
                 .and()
                 .logout(logout -> logout
-                        .logoutUrl("/api/users/logout") // URL để thực hiện logout
+                        .logoutUrl("/api/users/logout")
                         .logoutSuccessHandler((request, response, authentication) -> {
-                            response.setStatus(200);
+                            response.setStatus(HttpServletResponse.SC_OK);
                             response.getWriter().write("Logout successful");
                         })
-                        .invalidateHttpSession(true) // Hủy session sau khi logout
-                        .clearAuthentication(true) // Xóa xác thực
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                 )
-                .formLogin().disable();
+                .formLogin().disable()
+                // *** Thêm phần cấu hình sessionManagement ***
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
         return http.build();
     }

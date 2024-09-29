@@ -69,13 +69,7 @@ const couponSlice = createSlice ({
             state.status = null
         }
     },
-    reducers: {
-        resetStatusAndMessage: (state) => {
-            state.error = null;
-            state.message = ""
-            state.status = null
-        }
-    },
+
     extraReducers:(builder) => {
         builder
         .addCase(getAllCoupon.fulfilled, (state, action) => {

@@ -16,10 +16,14 @@ import {
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getListProduct } from "../../../../redux/ListProductSlice";
+import {addCart} from "../../../../redux/cartSlice"
+import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-// import "./products.css"
+
+import "./products.css"
+import SingleHeader from "../../../../components/user/SingleHeader";
 
 export default function Product() {
 
@@ -28,6 +32,19 @@ export default function Product() {
   const { products } = useSelector((state) => state.GetListProduct);
 
   // products = [...products, ]
+
+
+  const handle_addCart = (id) => {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Sản phẩm thêm vào trong giỏ hàng",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    dispatch(addCart(id));
+  };
+
 
   const dispatch = useDispatch();
 
@@ -43,10 +60,11 @@ export default function Product() {
 
   return (
     <>
-      <Header />
+      <Header/>
+      <SingleHeader/>
       <Container fluid className="py-5 fruite">
         <Container className="py-3">
-          <h1 className="mb-4">Fresh fruits shop</h1>
+          <h1 className="mb-4"><span style={{color: "#E24C6C"}}>HUB X</span> shop</h1>
           <Row className="g-4">
             <Col lg={12}>
               <Row className="g-4">
@@ -181,7 +199,7 @@ export default function Product() {
                                     
                                     <div className="d-flex flex-row">
                                         <Button className="me-2 button-product">Detail</Button>
-                                        <Button className="button-product">Add Cart</Button>
+                                        <Button className="button-product" onClick={() => handle_addCart(item.productId)}>Add Cart</Button>
                                     </div>
                                 </CardBody>
 

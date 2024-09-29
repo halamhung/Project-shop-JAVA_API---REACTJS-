@@ -1,12 +1,12 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import Slider1 from '../slide/Slider1'
-// import "./section1.css"
+import "./section1.css"
 import CateSec1 from '../slide/CateSec1'
 
 export default function Section1() {
   return (
-    <Container className=" py-5">
+    <Container className="py-5 section1">
     <div className="shine" style={{textAlign:"center", marginBottom:"80px"}}>PRESTIGE
       <p style={{fontSize:"20px"}}>
       <i className="fa-solid fa-grip-lines"></i>

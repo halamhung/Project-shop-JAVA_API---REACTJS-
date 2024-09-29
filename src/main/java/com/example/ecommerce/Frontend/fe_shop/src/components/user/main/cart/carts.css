@@ -31,6 +31,10 @@
   background-color: #b7472a !important;
   color: white;
   transition: ease-in-out 0.5s;
+  width: 40%;
+  line-height: center;
+  align-items: center;
+  height: auto;
 }
 
 .button-cart:hover {
@@ -45,6 +49,3 @@
   width: 60%;
 } */
 
-.form-input Lable {
-
-}

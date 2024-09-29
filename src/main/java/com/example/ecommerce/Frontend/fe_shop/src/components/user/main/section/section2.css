@@ -1,5 +1,5 @@
 /* Common card styles */
-.card {
+.card1 {
   width: 190px;
   height: 120px;
   text-align: center;
@@ -14,7 +14,7 @@
   overflow: hidden;
 }
 
-.card:hover {
+.card1:hover {
   height: 254px;
 }
 
@@ -72,6 +72,6 @@ h1 {
   width: 100%;
 }
 
-.card:hover .content {
+.card1:hover .content {
   transform: translateY(0) scale(1);
 }

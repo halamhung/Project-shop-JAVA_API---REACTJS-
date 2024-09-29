@@ -8,8 +8,12 @@ import ReactPaginate from 'react-paginate'
 
 
 export default function Product() {
+
     const [currentPage, setCurrentPage] = useState(0);
     const {products} = useSelector(state=>state.GetListProduct);
+
+    // products = [...products, ]
+
     const dispatch = useDispatch();
 
     const handlePageClick = (event) => {
@@ -26,7 +30,6 @@ export default function Product() {
     return (
         <>
             <Header />
-
             <Container fluid className='py-5 fruite'>
                 <Container className='py-3'>
                     <h1 className="mb-4">Fresh fruits shop</h1>
@@ -119,8 +122,9 @@ export default function Product() {
                                     </Col>
                                 </Col>
                                 <Col lg={9}>
-                                    {
+                                    {   
                                         products&&products.map((item,index)=>(
+                                            
                                             <Card
                                             style={{
                                               width: '18rem'
@@ -172,10 +176,28 @@ export default function Product() {
                             </Row>
                         </Col>
                     </Row>
+            <div className='d-flex justify-content-center'>
+            <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            breakLabel={'...'}
+            pageCount={Math.ceil(10)}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            pageClassName={'page-item'}
+            pageLinkClassName={'page-link'}
+            previousClassName={'page-item'}
+            nextClassName={'page-item'}
+            previousLinkClassName={'page-link'}
+            nextLinkClassName={'page-link'}
+            breakClassName={'page-item'}
+            breakLinkClassName={'page-link'}
+            />
+            </div>
                 </Container>
             </Container>
-
-
             <Footer />
         </>
     )

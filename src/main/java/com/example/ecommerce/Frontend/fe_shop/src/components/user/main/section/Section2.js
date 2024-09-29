@@ -1,6 +1,6 @@
 
 import { Col, Container, Row } from 'reactstrap';
-import './section2.css'
+import "./section2.css"
 
 export default function Section2() {
   return (

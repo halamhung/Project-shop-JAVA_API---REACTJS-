@@ -34,7 +34,6 @@ public class ProductResponse extends BaseResponse {
                 .nameProduct(product.getNameProduct())
                 .price(product.getPrice())
                 .description(product.getDescription())
-                .slug(product.getSlug())
                 .status(product.getStatus())
                 .quantity(product.getQuantity())
                 .categoryId(product.getCategory().getCategoryId()) // Assuming 'category' is an object

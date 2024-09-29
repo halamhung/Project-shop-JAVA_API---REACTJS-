@@ -44,6 +44,15 @@ export const deleteProduct = createAsyncThunk(
     }
 );
 
+const getProductImageId = async (id) => {
+    try {
+        const response = await axios.get(`${url}/getAllIamges/${id}`);
+        return response.data;
+    } catch(error) {
+        console.log('error: ', error);
+    }
+}
+
 const productSlice = createSlice({
     name: "products",
     initialState,

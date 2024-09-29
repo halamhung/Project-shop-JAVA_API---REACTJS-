@@ -28,7 +28,7 @@ function App() {
           <Route path="/admin/category" element={<Category />} />
           <Route path="/admin/coupon" element={<Coupon />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/productdetail" element={<ProductDetailUser />} />
+          <Route path="/productdetail/:id" element={<ProductDetailUser />} />
         </Routes>
       </BrowserRouter>
     </>

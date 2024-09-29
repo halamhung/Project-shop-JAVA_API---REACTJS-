@@ -41,7 +41,7 @@ const ProductDetail = () => {
     return (
     
         <section className="ftco-section">
-            <div className="container4">
+            <div className="container1">
                 <div className="row">
                     <div className="col-lg-6 mb-5 ftco-animate">
                         <a href={imageUrl} className="image-popup prod-img-bg">

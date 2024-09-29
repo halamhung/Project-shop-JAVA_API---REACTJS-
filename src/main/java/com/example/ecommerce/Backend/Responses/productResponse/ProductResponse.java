@@ -3,6 +3,7 @@ package com.example.ecommerce.Backend.Responses.productResponse;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Responses.BaseResponse;
+import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class ProductResponse extends BaseResponse {
     private int status;
     private int quantity;
     private Long categoryId; // Assuming you want the category ID
+    private CategoryResponse category; // Thêm trường category
     private LocalDate createdAt;
     private LocalDate updatedAt;
 

@@ -14,7 +14,13 @@ const initialState = {
     currentPage: 1,
     totalPages: 10,
 };
-
+export const fetchCategories = createAsyncThunk(
+    "product/fetchCategories",
+    async () => {
+        const res = await axios.get(`${url}/categories`); // Make sure this URL is correct
+        return res.data.data;
+    }
+);
 
 export const getAllCategory = createAsyncThunk('category/getAllOrder', async (page) => {
     // const res = await axios.get(`${url}?page=${page}&&limit=5`)
@@ -69,9 +75,6 @@ export const deleteCategory = createAsyncThunk("category/deleteCategory", async 
 const categorySlice = createSlice({
     name: "category",
     initialState,
-    reducers: {
-
-    },
     reducers: {
         resetStatusAndMessage: (state) => {
             state.error = null;

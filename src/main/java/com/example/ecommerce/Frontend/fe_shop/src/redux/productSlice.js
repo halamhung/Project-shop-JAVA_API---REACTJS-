@@ -11,11 +11,12 @@ const initialState = {
     currentPage: 1,
     totalPages: 1,
 };
+// productSlice.js
 export const fetchCategories = createAsyncThunk(
     "product/fetchCategories",
     async () => {
-        const res = await axios.get(`${url}/categories`);
-        return res.data.data; // Assuming your API response structure
+        const res = await axios.get("http://localhost:8080/category/categories"); // Gọi API endpoint mới
+        return res.data.data; // Trả về danh sách category
     }
 );
 
@@ -52,12 +53,24 @@ const productSlice = createSlice({
             .addCase(getAllProduct.pending, (state) => {
                 state.status = "loading";
             })
+            .addCase(fetchCategories.fulfilled, (state, action) => {
+                state.categories = action.payload; // Lưu danh sách category vào state
+            })
             .addCase(getAllProduct.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.products = action.payload.data.productResponses.map(product => ({
-                    ...product,
-                    status: product.quantity > 0 ? (product.quantity > 100 ? 1 : 0) : 0 // Cập nhật trạng thái dựa trên quantity
-                }));
+                state.products = action.payload.data.productResponses.map(product => {
+                    let newStatus = product.status; // Keep the original status
+
+                    // Update status based on quantity only if the original status is not "Tạm ngưng bán" (2)
+                    if (newStatus !== 2) {
+                        newStatus = product.quantity > 0 ? 1 : 0;
+                    }
+
+                    return {
+                        ...product,
+                        status: newStatus
+                    };
+                });
                 state.currentPage = action.payload.data.currentPage;
                 state.totalPages = action.payload.data.totalPages;
             })

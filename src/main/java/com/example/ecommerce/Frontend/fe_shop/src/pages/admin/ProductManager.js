@@ -8,17 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProduct, updateProduct, deleteProduct } from '../../redux/productSlice';
 import ReactPaginate from 'react-paginate';
 import { fetchCategories } from '../../redux/productSlice';
+import {Link} from "react-router-dom";
 
 export default function ProductManager() {
     const { products, totalPages, status, error } = useSelector(state => state.products);
     const [editingProduct, setEditingProduct] = useState(null);
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(0);
-    const [categories, setCategories] = useState([]);
+    const [Category, setCategories] = useState([]); // Initialize as an
     const handlePageClick = (event) => {
         setCurrentPage(event.selected + 1);
     };
-
+    const { categories } = useSelector(state => state.products); //
     useEffect(() => {
         dispatch(getAllProduct(currentPage));
 
@@ -26,12 +27,19 @@ export default function ProductManager() {
         const fetchCategoriesData = async () => {
             try {
                 const response = await dispatch(fetchCategories());
-                setCategories(response.payload);
+                setCategories(response.payload); // Update categories state
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
         };
         fetchCategoriesData();
+    }, [currentPage, dispatch]);
+
+
+
+    useEffect(() => {
+        dispatch(getAllProduct(currentPage));
+        dispatch(fetchCategories()); // Gọi action fetchCategories
     }, [currentPage, dispatch]);
 
         const handleEditStart = (product) => {
@@ -45,9 +53,11 @@ export default function ProductManager() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        const parsedValue = name === 'status' || name === 'categoryId' ? parseInt(value, 10) : value;
+
         setEditingProduct(prevProduct => ({
             ...prevProduct,
-            [name]: value
+            [name]: parsedValue // Correctly update categoryId
         }));
     };
 
@@ -111,15 +121,18 @@ export default function ProductManager() {
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
                                             <Input type="text" name="nameProduct" value={editingProduct.nameProduct}
-                                                   onChange={handleInputChange} />
+                                                   onChange={handleInputChange}/>
                                         ) : (
-                                            product.nameProduct
+                                            <Link
+                                                to={`/product/${product.productId}`}> {/* Sử dụng Link để tạo liên kết */}
+                                                {product.nameProduct}
+                                            </Link>
                                         )}
                                     </td>
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
                                             <Input type="number" name="price" value={editingProduct.price}
-                                                   onChange={handleInputChange} />
+                                                   onChange={handleInputChange}/>
                                         ) : (
                                             product.price
                                         )}
@@ -127,31 +140,45 @@ export default function ProductManager() {
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
                                             <Input type="text" name="description" value={editingProduct.description}
-                                                   onChange={handleInputChange} />
+                                                   onChange={handleInputChange}/>
                                         ) : (
                                             product.description
                                         )}
                                     </td>
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
-                                            <Input type="text" name="category" value={editingProduct.category}
-                                                   onChange={handleInputChange} />
+                                            <select
+                                                name="categoryId"
+                                                value={editingProduct.categoryId}
+                                                onChange={handleInputChange}
+                                            >
+                                                {categories.map(category => (
+                                                    <option key={category.categoryId} value={category.categoryId}>
+                                                        {category.name}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         ) : (
-                                            product.category
+                                            product.category ? product.category.name : 'Chưa có danh mục'
                                         )}
                                     </td>
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
                                             <Input type="number" name="quantity" value={editingProduct.quantity}
-                                                   onChange={handleInputChange} />
+                                                   onChange={handleInputChange}/>
                                         ) : (
                                             product.quantity
                                         )}
                                     </td>
+
                                     <td>
                                         {editingProduct && editingProduct.productId === product.productId ? (
-                                            <Input type="select" name="status" value={editingProduct.status}
-                                                   onChange={handleInputChange}>
+                                            <Input
+                                                type="select"
+                                                name="status"
+                                                value={editingProduct.status} // No need to convert to string
+                                                onChange={handleInputChange}
+                                            >
                                                 <option value={0}>Hết hàng</option>
                                                 <option value={1}>Còn hàng</option>
                                                 <option value={2}>Tạm ngưng bán</option>

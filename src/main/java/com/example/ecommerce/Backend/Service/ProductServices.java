@@ -10,6 +10,7 @@ import com.example.ecommerce.Backend.Modals.Product;
 import com.example.ecommerce.Backend.Repositories.CategoryRepository;
 import com.example.ecommerce.Backend.Repositories.ImgRepository;
 import com.example.ecommerce.Backend.Repositories.ProductRepo;
+import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
 import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,9 @@ public class ProductServices implements IProductServices {
     @Override
     public Page<ProductResponse> getAllProduct(Pageable pageable) {
         return productRepo.findAll(pageable).map(product -> {
-            return ProductResponse.fromProduct(product);
+            ProductResponse response = ProductResponse.fromProduct(product);
+            response.setCategory(CategoryResponse.fromCategory(product.getCategory())); // Gán category cho ProductResponse
+            return response;
         });
     }
 
@@ -69,26 +72,21 @@ public class ProductServices implements IProductServices {
     public ProductResponse updateProduct(Long id, ProductDtos productDtos) {
         System.out.println("ID sản phẩm cần cập nhật: " + id); // In ra ID
         System.out.println("Dữ liệu sản phẩm: " + productDtos);
-        Long categoryId = productDtos.getCategoryId();
-        Optional<Category> categoryOptional = categoryRepository.findById(productDtos.getCategoryId());
         Product existingProduct = productRepo.findById(id)
                 .orElseThrow(() -> new ResoureNotFoundException("Product not found with id: " + id));
-        if (categoryOptional.isPresent()) {
             existingProduct.setNameProduct(productDtos.getNameProduct());
             existingProduct.setPrice(productDtos.getPrice());
             existingProduct.setDescription(productDtos.getDescription());
             existingProduct.setSlug(productDtos.getSlug());
             existingProduct.setStatus(productDtos.getStatus());
             existingProduct.setQuantity(productDtos.getQuantity());
-            existingProduct.setCategory(categoryOptional.get());
-            Product updatedProduct = productRepo.save(existingProduct);
-            return ProductResponse.fromProduct(updatedProduct);
+        if (productDtos.getCategoryId() != null) {
+            Optional<Category> categoryOptional = categoryRepository.findById(productDtos.getCategoryId());
+            categoryOptional.ifPresent(existingProduct::setCategory);
+        }
+        Product updatedProduct = productRepo.save(existingProduct);
+        return ProductResponse.fromProduct(updatedProduct);
     }
-        else {
-            // Xử lý trường hợp không tìm thấy category, ví dụ:
-            throw new IllegalArgumentException("Không tìm thấy danh mục sản phẩm với ID: " + categoryId);
-        }
-        }
 
     @Override
     public void deleteProduct(Long id) {

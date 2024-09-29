@@ -15,7 +15,7 @@ import {
 import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
 import { Link, useNavigate } from "react-router-dom";
 
-import "./Carts.css"
+import "./carts.css"
 
 export default function Carts() {
   const { carts } = useSelector((state) => state.carts);

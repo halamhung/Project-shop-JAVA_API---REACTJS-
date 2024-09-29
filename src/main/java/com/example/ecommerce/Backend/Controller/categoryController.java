@@ -2,12 +2,15 @@ package com.example.ecommerce.Backend.Controller;
 
 
 import com.example.ecommerce.Backend.Dtos.CategoryDTO;
+import com.example.ecommerce.Backend.Dtos.ProductDtos;
 import com.example.ecommerce.Backend.Exceptions.ResoureNotFoundException;
 import com.example.ecommerce.Backend.Modals.Category;
 import com.example.ecommerce.Backend.Responses.ApiResponse;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryListResponse;
 import com.example.ecommerce.Backend.Responses.CategoryResponse.CategoryResponse;
+import com.example.ecommerce.Backend.Responses.productResponse.ProductResponse;
 import com.example.ecommerce.Backend.Service.CategoryServices;
+import com.example.ecommerce.Backend.Service.ProductServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,6 +33,7 @@ public class categoryController {
 
 
     private final CategoryServices categoryServices;
+    private final ProductServices productServices;
 
     @GetMapping("/list")
     public ResponseEntity<ApiResponse> index(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
@@ -57,7 +61,16 @@ public class categoryController {
 //
         return ResponseEntity.ok(apiResponse);
     }
-
+    @GetMapping("/categories") // Endpoint mới để lấy danh sách category
+    public ResponseEntity<ApiResponse> getAllCategories() {
+        List<Category> categories = categoryServices.getAllCategory(); // Lấy danh sách category từ service
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(categories)
+                .message("Get all categories successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 
     @PostMapping("/add-category")
     public ResponseEntity<ApiResponse> add(@Valid @RequestBody CategoryDTO categorydto, BindingResult result) {
@@ -100,30 +113,30 @@ public class categoryController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @PutMapping("/update-category/{id}")
-    public ResponseEntity<ApiResponse> update (@PathVariable Long id ,@Valid @RequestBody CategoryDTO categoryDTO, BindingResult result) {
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDtos productDtos, BindingResult result) {
         if (result.hasErrors()) {
             List<String> errors = result.getFieldErrors().stream()
                     .map(FieldError::getDefaultMessage).toList();
             ApiResponse apiResponse = ApiResponse.builder()
                     .data(errors)
-                    .message("Valdation Failed")
-                    .status(HttpStatus.BAD_REQUEST.value()).
-                    build();
-            return ResponseEntity.badRequest().body(apiResponse);
+                    .message("Validation Error")
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+            return ResponseEntity.ok(apiResponse);
         }
 
-        // Category category = categoryServices.getCategorybyId(id);
-        Category category = categoryServices.updateCategory(id,categoryDTO);
-        if (category == null) {
-            throw new ResoureNotFoundException("Category" + id);
-        }
+        // Log dữ liệu trước khi xử lý
+        System.out.println("Category ID from DTO: " + productDtos.getCategoryId());
+        ProductResponse product = productServices.updateProduct(id, productDtos);
 
-        // category.setName(categoryDTO.getName());
-        ApiResponse apiResponse  = ApiResponse.builder()
-                .data(category)
+        if (product == null) {
+            throw new ResoureNotFoundException("Product not found by id " + id);
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(product)
+                .message("Update product Successfully")
                 .status(HttpStatus.OK.value())
-                .message("OK")
                 .build();
         return ResponseEntity.ok(apiResponse);
     }

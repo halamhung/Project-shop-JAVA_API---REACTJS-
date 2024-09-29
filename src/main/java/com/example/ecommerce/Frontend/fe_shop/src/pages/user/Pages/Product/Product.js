@@ -32,6 +32,7 @@ export default function Product() {
   const [currentPage, setCurrentPage] = useState(0);
   const { products } = useSelector((state) => state.GetListProduct);
 
+
   // products = [...products, ]
 
   const {category2} = useSelector((state)=> state.category)
@@ -57,7 +58,8 @@ export default function Product() {
   };
 
   const handleCategoryClick = (categoryId) => {
-    dispatch(getListProductbyCate(categoryId)); 
+    dispatch(getListProductbyCate(categoryId));
+    console.log('products của category: ', products);
   };
 
   const limit = 6;
@@ -65,6 +67,10 @@ export default function Product() {
   useEffect(() => {
     dispatch(getListProduct({ currentPage, limit }));
   }, [currentPage, dispatch]);
+
+  useEffect(() => {
+    console.log("Updated products after dispatch:", products);
+  }, [products]);
 
   useEffect(() => {
     dispatch(fetchCategories())
@@ -115,9 +121,9 @@ export default function Product() {
                       <h4>Danh mục</h4>
                        {category2 && category2.map((item,index) => (
                             <div key={index} className="my-2">
-                                <button onClick={() => handleCategoryClick(item.categoryId)}>
-                              <h5>{item.name}</h5>
-                            </button>
+                              <a onClick={() => handleCategoryClick(item.categoryId)}>
+                                <h5>{item.name}</h5>
+                              </a>
                             </div>
                        ))}
                     </div>

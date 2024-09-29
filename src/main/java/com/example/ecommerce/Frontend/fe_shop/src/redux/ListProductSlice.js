@@ -129,7 +129,7 @@ const ListProductSlice = createSlice({
         })
         .addCase(getListProductbyCate.fulfilled, (state,action) => {
             state.status = action.payload.status;
-            state.products = action.payload.data.productResponses; 
+            state.products = action.payload.data.data; 
             console.log(' state.products : ',  state.products );
         })
         .addCase(getListProductbyCate.rejected, (state,action)=>{

@@ -69,6 +69,7 @@ const couponSlice = createSlice ({
             state.status = null
         }
     },
+
     extraReducers:(builder) => {
         builder
         .addCase(getAllCoupon.fulfilled, (state, action) => {

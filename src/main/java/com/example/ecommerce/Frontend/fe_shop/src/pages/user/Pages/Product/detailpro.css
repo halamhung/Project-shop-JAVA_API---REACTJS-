@@ -1,0 +1,35 @@
+.quantity {
+    display: flex;
+    width: 100px;
+    padding-right: 150px;
+    /* padding: 0 50px; */
+}
+
+.fruite-categorie .fruite-name {
+    line-height: 40px;
+}
+
+.fruite-categorie .fruite-name a {
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.fruite-categorie .fruite-name a:hover {
+    color: var(--bs-secondary);
+}
+
+/* {style="top: 50%; right: 10px; transform: translateY(-50%);"} */
+.banner {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.banner p {
+    font-weight: bold;
+    font-size: xx-large;
+    color: #ffb524;
+
+}

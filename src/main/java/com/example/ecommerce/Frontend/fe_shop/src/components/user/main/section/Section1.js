@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import Slider1 from '../slide/Slider1'
-import './section1.css'
+// import "./section1.css"
 import CateSec1 from '../slide/CateSec1'
 
 export default function Section1() {

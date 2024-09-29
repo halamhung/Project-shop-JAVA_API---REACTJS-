@@ -50,7 +50,7 @@ public class OrderController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<ApiResponse> createOrder(@Valid @RequestBody OrderDtos orderDtos, BindingResult result){
         if(result.hasErrors()){
             List<String> errors = result.getFieldErrors().stream()

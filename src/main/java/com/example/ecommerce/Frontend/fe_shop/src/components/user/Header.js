@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Collapse, Container, DropdownItem, DropdownMenu, DropdownToggle, Input, Nav, Navbar, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap'
 import "./header.css"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../imgs/logo2-removebg-preview.png'
 
 export default function Header() {
@@ -18,6 +18,7 @@ export default function Header() {
     //     setKeyword("")
     // }
 
+    const { carts } = useSelector((state) => state.carts || { carts: [] });
 
     const [isShadow, setIsShadow] = useState(false);
     const [topOffset, setTopOffset] = useState(0);
@@ -85,7 +86,7 @@ export default function Header() {
                     <Navbar className='navbar navbar-expand-xl' >
                         <NavLink to={"/"} className={"nav-link"} style={{width:"140px",height:"90px"}} ><img src={logo} alt="logo"/></NavLink>
                         <NavbarToggler onClick={toggle} />
-                        <Collapse isOpen={isOpen} navbar>
+                        <Collapse isOpen={isOpen} navbar className="d-flex align-items-center ">
                             <Nav className="m-auto" navbar >
                                 <NavItem>
                                     <Link className='nav-link' to={"/"}>Trang chủ</Link>
@@ -106,7 +107,7 @@ export default function Header() {
                                     </Link>
                                 </NavItem>
                             </Nav>
-                            <Nav className="m-auto" navar>
+                            <Nav className="m-auto d-flex align-items-center" navar>
                                 <NavItem className='d-flex justify-content-center me-1'>
                                     <Input placeholder='Tìm kiếm' className='rounded-5 w-100 '
                                     // value={keyword} onChange={(e) => setKeyword(e.target.value)}
@@ -128,7 +129,7 @@ export default function Header() {
 
                                 <UncontrolledDropdown nav inNavbar >
                                     <DropdownToggle nav caret className='drop-down' >
-                                        <Link className="ms-5 my-auto"><i className="fa-solid fa-user"></i></Link>
+                                        <Link className="ms-5 my-auto userIcon"><i className="fa-solid fa-user"></i></Link>
                                     </DropdownToggle>
                                     {/* <DropdownMenu right>
                                         {
@@ -145,14 +146,19 @@ export default function Header() {
                                                 </>
                                         }
                                     </DropdownMenu> */}
+                                   
                                 </UncontrolledDropdown>
 
                                 <NavItem>
                                     <div className='shopping-cart me-5 '>
-                                        <Link to={"/cart"} className=""><i className="fa-solid fa-cart-shopping"></i></Link>
-                                        <span className="qty rounded-circle d-flex align-items-center justify-content-center text-dark ">
-                                            {/* {carts.length} */}
-                                        </span>
+                                        <Link to={"/cart"} className="position-relative"><i className="fa-brands fa-shopify"></i></Link>
+                                        {carts.length !== 0 ? (
+                                        <div className="position-absolute itemCurrent text-center">
+                                            {carts.length}
+                                        </div>
+                                        ) : (
+                                            ""
+                                        )}
                                     </div>
                                 </NavItem>
                             </Nav>

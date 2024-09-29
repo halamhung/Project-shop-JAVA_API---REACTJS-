@@ -26,15 +26,12 @@ public class ProductDtos {
     @NotBlank(message = "Mô tả sản phẩm không được để trống.")
     private String description; // Đổi tên từ 'describe' thành 'description'
 
-    @NotBlank(message = "Slug không được để trống.")
-    private String slug;
-
     @NotNull(message = "Trạng thái không được để trống.")
     private int status;
 
     @Min(0) // Thêm ràng buộc cho quantity
     private int quantity; // Sửa tên thuộc tính
 
-    private Long categoryId;
+    private Long categoryId; // Đảm bảo kiểu dữ liệu là Long
 
 }

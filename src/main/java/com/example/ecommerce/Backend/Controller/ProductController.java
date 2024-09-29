@@ -87,7 +87,7 @@ public class ProductController {
         return ResponseEntity.ok(apiResponse);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> updateProduct(@Valid @PathVariable Long id ,@RequestBody ProductDtos productDtos, BindingResult result ){
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDtos productDtos, BindingResult result){
         if(result.hasErrors()){
             List<String> errors = result.getFieldErrors().stream()
                     .map(FieldError::getDefaultMessage).toList();
@@ -98,7 +98,8 @@ public class ProductController {
                     .build();
             return ResponseEntity.ok(apiResponse);
         }
-        ProductResponse product = productServices.updateProduct(id,productDtos);
+        ProductResponse product = productServices.updateProduct(id, productDtos);
+        Long categoryId = productDtos.getCategoryId();
         if(product == null){
             throw new ResoureNotFoundException("Product not found by id"+id);
         }

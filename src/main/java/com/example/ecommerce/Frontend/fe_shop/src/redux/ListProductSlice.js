@@ -34,7 +34,7 @@ export const getListProduct = createAsyncThunk("/getListProduct",async({currentP
 
 
 
-const getImageID = async (id) => {
+export const getImageID = async (id) => {
     try {
         const response = await axios.get(`${BASE_URL}/products/getAllImages/${id}`,{
             responseType: "blob" 
@@ -44,6 +44,19 @@ const getImageID = async (id) => {
         console.log('error: ', error);
     }
 }
+
+export const getImageID_2 = async (id) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/products/getAllImages/${id}`,{
+            responseType: "blob" 
+        });
+        const image = URL.createObjectURL(response.data);
+        return image;
+    } catch(error) {
+        console.log('error: ', error);
+    }
+}
+
 
 
 const ListProductSlice = createSlice({

@@ -61,7 +61,7 @@ export default function Product() {
   return (
     <>
       <Header/>
-      <SingleHeader/>
+      <SingleHeader title={"Product"}/>
       <Container fluid className="py-5 fruite">
         <Container className="py-3">
           <h1 className="mb-4"><span style={{color: "#E24C6C"}}>HUB X</span> shop</h1>
@@ -198,8 +198,12 @@ export default function Product() {
                                     </CardText>
                                     
                                     <div className="d-flex flex-row">
-                                        <Button className="me-2 button-product">Detail</Button>
-                                        <Button className="button-product" onClick={() => handle_addCart(item.productId)}>Add Cart</Button>
+                                        <button class="btn1">
+                                            <span style={{color:"yellow"}}>Detail</span>
+                                        </button>
+                                        <button class="btn1" onClick={() => handle_addCart(item.productId)}>
+                                            <span style={{color:"yellow"}}>Add Cart</span>
+                                        </button>
                                     </div>
                                 </CardBody>
 

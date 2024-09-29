@@ -98,7 +98,8 @@ export default function Product() {
                 </Col>
               </Row>
               <Row className="g-4 my-3">
-                <Col lg={3}>
+
+                <Col lg={3} className="category-search">
                   <Col lg={12}>
                     <div className="mb-3">
                       <h4>Danh mục</h4>
@@ -136,7 +137,7 @@ export default function Product() {
                       </ul>
                     </div>
                   </Col>
-                  <Col lg={12}>
+                  {/* <Col lg={12}>
                     <div className="mb-3">
                       <h4>Khuyến mãi</h4>
                       <div className="d-flex align-items-center justify-content-start">
@@ -144,17 +145,10 @@ export default function Product() {
                           className="rounded me-4"
                           style={{ width: 100, height: 100 }}
                         >
-                          {/* <img src={Images.featur} class="img-fluid rounded" alt="" /> */}
+                          
                         </div>
                         <div>
                           <h6 className="mb-2">Name</h6>
-                          {/* <div class="d-flex mb-2">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div> */}
                           <div className="d-flex mb-2">
                             <h5 className="fw-bold me-2">2.99 $</h5>
                             <h5 className="text-danger text-decoration-line-through">
@@ -164,8 +158,9 @@ export default function Product() {
                         </div>
                       </div>
                     </div>
-                  </Col>
+                  </Col> */}
                 </Col>
+
                 <Col lg={9} className="my-5 py-5">
                   <Row className="g-4">
                     {products &&

@@ -16,7 +16,7 @@ const initialState = {
 export const fetchCategories = createAsyncThunk(
     "product/fetchCategories",
     async () => {
-        const res = await axios.get(`${url}/categories`); // Make sure this URL is correct
+        const res = await axios.get(`${url}/categories`); 
         return res.data.data;
     }
 );

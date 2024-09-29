@@ -118,4 +118,8 @@ public class ProductServices implements IProductServices {
         return imgRepository.findAllImagesByProductId(productId);
     }
 
+    public List<Product> getProductsByCategory(Long categoryId) {
+        return productRepo.findByCategoryId(categoryId);
+    }
+
 }

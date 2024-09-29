@@ -228,5 +228,19 @@ public class ProductController {
                     .body("Error retrieving image");
         }
     }
+
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<ApiResponse> getProductsByCategory(@PathVariable Long categoryId) {
+        List<Product> products = productServices.getProductsByCategory(categoryId);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(products)
+                .message("Get Successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
+
+
 }
 

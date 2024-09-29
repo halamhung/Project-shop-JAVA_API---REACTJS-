@@ -34,7 +34,7 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/api/user/products")
+@RequestMapping("/api/users/products")
 @RequiredArgsConstructor
 public class ProductController {
 

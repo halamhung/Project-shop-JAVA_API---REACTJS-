@@ -30,6 +30,34 @@ export const getListProduct = createAsyncThunk("/getListProduct",async({currentP
     }
 })
 
+export const getListProductbyCate = createAsyncThunk("/getListProductbyCate",async(categoryID,thunkAPI)=>{
+    const url = `${BASE_URL}`
+    try {
+        const response = await axios.get(`${url}/products/category/${categoryID}`);
+        const products = response.data.data;
+
+        const productsWithImages = await Promise.all(
+            products.map(async (product) => {
+                console.log('product: ', product);
+                const response = await getImageID(product.productId);
+                const images = URL.createObjectURL(response.data);
+                return { ...product, images };
+            })
+        );
+        
+        return {
+            ...response.data,
+            data: {
+                ...response.data.data,
+                data: productsWithImages,
+            },
+        };
+
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
 
 export const getProductByID = createAsyncThunk("getProductByID", async (id, apiThunk) => {
     const url1 = BASE_URL + `/products/${id}`
@@ -95,6 +123,16 @@ const ListProductSlice = createSlice({
             state.productDetail = action.payload.data; 
         })
         .addCase(getProductByID.rejected, (state,action)=>{
+            state.status = action.payload.status;
+            state.message = action.payload.message;
+            state.error = action.payload.error;
+        })
+        .addCase(getListProductbyCate.fulfilled, (state,action) => {
+            state.status = action.payload.status;
+            state.products = action.payload.data.productResponses; 
+            console.log(' state.products : ',  state.products );
+        })
+        .addCase(getListProductbyCate.rejected, (state,action)=>{
             state.status = action.payload.status;
             state.message = action.payload.message;
             state.error = action.payload.error;

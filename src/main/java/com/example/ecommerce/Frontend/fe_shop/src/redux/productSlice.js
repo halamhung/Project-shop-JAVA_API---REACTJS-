@@ -23,7 +23,7 @@ export const fetchCategories = createAsyncThunk(
 export const getAllProduct = createAsyncThunk(
     "product/getAllProduct",
     async (page) => {
-        const res = await axios.get(`${url}?page=${page}&size=10`);
+        const res = await axios.get(`${url}?page=${page}&size=6`);
         return res.data;
     }
 );
@@ -43,6 +43,15 @@ export const deleteProduct = createAsyncThunk(
         return id;
     }
 );
+
+const getProductImageId = async (id) => {
+    try {
+        const response = await axios.get(`${url}/getAllIamges/${id}`);
+        return response.data;
+    } catch(error) {
+        console.log('error: ', error);
+    }
+}
 
 const productSlice = createSlice({
     name: "products",

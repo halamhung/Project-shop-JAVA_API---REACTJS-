@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
+import dayjs from "dayjs"
 import Swal from "sweetalert2";
 import {
     Button,
@@ -11,6 +12,10 @@ import {
     InputGroup,
     Row,
     Table,
+    Form,
+    FormGroup,
+    Label,
+    Alert
   } from "reactstrap";
 import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
 import { Link, useNavigate } from "react-router-dom";
@@ -18,8 +23,28 @@ import { Link, useNavigate } from "react-router-dom";
 import "./carts.css"
 
 export default function Carts() {
-  const { carts } = useSelector((state) => state.carts);
-  console.log("carts: ", carts);
+
+  const { carts, status, error} = useSelector((state) => state.carts);
+
+  const [baseOrder, setBaseOrder] = useState({
+    consignee: "",
+    phoneConsignee: "",
+    addressConsignee: "",
+    note: "Gửi ở quầy lễ tân",
+    orderDate: dayjs("2024-11-01"),
+    paymentMethod: 1,
+    status : 1,
+    userId : 1,
+  })
+
+ 
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBaseOrder((prevOrder) => ({
+      ...prevOrder,
+      [name]: value,
+    }));
+};
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,16 +82,40 @@ export default function Carts() {
   };
 
 
-  const paymentCheckout = () => {
-    Swal.fire({
-      title: "Thanh Toán Thành Công",
-      text: "Thanh Toán Thành Công",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    })
+  const paymentCheckout = async () => {
+
+    const orderToPost = { ...baseOrder };
+    console.log('orderToPost: ', orderToPost);
+
+    const resultAction = await dispatch(postNewOrder(orderToPost));
+
+    if(postNewOrder.fulfilled.match(resultAction)) {
+      Swal.fire({
+        title: "Thanh Toán Thành Công",
+        text: "Thanh Toán Thành Công",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      })
+    } else {
+      Swal.fire({
+        title: "Không thành công",
+        text: "Không thành công",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      })
+    }
+    setBaseOrder((prevOrder) => ({
+      ...prevOrder,
+      consignee: "",
+      phoneConsignee: "",
+      addressConsignee: ""
+    }));
   };
 
   return (
@@ -155,6 +204,17 @@ export default function Carts() {
           )}
         </Col>
         <Col xl={4} lg={5} md={7} sm={12}>
+        <div>
+              {error && (
+                <Alert color="danger">
+                  <ul>
+                    {error.map((error, index) => (
+                      <li key={index}>{error}</li>
+                    ))}
+                  </ul>
+                </Alert>
+              )}
+            </div>
           <div className="bg-light rounded">
             <div className="p-4">
               <h1 className="display-6 mb-4">
@@ -163,6 +223,53 @@ export default function Carts() {
               <div className="d-flex justify-content-between mb-4">
                 <h5 className="mb-0 me-4">Subtotal:</h5>
                 <p className="mb-0">{subTotal1} ₫</p>
+              </div>
+              <div className="d-flex flex-column form-input">
+              <FormGroup row className='d-flex align-items-center'>
+                <Label sm={5}>
+                  <h5>Người nhận:</h5>
+                </Label>
+                <Col sm={7}>
+                  <Input
+                    name="consignee"
+                    placeholder="Nguyen Van A"
+                    type="text"
+                    className='ms-auto'
+                    onChange={handleChange}
+                    value={baseOrder.consignee}
+                   />
+                 </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={5}>
+                  <h5> Địa chỉ </h5>
+                </Label>
+                <Col sm={7}>
+                  <Input
+                    name="addressConsignee"
+                    placeholder="HCM"
+                    type="text"
+                    className='ms-auto'
+                    value={baseOrder.addressConsignee}
+                    onChange={handleChange}
+                   />
+                 </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={5}>
+                <h5> Phone </h5>
+                </Label>
+                <Col sm={7}>
+                  <Input
+                    name="phoneConsignee"
+                    placeholder="023567890"
+                    type="text"
+                    className='ms-auto'
+                    value={baseOrder.phoneConsignee}
+                    onChange={handleChange}
+                   />
+                 </Col>
+              </FormGroup>
               </div>
               <div className="d-flex justify-content-between">
                 <h5 className="mb-0 me-4">Shipping</h5>
@@ -178,10 +285,9 @@ export default function Carts() {
             </div>
             {carts[0] == null ? (
               <Button
-                disabled
-                className="button rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
+                className="button rounded-pill  button-cart  px-4 py-3 text-uppercase mb-4 ms-4"
                 type="button"
-                onClick={() => navigate("/checkout")}
+                onClick={() => paymentCheckout()}
               >
                 Thanh toán
               </Button>

@@ -12,9 +12,10 @@ const initialState = {
     carts: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
 }
 
-export const postNewOrder = createAsyncThunk("order/postOrder", async ({orderdto}, thunkAPI)=> {
+export const postNewOrder = createAsyncThunk("order/postOrder", async (orderdto, thunkAPI)=> {
     try {
-        const resposne =  await axios.post(`${url}`, {orderdto});
+        const resposne =  await axios.post(`${url}`, orderdto);
+        console.log('orderdto: ', orderdto);
         return resposne.data
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
@@ -81,8 +82,8 @@ const cartSlice = createSlice({
         builder
         .addCase(postNewOrder.rejected, (state, action) => {
             state.status = action.payload.status
-            state.error = action.payload.error
-            state.message = action.payload.data
+            state.error = action.payload.data
+            state.message = action.payload.message
         })
         .addCase(postNewOrder.fulfilled, (state, action) => {
             state.status = action.payload.status

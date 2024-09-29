@@ -39,6 +39,7 @@ const ProductDetail = () => {
     const imageUrl = product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/200'; // URL placeholder nếu không có ảnh
 
     return (
+    
         <section className="ftco-section">
             <div className="container">
                 <div className="row">

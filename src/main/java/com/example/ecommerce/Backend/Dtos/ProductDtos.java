@@ -26,9 +26,6 @@ public class ProductDtos {
     @NotBlank(message = "Mô tả sản phẩm không được để trống.")
     private String description; // Đổi tên từ 'describe' thành 'description'
 
-    @NotBlank(message = "Slug không được để trống.")
-    private String slug;
-
     @NotNull(message = "Trạng thái không được để trống.")
     private int status;
 

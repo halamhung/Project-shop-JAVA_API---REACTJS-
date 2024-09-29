@@ -56,7 +56,6 @@ public class ProductServices implements IProductServices {
                 .nameProduct(productDtos.getNameProduct())
                 .price(productDtos.getPrice())
                 .description(productDtos.getDescription())
-                .slug(productDtos.getSlug())
                 .status(productDtos.getStatus())
                 .quantity(productDtos.getQuantity())
                 .category(categoryOptional.get()) // Set
@@ -77,7 +76,6 @@ public class ProductServices implements IProductServices {
             existingProduct.setNameProduct(productDtos.getNameProduct());
             existingProduct.setPrice(productDtos.getPrice());
             existingProduct.setDescription(productDtos.getDescription());
-            existingProduct.setSlug(productDtos.getSlug());
             existingProduct.setStatus(productDtos.getStatus());
             existingProduct.setQuantity(productDtos.getQuantity());
         if (productDtos.getCategoryId() != null) {

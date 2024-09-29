@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getListProduct } from "../../../../redux/ListProductSlice";
-import {addCart} from "../../../../redux/cartSlice"
+import {addCart, addCartAsync} from "../../../../redux/cartSlice"
 import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +42,7 @@ export default function Product() {
       showConfirmButton: false,
       timer: 1000,
     });
-    dispatch(addCart(id));
+    dispatch(addCartAsync(id));
   };
 
 

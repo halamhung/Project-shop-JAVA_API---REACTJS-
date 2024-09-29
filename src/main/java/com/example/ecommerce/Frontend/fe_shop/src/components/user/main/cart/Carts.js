@@ -148,13 +148,15 @@ const handleChange = (e) => {
                       <td>
                         <img
                           className="img-cart img-fluid"
-                          // src={"/"}
+                          src={item.image}
                         />
                       </td>
                       <td>
                         <p className="mt-3">{item.nameProduct}</p>
                       </td>
-
+                      <td>
+                      <p className="mt-3">{item.price}</p>
+                      </td>
                       <td>
                         <ButtonGroup className="mt-3">
                           <Button

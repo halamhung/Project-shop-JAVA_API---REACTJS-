@@ -11,7 +11,7 @@ export default function HomeAdmin() {
             <HeaderAd />
             {/* Sidebar End */}
             {/* Content Start */}
-            <div className="content">
+            <div className="content1">
                 {/* Navbar Start */}
                 <Navbar />
                 {/* Navbar End */}

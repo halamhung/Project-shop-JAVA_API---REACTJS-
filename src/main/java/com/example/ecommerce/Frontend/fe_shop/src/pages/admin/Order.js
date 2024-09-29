@@ -5,6 +5,7 @@ import { Button, Col, Form, FormGroup, Input, Label, Table } from 'reactstrap'
 import Navbar from '../../components/admin/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllOrder, search, updateStatus } from '../../redux/orderSlice'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import ReactPaginate from 'react-paginate'
 
 export default function Order() {
@@ -65,7 +66,7 @@ export default function Order() {
     return (
         <div className="container-xxl position-relative bg-white d-flex p-0">
             <HeaderAd />
-            <div className="content">
+            <div className="content3">
                 {/* Navbar Start */}
                 <Navbar />
                 {/* Navbar End */}

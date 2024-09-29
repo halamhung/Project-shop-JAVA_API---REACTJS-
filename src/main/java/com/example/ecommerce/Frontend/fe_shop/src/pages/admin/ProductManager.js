@@ -97,7 +97,7 @@ export default function ProductManager() {
     return (
         <div className="container-xxl position-relative bg-white d-flex p-0">
             <HeaderAd />
-            <div className="content5">
+            <div className="content1">
                 <Navbar />
                 <div className="container-fluid pt-4 px-4">
                     <div className="row g-4">

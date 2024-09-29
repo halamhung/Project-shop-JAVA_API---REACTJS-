@@ -24,6 +24,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import "./products.css"
 import SingleHeader from "../../../../components/user/SingleHeader";
+import { Link } from "react-router-dom";
 
 export default function Product() {
 
@@ -170,7 +171,7 @@ export default function Product() {
                     {products &&
                       products.map((item, index) => (
                         <Col lg={4} md={6} sm={12} key={index}>
-                          <div className="fruite-item">
+                          <div className=" fruite-item">
                             <Card style={{ width: "100%" }}>
                                 
                                 <img alt="Sample" src={`${item.images}`} className="" />
@@ -199,7 +200,8 @@ export default function Product() {
                                     
                                     <div className="d-flex flex-row">
                                         <button class="btn1">
-                                            <span style={{color:"yellow"}}>Detail</span>
+                                            {/* <span style={{color:"yellow"}}>Detail</span> */}
+                                            <Link style={{color:"yellow"}} to={`/productdetail/${item.productId}`}>Detail</Link>
                                         </button>
                                         <button class="btn1" onClick={() => handle_addCart(item.productId)}>
                                             <span style={{color:"yellow"}}>Add Cart</span>

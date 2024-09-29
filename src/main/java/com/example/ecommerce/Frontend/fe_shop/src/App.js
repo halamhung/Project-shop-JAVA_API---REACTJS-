@@ -12,7 +12,6 @@ import Cart from "./pages/user/Pages/Cart/Cart"
 import ProductDetail from "./pages/admin/ProductDetail";
 import ProductDetailUser from "./pages/user/Pages/Product/ProductDetailUser";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import NewAdmin from "./pages/admin/NewAdmin";
 
 function App() {
   return (
@@ -30,8 +29,7 @@ function App() {
           <Route path="/admin/category" element={<Category />} />
           <Route path="/admin/coupon" element={<Coupon />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/productdetail" element={<ProductDetailUser />} />
-          <Route path="/admin2" element={<NewAdmin/>}/>
+          <Route path="/productdetail/:id" element={<ProductDetailUser />} />
         </Routes>
       </BrowserRouter>
     </>

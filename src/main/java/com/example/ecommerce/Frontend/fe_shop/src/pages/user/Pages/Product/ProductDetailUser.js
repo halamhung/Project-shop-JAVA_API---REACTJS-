@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../../../components/user/Header'
 import Footer from '../../../../components/user/Footer'
 import SingleHeader from '../../../../components/user/SingleHeader'
 import "./detailpro.css"
 import banner from './banner1.jpg';
 import { Button, Col, Container, Input, InputGroup, Row } from 'reactstrap'
+import { useParams } from 'react-router-dom'
+import { getImageID_2, getProductByID } from '../../../../redux/ListProductSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addCartAsync } from '../../../../redux/cartSlice'
+import Swal from 'sweetalert2'
 
 export default function ProductDetailUser() {
     const title = "Chi tiết sản phẩm"
@@ -17,8 +22,41 @@ export default function ProductDetailUser() {
                 setQuantity(quantity - 1);
             }
         }
-
     }
+    const { id } = useParams();
+   
+    const { productDetail } = useSelector(state => state.GetListProduct)
+    const dispatch = useDispatch()
+
+    const [img, setImg] = useState(null);
+
+    const handle_addCart = (id) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Sản phẩm thêm vào trong giỏ hàng",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        dispatch(addCartAsync(id));
+      };
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const imgData = await getImageID_2(id);
+        console.log('Image data: ', imgData); // For debugging
+        setImg(imgData); // Set the image URL into the state
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
+
+    // Fetch the product data and image
+    dispatch(getProductByID(id));
+    fetchImage();
+  }, [dispatch, id]);
+    console.log(productDetail)
     return (
         <>
             <Header />
@@ -31,18 +69,18 @@ export default function ProductDetailUser() {
                                 <Col lg={6} md={12} sm={12}>
                                     <div className="">
                                         <a href="#">
-                                            {/* <img src={Images.bestProduct[productDetail.images]} className="img-fluid rounded" /> */}
+                                            <img src={img} className="img-fluid rounded" />
                                         </a>
                                     </div>
                                 </Col>
                                 <Col lg={6}>
-                                    <h4 className="fw-bold mb-3"></h4>
-                                    <p className="mb-3">Category: </p>
-                                    <h5 className="fw-bold mb-3"></h5>
+                                    <h4 className="fw-bold mb-3">{productDetail.nameProduct} </h4>
+                                    {/* <p className="mb-3">{productDetail.category.categoryId}</p> */}
+                                    <h5 className="fw-bold mb-3">{productDetail.price} đ</h5>
                                     <p className="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                                     <p className="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                                    <InputGroup className="quantity mb-5">
-                                        <Button className="rounded-circle " onClick={() => changeQty(false)}>
+                                    {/* <InputGroup className="quantity mb-5">
+                                        <Button className="rounded-circle btnQty " onClick={() => changeQty(false)}>
                                             -
                                         </Button>
                                         <Input
@@ -51,11 +89,13 @@ export default function ProductDetailUser() {
                                             value={quantity}
                                             readOnly
                                         />
-                                        <Button className="rounded-circle " onClick={() => changeQty(true)}>
+                                        <Button className="rounded-circle btnQty " onClick={() => changeQty(true)}>
                                             +
                                         </Button>
-                                    </InputGroup>
-                                    <a href="#" className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    </InputGroup> */}
+                                    <button class="btn1" onClick={() => handle_addCart(productDetail.productId)}>
+                                            <span style={{color:"yellow"}}>Add Cart</span>
+                                        </button>
                                 </Col>
                                 <Col lg={12}>
                                     <div>
@@ -157,22 +197,22 @@ export default function ProductDetailUser() {
                                 </div>
                             </Col>
                             {/* discount */}
-                            <Col lg={12}>
+                            {/* <Col lg={12}>
                                 <div className="mb-3">
                                     <h4 className='fw-bold '>Khuyến mãi</h4 >
                                     <div class="d-flex align-items-center justify-content-start">
                                         <div class="banner rounded me-4" style={{ width: 100, height: 100 }}>
-                                            {/* <img src={banner} class="img-fluid rounded" alt="" /> */}
+                                            <img src={banner} class="img-fluid rounded" alt="" />
                                         </div>
                                         <div>
                                             <h6 class="mb-2">Name</h6>
-                                            {/* <div class="d-flex mb-2">
+                                            <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star"></i>
-                                                </div> */}
+                                                </div>
                                             <div class="d-flex mb-2">
                                                 <h5 class="fw-bold me-2">2.99 $</h5>
                                                 <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
@@ -180,7 +220,7 @@ export default function ProductDetailUser() {
                                         </div>
                                     </div>
                                 </div>
-                            </Col>
+                            </Col> */}
                             {/* Banner */}
                             <Col lg={12}>
                                 <div className="position-relative ">

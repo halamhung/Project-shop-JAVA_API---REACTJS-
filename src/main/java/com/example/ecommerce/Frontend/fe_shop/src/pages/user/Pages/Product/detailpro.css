@@ -1,7 +1,7 @@
 .quantity {
     display: flex;
-    width: 100px;
-    padding-right: 150px;
+    width: 10px;
+    padding-right: 10px;
     /* padding: 0 50px; */
 }
 
@@ -32,4 +32,7 @@
     font-size: xx-large;
     color: #ffb524;
 
+}
+.btnQty{
+    width: 50px;
 }

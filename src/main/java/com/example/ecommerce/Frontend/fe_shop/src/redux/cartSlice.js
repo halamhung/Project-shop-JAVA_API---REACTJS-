@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import {getImageID_2} from "./ListProductSlice"
 import axios from "axios";
 const url = "http://localhost:8080/order";
 
@@ -27,7 +27,9 @@ export const addCartAsync = createAsyncThunk(
     async (productId, thunkAPI) => {
       try {
         const response = await axios.get(`http://localhost:8080/api/products/${productId}`);
-        return { ...response.data.data, qty: 1 }; // returning product data with qty
+        const image = await getImageID_2(productId)
+        console.log('image: ', image);
+        return { ...response.data.data, qty: 1 , image}; // returning product data with qty
       } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
       }
@@ -51,46 +53,27 @@ const cartSlice = createSlice({
     name:"cart",
     initialState,
     reducers: {
-        addCart: (state, action) => {
-          
-            const res = getProductId(action.payload);
-            console.log('res trong add Cart: ', res);
-           
-            const index = state.carts.findIndex(
-                (item) => item.producId === action.payload
-            );
-            if (index >= 0) {
-                let newCart = state.carts;
-                newCart[index].qty++;
-                state.carts = newCart;
-                console.log("state sau khi add đã có", state.carts)
-                localStorage.setItem("carts", JSON.stringify(state.carts));
-            } else {
-                state.carts = [...state.carts, {...res.data, qty: 1}];
-                console.log("state sau khi add chưa có ", state.carts)
-                localStorage.setItem("carts", JSON.stringify(state.carts));
-            }
-        }, removeCart: (state, action) => {
+         removeCart: (state, action) => {
             state.carts = state.carts.filter((item) => item.producId !== action.payload);
-            localStorage.setItem("carts", JSON.stringify(state.carts));
+            localStorage.setItem("cart", JSON.stringify(state.carts));
           },
           clearCart: (state) => {
             state.carts = [];
-            localStorage.setItem("carts", JSON.stringify(state.carts));
+            localStorage.setItem("cart", JSON.stringify(state.carts));
           },
           updateQty: (state, action) => {
             if (action.payload.flag) {
               state.carts = state.carts.map((item) =>
                 item.producId === action.payload.id ? { ...item, qty: item.qty + 1 } : item
               );
-              localStorage.setItem("carts", JSON.stringify(state.carts));
+              localStorage.setItem("cart", JSON.stringify(state.carts));
             } else {
               state.carts = state.carts.map((item) =>
                 item.producId === action.payload.id
                   ? { ...item, qty: item.qty > 1 ? item.qty - 1 : item.qty }
                   : item
               );
-              localStorage.setItem("carts", JSON.stringify(state.carts));
+              localStorage.setItem("cart", JSON.stringify(state.carts));
             }
           },
     },
@@ -107,6 +90,16 @@ const cartSlice = createSlice({
             localStorage.setItem("cart", [])
             state.carts = []
         })
+        .addCase(addCartAsync.fulfilled, (state, action) => {
+            const index = state.carts.findIndex((item) => item.productId === action.payload.productId);
+            if (index >= 0) {
+              state.carts[index].qty += 1;
+            } else {
+              state.carts.push(action.payload); 
+              console.log('state.carts: ', state.carts);
+            }
+            localStorage.setItem("cart", JSON.stringify(state.carts));
+          })
     }   
 })
 

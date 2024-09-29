@@ -11,6 +11,7 @@ import Coupon from "./pages/admin/coupon/Coupon";
 import Cart from "./pages/user/Pages/Cart/Cart"
 import ProductDetail from "./pages/admin/ProductDetail";
 import ProductDetailUser from "./pages/user/Pages/Product/ProductDetailUser";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 function App() {
   return (

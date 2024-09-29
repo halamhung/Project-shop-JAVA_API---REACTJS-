@@ -74,8 +74,6 @@ export default function Footer() {
                                 <a className="btn-link" href="">About Us</a>
                                 <a className="btn-link" href="">Contact Us</a>
                                 <a className="btn-link" href="">Privacy Policy</a>
-                                <a className="btn-link" href="">Terms & Condition</a>
-                                <a className="btn-link" href="">Return Policy</a>
                                 <a className="btn-link" href="">FAQs & Help</a>
                             </div>
                         </Col>
@@ -86,18 +84,15 @@ export default function Footer() {
                                 <a className="btn-link" href="">Shop details</a>
                                 <a className="btn-link" href="">Shopping Cart</a>
                                 <a className="btn-link" href="">Wishlist</a>
-                                <a className="btn-link" href="">Order History</a>
-                                <a className="btn-link" href="">International Orders</a>
                             </div>
                         </Col>
                         <Col lg={3} md={6}>
                             <div className="footer-item">
                                 <h4 className="text-light mb-3">Contact</h4>
-                                <p>Address: 1429 Netus Rd, NY 48247</p>
-                                <p>Email: Example@gmail.com</p>
+                                <p>Address: 123 Hai Ba Trung, Ho Chi Minh</p>
+                                <p>Email: mouseloverices@gmail.com</p>
                                 <p>Phone: +0123 4567 8910</p>
                                 <p>Payment Accepted</p>
-                                {/* <img src={payment} class="img-fluid" alt="" /> */}
                             </div>
                         </Col>
                     </Row>

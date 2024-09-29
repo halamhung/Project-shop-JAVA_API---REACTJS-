@@ -64,7 +64,6 @@
     border-radius: 50px;
 }
 
-
 /*** Layout ***/
 .sidebar {
     position: fixed;
@@ -211,7 +210,7 @@
 }
 
 @media (max-width: 575.98px) {
-    .content .navbar .navbar-nav .nav-link {
+    .content1 .navbar .navbar-nav .nav-link {
         margin-left: 15px;
     }
 }

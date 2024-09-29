@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import HeaderAd from '../../components/admin/HeaderAd';
 import FooterAd from '../../components/admin/FooterAd';
-import { Button, Table, Input, FormGroup, Label } from 'reactstrap';
+import { Button, Table, Input } from 'reactstrap';
 import Navbar from '../../components/admin/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProduct, updateProduct, deleteProduct } from '../../redux/productSlice';

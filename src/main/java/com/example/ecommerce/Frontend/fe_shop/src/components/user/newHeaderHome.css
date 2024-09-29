@@ -1,0 +1,49 @@
+/* Gradient text */
+.gradient-text {
+    font-weight: bold;
+    font-size: 3rem; /* Kích thước chữ tùy ý */
+    background: linear-gradient(45deg, rgb(50, 255, 57), rgb(255, 45, 182));
+    background-clip: text;
+    -webkit-background-clip: text; /* Hỗ trợ cho WebKit browsers */
+    color: transparent; /* Để gradient hiện trên chữ */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow cho text */
+}
+
+.gradient-text-smaller {
+    font-size: 1.5rem; /* Kích thước nhỏ hơn */
+    background: linear-gradient(45deg, rgb(92, 169, 216), rgb(213, 110, 226));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.custom-btn {
+    color: #4caf50; /* Màu text mặc định */
+    border: 2px solid #4caf50; /* Màu viền sáng */
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Bo tròn các góc */
+    transition: all 0.3s ease; /* Thêm transition cho smooth animation */
+}
+
+/* Hover effect */
+.custom-btn:hover {
+    background-color: #4caf50; /* Khi hover, màu nền trùng với viền */
+    color: white; /* Chuyển text sang màu trắng */
+    box-shadow: 0px 4px 10px rgba(76, 175, 80, 0.5); /* Thêm hiệu ứng shadow */
+    transform: scale(1.05); /* Tạo hiệu ứng phóng to nhẹ khi hover */
+}
+
+.navbar-link {
+    color: #333; /* Màu mặc định của text */
+    font-size: 1rem;
+    padding: 8px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+}
+
+/* Hover effect for navbar links */
+.navbar-link:hover {
+    color: #00a1fe; /* Màu text khi hover */
+    background-color: rgba(76, 175, 80, 0.1); /* Màu nền khi hover */
+    border-radius: 5px; /* Tạo hiệu ứng bo tròn nhẹ cho nền khi hover */
+}

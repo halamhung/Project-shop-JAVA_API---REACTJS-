@@ -346,16 +346,8 @@ export default function HomeAdmin() {
                         </div>
                     </div>
                 </div>
-                {/* Widgets End */}
-                {/* Footer Start */}
                 <FooterAd />
-                {/* Footer End */}
             </div>
-            {/* Content End */}
-            {/* Back to Top */}
-            {/* <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top">
-                <i className="bi bi-arrow-up" />
-            </a> */}
         </div>
 
     )

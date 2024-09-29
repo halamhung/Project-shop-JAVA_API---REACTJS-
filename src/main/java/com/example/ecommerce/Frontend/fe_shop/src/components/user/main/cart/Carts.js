@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import dayjs from "dayjs"
 import Swal from "sweetalert2";
 import {
@@ -9,22 +9,20 @@ import {
     Col,
     Container,
     Input,
-    InputGroup,
     Row,
     Table,
-    Form,
     FormGroup,
     Label,
     Alert
   } from "reactstrap";
 import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./carts.css"
 
 export default function Carts() {
 
-  const { carts, status, error} = useSelector((state) => state.carts);
+  const { carts, error} = useSelector((state) => state.carts);
 
   const [baseOrder, setBaseOrder] = useState({
     consignee: "",
@@ -148,8 +146,8 @@ const handleChange = (e) => {
                     <tr key={index}>
                       <td>
                         <img
-                          className="img-cart img-fluid"
-                          // src={"/"}
+                          className="img-cart img-fluid" alt=''
+                          // src={"/"} 
                         />
                       </td>
                       <td>

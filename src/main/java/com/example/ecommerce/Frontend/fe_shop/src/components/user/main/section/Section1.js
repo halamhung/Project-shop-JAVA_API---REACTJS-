@@ -7,21 +7,27 @@ import CateSec1 from '../slide/CateSec1'
 export default function Section1() {
   return (
     <Container className=" py-5">
-    <h2>Prestige</h2>
+    <div className="shine" style={{textAlign:"center", marginBottom:"80px"}}>PRESTIGE
+      <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+    </div>
+    
     <Row className="g-5 align-items-center">
-      <Col md={12} lg={6} data-aos="fade-right">
+      <Col md={12} lg={6}>
         
         <h4 className="mb-3 text-secondary">Newest Technology</h4>
         <h1 className="mb-5 display-3 text-primary">
-          Best of quality 
+          Best of quality - Best of choice
         </h1>
-        <h1 className="mb-5 display-3 text-primary">
-          Best of choice 
-        </h1>
-      <CateSec1/>
-
+        <CateSec1/>
       </Col>
-      <Col md={12} lg={6} data-aos="fade-left">
+      <Col md={12} lg={6}>
         <Slider1 />
       </Col>
     </Row>

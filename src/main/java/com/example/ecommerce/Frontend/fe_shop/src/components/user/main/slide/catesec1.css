@@ -1,5 +1,5 @@
 /* From Uiverse.io by StealthWorm */ 
-.btn {
+.btn1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,23 +67,23 @@
     background: rgba(142, 81, 234, 0.704);
   }
   
-  .btn:hover #container-stars {
+  .btn1:hover #container-stars {
     z-index: 1;
     background-color: #212121;
   }
   
-  .btn:hover {
+  .btn1:hover {
     transform: scale(1.1);
   }
   
-  .btn:active {
+  .btn1:active {
     border: double 4px #fe53bb;
     background-origin: border-box;
     background-clip: content-box, border-box;
     animation: none;
   }
   
-  .btn:active .circle {
+  .btn1:active .circle {
     background: #fe53bb;
   }
   

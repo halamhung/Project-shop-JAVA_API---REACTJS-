@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Collapse, Container, DropdownItem, DropdownMenu, DropdownToggle, Input, Nav, Navbar, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { Collapse, Container, DropdownToggle, Input, Nav, Navbar, NavbarToggler, NavItem,  UncontrolledDropdown } from 'reactstrap'
 import "./header.css"
-import { useDispatch, useSelector } from 'react-redux'
-import logo from '../../imgs/logo2-removebg-preview.png'
+import { useSelector } from 'react-redux'
+import logo from '../../imgs/logoRemoveSlogan.png'
 
 export default function Header() {
-    // const { carts } = useSelector(state => state.carts)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const [keyword, setKeyword] = useState("")
-    // const [currentPage, setCurrentPage] = useState(1)
-
-    // const handle_search = () => {
-    //     navigate("/product")
-    //     dispatch(findProducts(keyword))
-    //     setKeyword("")
-    // }
 
     const { carts } = useSelector((state) => state.carts || { carts: [] });
 
@@ -59,10 +48,6 @@ export default function Header() {
         };
     }, [setTopOffset]);
 
-    const handle_logout = () => {
-        localStorage.removeItem("login");
-        window.location.reload();
-    }
     // const info = JSON.parse(localStorage.getItem("login"))
     return (
         <>
@@ -71,39 +56,41 @@ export default function Header() {
                 <Container className="topbar  d-none d-lg-block">
                     <div className="d-flex justify-content-between">
                         <div className="top-info ps-2">
-                            <small className="me-3"> <a className="text-white">123 Hai Bà Trưng, TP. HCM</a></small>
-                            <small className="me-3"><a className="text-white"> Email@Example.com</a></small>
+                            <small className="me-3"> <a href='/' className="text-white">123 Hai Bà Trưng, TP. HCM</a></small>
+                            <small className="me-3"><a href='/' className="text-white"> mouseloverices@Example.com</a></small>
                         </div>
                         <div className="top-link pe-2">
-                            <a href="#" className="text-white"><small className="text-white mx-2">Privacy Policy</small>/</a>
-                            <a href="#" className="text-white"><small className="text-white mx-2">Terms of Use</small>/</a>
-                            <a href="#" className="text-white"><small className="text-white ms-2">Sales and Refunds</small></a>
+                            <a href="/" className="text-white"><small className="text-white mx-2">Privacy Policy</small>/</a>
+                            <a href="/" className="text-white"><small className="text-white mx-2">Terms of Use</small>/</a>
+                            <a href="/" className="text-white"><small className="text-white ms-2">Sales and Refunds</small></a>
                         </div>
                     </div>
                 </Container>
 
                 <Container className=' px-0'>
-                    <Navbar className='navbar navbar-expand-xl' >
-                        <NavLink to={"/"} className={"nav-link"} style={{width:"140px",height:"90px"}} ><img src={logo} alt="logo"/></NavLink>
+                    <Navbar className='navbar navbar-expand-xl'  style={{display:"flex", alignItems:"end"}}>
+                        <div style={{width:"60px", height:"60px", display:"flex", alignItems:"center"}}>
+                            <img src={logo} alt="logo" />
+                        </div>
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar className="d-flex align-items-center ">
                             <Nav className="m-auto" navbar >
                                 <NavItem>
-                                    <Link className='nav-link' to={"/"}>Trang chủ</Link>
+                                    <Link className='nav-link' to={"/"}>Home</Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link className='nav-link' to={"/product"}>
-                                        Sản phẩm
+                                        Product
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to={"/contact"} className='nav-link'>
-                                        Liên hệ
+                                        Contact
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to={"*"} className='nav-link'>
-                                        Tin tức
+                                    <Link to={"/"} className='nav-link'>
+                                        News
                                     </Link>
                                 </NavItem>
                             </Nav>

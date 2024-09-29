@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coupoun")
+@RequestMapping("/api/users/coupoun")
 @RequiredArgsConstructor
 @CrossOrigin
 public class couponController {

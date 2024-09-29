@@ -3,7 +3,7 @@ import axios from "axios";
 // import Swal from "sweetalert2";
 
 
-const url = "http://localhost:8080/category";
+const url = "http://localhost:8080/api/users/category";
 
 const initialState = {
     category: [],

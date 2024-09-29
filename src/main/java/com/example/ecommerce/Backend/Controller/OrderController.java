@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/users/order")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class OrderController {

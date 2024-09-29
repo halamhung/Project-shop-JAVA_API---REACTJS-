@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'http://localhost:8080/api/users'
 
 export const getListProduct = createAsyncThunk("/getListProduct",async({currentPage,limit},thunkAPI)=>{
     const url = `${BASE_URL}/products?page=${currentPage}&size=${limit}`

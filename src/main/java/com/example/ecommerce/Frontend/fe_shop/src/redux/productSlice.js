@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "http://localhost:8080/api/products";
+const url = "http://localhost:8080/api/users/products";
 
 const initialState = {
     products: [],
@@ -15,7 +15,7 @@ const initialState = {
 export const fetchCategories = createAsyncThunk(
     "product/fetchCategories",
     async () => {
-        const res = await axios.get("http://localhost:8080/category/categories"); // Gọi API endpoint mới
+        const res = await axios.get("http://localhost:8080/api/users/category/categories"); // Gọi API endpoint mới
         return res.data.data; // Trả về danh sách category
     }
 );

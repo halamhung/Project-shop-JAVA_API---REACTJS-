@@ -1,0 +1,16 @@
+.page-header {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(./unnamed.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    padding: 15px;
+    /* z-index: 6; */
+    margin-top: 135px;
+}
+
+.page-header li a {
+    text-decoration: none;
+    color: #0A92E7;
+    font-size: larger;
+}

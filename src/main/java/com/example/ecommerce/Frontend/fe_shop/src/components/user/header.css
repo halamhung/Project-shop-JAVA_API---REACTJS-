@@ -104,10 +104,10 @@
     --bs-nav-link-hover-color: #ffb524 !important;
 }
 
-.nav-link {
+/* .nav-link {
     color: white !important;
     font-size: 17px !important;
-} 
+}  */
 
 .nav-link li a {
     display: block;

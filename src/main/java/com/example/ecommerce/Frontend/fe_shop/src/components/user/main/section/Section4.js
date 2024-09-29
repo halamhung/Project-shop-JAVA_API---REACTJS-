@@ -9,7 +9,16 @@ import './section4.css'
 export default function Section4() {
   return (
     <Container fluid className=" py-5 mb-5">
-      <h2>Deals Hot</h2>
+      <div class="shine" style={{textAlign:"center", marginBottom:"80px"}}>NEW RELEASE
+      <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+      </div>
       <Container className=" py-5">
         <Row uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 100; repeat:true">
           <Col lg='3' md='4' sm='6' xs='6' uk-scrollspy-class="uk-animation-slide-top">

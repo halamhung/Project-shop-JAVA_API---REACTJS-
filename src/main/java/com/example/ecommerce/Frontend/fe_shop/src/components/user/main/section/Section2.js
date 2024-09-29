@@ -6,7 +6,16 @@ export default function Section2() {
   return (
     <div>
       <Container>
-        <h2>Categories</h2>
+        <div class="shine" style={{textAlign:"center", marginBottom:"80px"}}>CATEGORIES
+        <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+        </div>
                     <Row uk-grid uk-scrollspy="cls: uk-animation-fade; target: .col-6; delay: 200; repeat: true">
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px" }}>
                                 <div class="card card-laptop">
@@ -32,7 +41,7 @@ export default function Section2() {
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
                         <div class="card card-network">
-                                    <div >0
+                                    <div >
                                        <h1>Network</h1>
                                     </div>
                                     <div class="content">

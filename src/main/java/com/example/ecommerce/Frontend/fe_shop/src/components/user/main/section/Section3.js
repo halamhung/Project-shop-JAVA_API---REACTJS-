@@ -6,7 +6,16 @@ import colabor2 from '../../../../imgs/colabor2.jpeg'
 const Section3 = () => {
     return (
         <Container>
-        <h2>Collaboration</h2>
+        <div class="shine" style={{textAlign:"center", marginBottom:"80px"}}>COLLABORATION
+        <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+        </div>
         <Row>
             <Col lg="6" xs="12" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
                 <img src={colabor1} alt="colabor1" style={{ width: '100%', height: '80%' }}/>

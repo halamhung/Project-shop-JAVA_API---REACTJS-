@@ -6,7 +6,16 @@ import { Col, Container, Row } from 'reactstrap';
 export default function Section5() {
     return (
         <Container fluid className="d featurs py-5">
-            <h2>System</h2>
+            <div class="shine" style={{textAlign:"center", marginBottom:"80px"}}>SYSTEM
+            <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+            </div>
             <Container className=" py-5">
                 <Row className="g-4">
                     <Col xl={3} md={6} lg={6} uk-scrollspy="cls: uk-animation-slide-left; repeat: true" >

@@ -6,7 +6,7 @@
     color: var(--bs-white) !important;
 } */
 
-/* .fruite .fruite-categorie .fruite-name {
+.fruite .fruite-categorie .fruite-name {
     line-height: 40px;
 }
 
@@ -31,9 +31,9 @@
 
 .fruite .fruite-item:hover {
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
-} */
+}
 
-/* .fruite .fruite-item .fruite-img {
+.fruite .fruite-item .fruite-img {
     overflow: hidden;
     transition: 0.5s;
     border-radius: 10px 10px 0 0;
@@ -45,7 +45,7 @@
 
 .fruite .fruite-item .fruite-img img:hover {
     transform: scale(1.3);
-} */
+}
 
 .pagination li a {
     position: relative;
@@ -66,9 +66,7 @@
     color: yellow !important;
 }
 
-.card-body{
-    
-}
+
 
 .button-product:hover {
     font-size: 30px !important;

@@ -25,6 +25,7 @@ import "./carts.css"
 export default function Carts() {
 
   const { carts, status, error} = useSelector((state) => state.carts);
+  console.log('carts: ', carts);
 
   const [baseOrder, setBaseOrder] = useState({
     consignee: "",
@@ -47,7 +48,6 @@ const handleChange = (e) => {
 };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const subTotal = () => {
     let sum = 0;
@@ -80,7 +80,6 @@ const handleChange = (e) => {
       }
     });
   };
-
 
   const paymentCheckout = async () => {
 
@@ -151,9 +150,6 @@ const handleChange = (e) => {
                           className="img-cart img-fluid"
                           // src={"/"}
                         />
-                      </td>
-                      <td>
-                        <p className="mt-3">{item.name}</p>
                       </td>
                       <td>
                         <p className="mt-3">{item.nameProduct}</p>
@@ -293,7 +289,7 @@ const handleChange = (e) => {
               </Button>
             ) : (
               <Button
-                className="button button-cart rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
+                className="button button-cart rounded-pill px-5 py-4 text-uppercase mb-4 ms-4"
                 type="button"
                 onClick={() => paymentCheckout()}
               >

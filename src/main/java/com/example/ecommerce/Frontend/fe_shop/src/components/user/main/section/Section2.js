@@ -5,11 +5,20 @@ import "./section2.css"
 export default function Section2() {
   return (
     <div>
-      <Container>
-        <h2>Categories</h2>
+      <Container className='section2'>
+        <div class="shine" style={{textAlign:"center", marginBottom:"80px"}}>CATEGORIES
+        <p style={{fontSize:"20px"}}>
+      <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-brands fa-react"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i>
+        <i className="fa-solid fa-grip-lines"></i></p>
+        </div>
                     <Row uk-grid uk-scrollspy="cls: uk-animation-fade; target: .col-6; delay: 200; repeat: true">
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px" }}>
-                                <div class="card">
+                                <div class="card1 card-laptop">
                                     <div >
                                        <h1>Laptop</h1>
                                     </div>
@@ -20,18 +29,20 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1 card-phone">
                                     <div >
                                        <h1>Phone</h1>
                                     </div>
+                                 
                                     <div class="content">
+                                       <h1></h1>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#f5872e"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
                                     <p>From Android: Samsung, Xiaomi, Nokia, Redmi, OPPO,... To IOS: Apple</p>
                                     </div>
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1 card-network">
                                     <div >
                                        <h1>Network</h1>
                                     </div>
@@ -42,7 +53,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1 card-pc">
                                     <div >
                                        <h1>PC</h1>
                                     </div>
@@ -54,7 +65,7 @@ export default function Section2() {
 
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1 card-monitors">
                                     <div >
                                        <h1>Monitors</h1>
                                     </div>
@@ -65,7 +76,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1 card-keyboard">
                                     <div >
                                        <h1>Keyboard</h1>
                                     </div>
@@ -76,7 +87,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1  card-gear">
                                     <div >
                                        <h1>Gear</h1>
                                     </div>
@@ -87,7 +98,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card1  card-mouse">
                                     <div >
                                        <h1>Mouse</h1>
                                     </div>

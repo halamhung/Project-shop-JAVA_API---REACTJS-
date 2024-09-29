@@ -3,7 +3,7 @@ import './catesec1.css'; // Import your CSS file
 
 const CateSec1 = () => {
   return (
-            <button type="button" class="btn">
+            <button type="button" class="btn1">
             <strong>GO TO STORE</strong>
             <div id="container-stars">
                 <div id="stars"></div>

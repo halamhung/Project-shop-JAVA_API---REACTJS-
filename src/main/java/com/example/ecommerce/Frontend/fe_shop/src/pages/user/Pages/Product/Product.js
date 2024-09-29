@@ -24,7 +24,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import "./products.css"
 import SingleHeader from "../../../../components/user/SingleHeader";
-import { Link } from "react-router-dom";
 
 
 export default function Product() {

@@ -96,7 +96,7 @@ export default function Coupon() {
     return (
         <div className="container-xxl position-relative bg-white d-flex p-0">
             <HeaderAd />
-            <div className="content1">
+            <div className="content6">
                 {/* Navbar Start */}
                 <Navbar />
                 {/* Navbar End */}

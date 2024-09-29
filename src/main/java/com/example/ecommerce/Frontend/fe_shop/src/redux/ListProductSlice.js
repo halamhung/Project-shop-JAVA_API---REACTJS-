@@ -31,15 +31,7 @@ export const getListProduct = createAsyncThunk("/getListProduct",async({currentP
 })
 
 
-export const getProductByID = createAsyncThunk("getProductByID", async (id, apiThunk) => {
-    const url1 = BASE_URL + `/products/${id}`
-    try {
-        const response = await axios.get(url1);
-        return response.data
-    } catch (error) {
-        return apiThunk.rejectWithValue(error.response.data)
-    }
-})
+
 
 
 export const getImageID = async (id) => {
@@ -86,15 +78,6 @@ const ListProductSlice = createSlice({
             console.log(' state.products : ',  state.products );
         })
         .addCase(getListProduct.rejected, (state,action)=>{
-            state.status = action.payload.status;
-            state.message = action.payload.message;
-            state.error = action.payload.error;
-        })
-        .addCase(getProductByID.fulfilled, (state,action)=>{
-            state.status = action.payload.status;
-            state.productDetail = action.payload.data; 
-        })
-        .addCase(getProductByID.rejected, (state,action)=>{
             state.status = action.payload.status;
             state.message = action.payload.message;
             state.error = action.payload.error;

@@ -66,7 +66,7 @@ export default function Order() {
     return (
         <div className="container-xxl position-relative bg-white d-flex p-0">
             <HeaderAd />
-            <div className="content1">
+            <div className="content3">
                 {/* Navbar Start */}
                 <Navbar />
                 {/* Navbar End */}

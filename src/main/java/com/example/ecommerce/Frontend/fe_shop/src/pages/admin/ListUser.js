@@ -79,7 +79,7 @@ export default function ListUser() {
   return (
     <div className="container-xxl position-relative bg-white d-flex p-0">
       <HeaderAd />
-      <div className="content1">
+      <div className="content2">
         <Navbar />
         <Container>
           {/* Input tìm kiếm */}

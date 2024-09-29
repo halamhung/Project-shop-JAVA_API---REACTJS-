@@ -10,7 +10,7 @@ import { getImageID_2, getProductByID } from '../../../../redux/ListProductSlice
 import { useDispatch, useSelector } from 'react-redux'
 import { addCartAsync } from '../../../../redux/cartSlice'
 import Swal from 'sweetalert2'
-
+import {fetchCategories} from "../../../../redux/categorySlice"
 export default function ProductDetailUser() {
     const title = "Chi tiết sản phẩm"
     const [quantity, setQuantity] = useState(1);
@@ -27,6 +27,9 @@ export default function ProductDetailUser() {
    
     const { productDetail } = useSelector(state => state.GetListProduct)
     const dispatch = useDispatch()
+
+    const {category2} = useSelector((state)=> state.category)
+    console.log('category2: ', category2);
 
     const [img, setImg] = useState(null);
 
@@ -57,6 +60,11 @@ export default function ProductDetailUser() {
     fetchImage();
   }, [dispatch, id]);
     console.log(productDetail)
+
+    useEffect(() => {
+        dispatch(fetchCategories())
+      },[dispatch])
+
     return (
         <>
             <Header />
@@ -162,37 +170,17 @@ export default function ProductDetailUser() {
                             <Col lg={12}>
                                 <div className="mb-3">
                                     <h4 className='fw-bold '>Danh mục</h4>
-                                    <ul className="list-unstyled fruite-categorie">
-                                        <li>
-                                            <div className="d-flex justify-content-between fruite-name">
-                                                <a href="#">Apples</a>
-                                                <span>(3)</span>
+                                    <ul className="list-unstyled fruite-categorie">                              
+                                        {category2 && category2.map((item,index) => (
+                                            <div key={index} className="my-2">
+                                                  <li>
+                                                    <div className="d-flex justify-content-between fruite-name">
+                                                        <a href="#">{item.name}</a>
+                                                        <span>(5)</span>
+                                                    </div>
+                                                 </li>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div className="d-flex justify-content-between fruite-name">
-                                                <a href="#">Oranges</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="d-flex justify-content-between fruite-name">
-                                                <a href="#">Strawbery</a>
-                                                <span>(2)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="d-flex justify-content-between fruite-name">
-                                                <a href="#">Banana</a>
-                                                <span>(8)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="d-flex justify-content-between fruite-name">
-                                                <a href="#">Pumpkin</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </Col>

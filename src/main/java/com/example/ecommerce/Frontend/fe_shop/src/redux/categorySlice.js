@@ -7,6 +7,7 @@ const url = "http://localhost:8080/api/users/category";
 
 const initialState = {
     category: [],
+    category2:[],
     status: "",
     message: "",
     error: null,
@@ -17,7 +18,8 @@ export const fetchCategories = createAsyncThunk(
     "product/fetchCategories",
     async () => {
         const res = await axios.get(`${url}/categories`); // Make sure this URL is correct
-        return res.data.data;
+        console.log('res trong slice: ', res.data);
+        return res.data;
     }
 );
 
@@ -126,6 +128,16 @@ const categorySlice = createSlice({
                 state.status = action.payload.status
                 state.message = action.payload.message
                 state.error = action.payload.data
+            })
+            .addCase(fetchCategories.fulfilled, (state,action) => {
+                state.category2 = action.payload.data
+                state.message = action.payload.message
+                state.status = action.payload.status
+            })
+            .addCase(fetchCategories.rejected, (state,action) => {
+                state.error = action.payload.data
+                state.message = action.payload.message
+                state.status = action.payload.status
             })
 
     },

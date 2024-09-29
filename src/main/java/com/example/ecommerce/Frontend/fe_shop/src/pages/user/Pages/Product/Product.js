@@ -15,7 +15,7 @@ import {
   Row,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getListProduct } from "../../../../redux/ListProductSlice";
+import { getListProduct, getListProductbyCate } from "../../../../redux/ListProductSlice";
 import {addCart, addCartAsync} from "../../../../redux/cartSlice"
 import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
@@ -25,14 +25,18 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./products.css"
 import SingleHeader from "../../../../components/user/SingleHeader";
 import { Link } from "react-router-dom";
-
+import {fetchCategories} from "../../../../redux/categorySlice"
 export default function Product() {
 
 
   const [currentPage, setCurrentPage] = useState(0);
   const { products } = useSelector((state) => state.GetListProduct);
 
+
   // products = [...products, ]
+
+  const {category2} = useSelector((state)=> state.category)
+  console.log('category2: ', category2);
 
 
   const handle_addCart = (id) => {
@@ -53,11 +57,24 @@ export default function Product() {
     setCurrentPage(event.selected);
   };
 
+  const handleCategoryClick = (categoryId) => {
+    dispatch(getListProductbyCate(categoryId));
+    console.log('products của category: ', products);
+  };
+
   const limit = 6;
 
   useEffect(() => {
     dispatch(getListProduct({ currentPage, limit }));
   }, [currentPage, dispatch]);
+
+  useEffect(() => {
+    console.log("Updated products after dispatch:", products);
+  }, [products]);
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  },[dispatch])
 
   return (
     <>
@@ -102,67 +119,13 @@ export default function Product() {
                   <Col lg={12}>
                     <div className="mb-3">
                       <h4>Danh mục</h4>
-                      <ul className="list-unstyled fruite-categorie">
-                        <li>
-                          <div className="d-flex justify-content-between fruite-name">
-                            <a href="#">Apples</a>
-                            <span>(3)</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex justify-content-between fruite-name">
-                            <a href="#">Oranges</a>
-                            <span>(5)</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex justify-content-between fruite-name">
-                            <a href="#">Strawbery</a>
-                            <span>(2)</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex justify-content-between fruite-name">
-                            <a href="#">Banana</a>
-                            <span>(8)</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex justify-content-between fruite-name">
-                            <a href="#">Pumpkin</a>
-                            <span>(5)</span>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </Col>
-                  <Col lg={12}>
-                    <div className="mb-3">
-                      <h4>Khuyến mãi</h4>
-                      <div className="d-flex align-items-center justify-content-start">
-                        <div
-                          className="rounded me-4"
-                          style={{ width: 100, height: 100 }}
-                        >
-                          {/* <img src={Images.featur} class="img-fluid rounded" alt="" /> */}
-                        </div>
-                        <div>
-                          <h6 className="mb-2">Name</h6>
-                          {/* <div class="d-flex mb-2">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div> */}
-                          <div className="d-flex mb-2">
-                            <h5 className="fw-bold me-2">2.99 $</h5>
-                            <h5 className="text-danger text-decoration-line-through">
-                              4.11 $
-                            </h5>
-                          </div>
-                        </div>
-                      </div>
+                       {category2 && category2.map((item,index) => (
+                            <div key={index} className="my-2">
+                              <a onClick={() => handleCategoryClick(item.categoryId)}>
+                                <h5>{item.name}</h5>
+                              </a>
+                            </div>
+                       ))}
                     </div>
                   </Col>
                 </Col>

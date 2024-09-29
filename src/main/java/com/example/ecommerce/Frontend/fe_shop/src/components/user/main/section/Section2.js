@@ -9,7 +9,7 @@ export default function Section2() {
         <h2>Categories</h2>
                     <Row uk-grid uk-scrollspy="cls: uk-animation-fade; target: .col-6; delay: 200; repeat: true">
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px" }}>
-                                <div class="card">
+                                <div class="card card-laptop">
                                     <div >
                                        <h1>Laptop</h1>
                                     </div>
@@ -20,7 +20,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card card-phone">
                                     <div >
                                        <h1>Phone</h1>
                                     </div>
@@ -31,8 +31,8 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
-                                    <div >
+                        <div class="card card-network">
+                                    <div >0
                                        <h1>Network</h1>
                                     </div>
                                     <div class="content">
@@ -42,7 +42,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card card-pc">
                                     <div >
                                        <h1>PC</h1>
                                     </div>
@@ -54,7 +54,7 @@ export default function Section2() {
 
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card card-monitors">
                                     <div >
                                        <h1>Monitors</h1>
                                     </div>
@@ -65,7 +65,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card card-keyboard">
                                     <div >
                                        <h1>Keyboard</h1>
                                     </div>
@@ -76,7 +76,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card  card-gear">
                                     <div >
                                        <h1>Gear</h1>
                                     </div>
@@ -87,7 +87,7 @@ export default function Section2() {
                                 </div>
                         </Col>
                         <Col lg="3" xs="6" sm="6" style={{marginBottom:"20px"}} >
-                        <div class="card">
+                        <div class="card  card-mouse">
                                     <div >
                                        <h1>Mouse</h1>
                                     </div>

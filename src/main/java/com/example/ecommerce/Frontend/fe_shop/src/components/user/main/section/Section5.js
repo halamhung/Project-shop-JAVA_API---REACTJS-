@@ -9,7 +9,7 @@ export default function Section5() {
             <h2>System</h2>
             <Container className=" py-5">
                 <Row className="g-4">
-                    <Col xl={3} md={6} lg={6} data-aos="fade-right" data-aos-delay="1500">
+                    <Col xl={3} md={6} lg={6} uk-scrollspy="cls: uk-animation-slide-left; repeat: true" >
                             <div class="e-card playing">
                             <div class="image"></div>
                             
@@ -24,7 +24,7 @@ export default function Section5() {
                             </div>
                             </div>
                     </Col>
-                    <Col xl={3} md={6} lg={6} data-aos="fade-right" data-aos-delay="1000">
+                    <Col xl={3} md={6} lg={6} uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
                     <div class="e-card playing">
                             <div class="image"></div>
                             
@@ -39,7 +39,7 @@ export default function Section5() {
                             </div>
                             </div>
                     </Col>
-                    <Col xl={3} md={6} lg={6} data-aos="fade-right" data-aos-delay="500">
+                    <Col xl={3} md={6} lg={6} uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
                     <div class="e-card playing">
                             <div class="image"></div>
                             
@@ -54,7 +54,7 @@ export default function Section5() {
                             </div>
                             </div>
                     </Col>
-                    <Col xl={3} md={6} lg={6} data-aos="fade-right">
+                    <Col xl={3} md={6} lg={6} uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
                     <div class="e-card playing">
                             <div class="image"></div>
                             

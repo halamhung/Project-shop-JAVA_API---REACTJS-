@@ -1,41 +1,77 @@
-/* From Uiverse.io by david-mohseni */ 
+/* Common card styles */
 .card {
-    width: 190px;
-    height: 120px;
-    background-color: #eee;
-    text-align: center;
-    border: 10px solid #eee;
-    border-radius: 20px;
-    box-shadow: inset 5px 5px 10px #bbb, inset -5px -5px 10px #fff;
-    transition: 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* To center the icon and content */
-    overflow: hidden;
-  }
-  
-  .card:hover {
-    height: 254px;
-  }
+  width: 190px;
+  height: 120px;
+  text-align: center;
+  border: 10px solid #eee;
+  border-radius: 20px;
+  box-shadow: inset 5px 5px 10px #bbb, inset -5px -5px 10px #fff;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
 
-  h1{color: #999;}
-  .content {
-    color: #999;
-    background-color: #eee;
-    padding: 10px;
-    margin: 10px 0; /* Adjusted margin */
-    border-radius: 8px;
-    box-shadow: 8px 8px 10px #ddd, -8px -8px 10px #fff;
-    transform: translateY(-80px) scale(0);
-    transition: all 0.5s;
-    width: 100%; /* Adjust width */
-  }
-  
-  .card:hover .content {
-    transform: translateY(0) scale(1);
-  }
-  
-  .content h3 {
-    text-shadow: 2px 2px 0px #fff;
-  }
+.card:hover {
+  height: 254px;
+}
+
+/* Laptop Card Background */
+.card-laptop {
+  background-color: #f0f8ff; /* Light blue */
+}
+
+/* Phone Card Background */
+.card-phone {
+  background-color: #fffaf0; /* Light yellow */
+}
+
+/* Network Card Background */
+.card-network {
+  background-color: #e6ffe6; /* Light green */
+}
+
+/* PC Card Background */
+.card-pc {
+  background-color: #ffebee; /* Light pink */
+}
+
+/* Monitor Card Background */
+.card-monitor {
+  background-color: #e1f5fe; /* Light cyan */
+}
+
+/* Additional card styles for other categories */
+.card-gear {
+  background-color: #f3e5f5; /* Light purple */
+}
+
+.card-keyboard {
+  background-color: #fff3e0; /* Light orange */
+}
+
+.card-mouse {
+  background-color: #fffde7; /* Light yellow */
+}
+
+h1 {
+  color: #999;
+}
+
+.content {
+  color: #999;
+  background-color: #eee;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 8px 8px 10px #ddd, -8px -8px 10px #fff;
+  transform: translateY(-80px) scale(0);
+  transition: all 0.5s;
+  width: 100%;
+}
+
+.card:hover .content {
+  transform: translateY(0) scale(1);
+}

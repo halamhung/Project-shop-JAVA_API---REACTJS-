@@ -32,8 +32,6 @@ export const getListProduct = createAsyncThunk("/getListProduct",async({currentP
 
 
 
-
-
 export const getImageID = async (id) => {
     try {
         const response = await axios.get(`${BASE_URL}/products/getAllImages/${id}`,{

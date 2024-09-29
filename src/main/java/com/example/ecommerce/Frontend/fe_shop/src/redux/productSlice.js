@@ -23,7 +23,7 @@ export const fetchCategories = createAsyncThunk(
 export const getAllProduct = createAsyncThunk(
     "product/getAllProduct",
     async (page) => {
-        const res = await axios.get(`${url}?page=${page}&size=10`);
+        const res = await axios.get(`${url}?page=${page}&size=6`);
         return res.data;
     }
 );

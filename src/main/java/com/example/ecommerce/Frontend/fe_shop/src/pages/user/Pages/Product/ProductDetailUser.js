@@ -3,6 +3,7 @@ import Header from '../../../../components/user/Header'
 import Footer from '../../../../components/user/Footer'
 import SingleHeader from '../../../../components/user/SingleHeader'
 import "./detailpro.css"
+import banner from './banner1.jpg';
 import { Button, Col, Container, Input, InputGroup, Row } from 'reactstrap'
 
 export default function ProductDetailUser() {
@@ -68,42 +69,42 @@ export default function ProductDetailUser() {
                                                     <div class="col-6">
                                                         <div class="row bg-light align-items-center text-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Weight</p>
+                                                                <p class="mb-0">CPU	</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">1 kg</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row text-center align-items-center justify-content-center py-2">
-                                                            <div class="col-6">
-                                                                <p class="mb-0">Country of Origin</p>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <p class="mb-0">Agro Farm</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                            <div class="col-6">
-                                                                <p class="mb-0">Quality</p>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <p class="mb-0">Organic</p>
+                                                                <p class="mb-0">Intel Core i7-13620H (3.6GHz~4.9GHz) 10 Cores 16 Threads</p>
                                                             </div>
                                                         </div>
                                                         <div class="row text-center align-items-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Сheck</p>
+                                                                <p class="mb-0">RAM</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">Healthy</p>
+                                                                <p class="mb-0">8GB (1 x 8GB) DDR5 5200MHz (2x SO-DIMM socket, up to 64GB SDRAM)</p>
                                                             </div>
                                                         </div>
                                                         <div class="row bg-light text-center align-items-center justify-content-center py-2">
                                                             <div class="col-6">
-                                                                <p class="mb-0">Min Weight</p>
+                                                                <p class="mb-0">Ổ cứng	</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <p class="mb-0">250 Kg</p>
+                                                                <p class="mb-0">512GB NVMe PCIe Gen 4 SSD (2 slots, Nâng cấp cần gắn thêm linh kiện tại TTBH MSI)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row text-center align-items-center justify-content-center py-2">
+                                                            <div class="col-6">
+                                                                <p class="mb-0">VGA	 </p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <p class="mb-0">NVIDIA GeForce RTX 4050 Laptop GPU 6GB GDDR6</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                            <div class="col-6">
+                                                                <p class="mb-0">Màn hình</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <p class="mb-0">15.6" FHD (1920x1080), 144Hz, IPS-Level</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -161,7 +162,7 @@ export default function ProductDetailUser() {
                                     <h4 className='fw-bold '>Khuyến mãi</h4 >
                                     <div class="d-flex align-items-center justify-content-start">
                                         <div class="banner rounded me-4" style={{ width: 100, height: 100 }}>
-                                            {/* <img src={Images.featur} class="img-fluid rounded" alt="" /> */}
+                                            {/* <img src={banner} class="img-fluid rounded" alt="" /> */}
                                         </div>
                                         <div>
                                             <h6 class="mb-2">Name</h6>
@@ -184,10 +185,10 @@ export default function ProductDetailUser() {
                             <Col lg={12}>
                                 <div className="position-relative ">
                                     <h4 className="fw-bold mt-5 ">Banner</h4>
-                                    {/* <img src={Images.banner} className="img-fluid w-100 rounded" alt="" /> */}
+                                    <img src={banner} className="img-fluid w-100 rounded" alt="" />
                                     <div className="banner">
-                                        <p>Fresh</p>
-                                        <p>Fruits</p>
+                                        <p>Hub-X</p>
+                                        <p>Flatform</p>
                                         <p>Banner</p>
                                     </div>
                                 </div>

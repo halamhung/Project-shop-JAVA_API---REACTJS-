@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 // import Swal from "sweetalert2";
 
 
@@ -33,7 +32,6 @@ export const createCategory = createAsyncThunk('category/createCategory', async 
         //         password  // Sử dụng password từ localStorage
         //     }
         // });
-        return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -50,7 +48,6 @@ export const updateCategory = createAsyncThunk('category/updateCategory', async 
         //         password  // Sử dụng password từ localStorage
         //     }
         // });
-        return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -69,9 +66,6 @@ export const deleteCategory = createAsyncThunk("category/deleteCategory", async 
 const categorySlice = createSlice({
     name: "category",
     initialState,
-    reducers: {
-
-    },
     reducers: {
         resetStatusAndMessage: (state) => {
             state.error = null;

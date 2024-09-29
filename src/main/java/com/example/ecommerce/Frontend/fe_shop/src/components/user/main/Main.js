@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { Col, Container, Row } from "reactstrap";
-import Slider2 from "./slide/Slider2";
-import Slider1 from "./slide/Slider1"
-import Banner from "./banner/Banner";
+import React from "react";
+import { Container } from "reactstrap";
 import "./Main.css";
 import Section1 from "./section/Section1";
-import Section3 from "./section/Section3";
-import Section4 from "./section/Section4";
+import Section3 from "./section/Section4";
+import Section4 from "./section/Section5";
 import Section2 from "./section/Section2";
+import Section5 from "./section/Section3";
+import Section6 from "./section/Section6";
 
 export default function Main() {
 
@@ -17,9 +16,8 @@ export default function Main() {
         <Section2/>
         <Section3/>
         <Section4/>
-
-       <Banner/>       
-
+        <Section5/>    
+        <Section6/>
     </Container>
   );
 }

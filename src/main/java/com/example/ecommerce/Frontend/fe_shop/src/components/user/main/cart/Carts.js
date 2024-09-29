@@ -1,20 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react';
 import Swal from "sweetalert2";
 import {
     Button,
     ButtonGroup,
     Col,
     Container,
-    Input,
-    InputGroup,
     Row,
     Table,
   } from "reactstrap";
-import {postNewOrder, clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
+import { clearCart, removeCart, updateQty } from "../../../../redux/cartSlice"
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./carts.css"
 export default function Carts() {
   const { carts } = useSelector((state) => state.carts);
@@ -98,10 +95,8 @@ export default function Carts() {
                   {carts.map((item, index) => (
                     <tr key={index}>
                       <td>
-                        <img
-                          className="img-cart img-fluid"
-                          // src={"/"}
-                        />
+                        <img className="img-cart img-fluid" alt='cartImg'/>
+                          
                       </td>
                       <td>
                         <p className="mt-3">{item.name}</p>
